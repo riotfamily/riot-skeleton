@@ -5,6 +5,6 @@
 <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
 <wb-resource deploy-path="/WEB-INF/classes" source-path="/build/conf"/>
 <property name="java-output-path" value="build/classes"/>
-<property name="context-root" value="jdsoftware"/>
+<property name="context-root" value="riot-skeleton"/>
 </wb-module>
 </project-modules>

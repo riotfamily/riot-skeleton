@@ -1,0 +1,6 @@
+--- .classpath
++++ .classpath
+@@ -2,2 +2,3 @@
+ <classpath>
++	<classpathentry kind="src" path="build/conf"/>
+ 	<classpathentry kind="src" path="src"/>

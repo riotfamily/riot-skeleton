@@ -1,0 +1,111 @@
+<project name="riot-setup" default="setup-project">
+
+	<!--
+	  - Sets up a new Riot project.
+	  -->
+	<target name="setup-project" depends="get-eclipse-project-name,add-wst-nature,add-conf-folder,get-directory-name">
+		<replace dir="." token="@project-name@" value="${project.name}">
+			<include name="build.xml" />
+			<include name="ivy.xml" />
+			<include name=".settings/org.eclipse.wst.common.component" />
+		</replace>
+		<delete file="classpath.patch" />
+		<delete file="wst.patch" />
+		<ant antfile="build.xml" target="setup" />
+	</target>
+
+	<!--
+	  - Checks whether the directory contains an Eclipse .project file.
+	  -->
+	<target name="check-eclipse">
+		<condition property="noeclipse.istrue">
+			<istrue value="${noeclipse}" />
+		</condition>
+		<available file=".project" property=".project.available" />
+	</target>
+	
+	<!--
+	  - Reads all properties from an Eclipse .project file.
+	  -->
+	<target name="parse-project-file" depends="check-eclipse" if=".project.available" unless="noeclipse.istrue">
+		<echo>If you are not using Eclipse but see this message, your IDE created 
+a file called '.project'. In case this file is not well-formed XML
+the build will fail. Use the -Dnoeclipse=true command line option to skip
+the Eclipse setup.</echo>
+		<xmlproperty file=".project" />
+	</target>
+	
+	<!--
+	  - Sets the project.name property based on an existing .project file.
+	  -->
+	<target name="get-eclipse-project-name" depends="parse-project-file" if="projectDescription.name">
+		<property name="project.name" value="${projectDescription.name}" />
+		<echo message="Using project name set in Eclipse: ${project.name}" />
+		<available file=".classpath" property=".classpath.available" />
+	</target>
+	
+	<!--
+	  - Sets the project.name property based on the directory name.
+	  -->
+	<target name="get-directory-name" unless="project.name">
+		<basename file="." property="project.name" />
+		<echo message="Not an Eclipse project - using directory name as project name: ${project.name}" />
+	</target>
+	
+	<!--
+	  - Checks whether the project already has the WST nature.
+	  -->
+	<target name="check-project-nature">
+		<condition property="skip-add-wst">
+			<contains string="${projectDescription.natures.nature}" substring="org.eclipse.wst.common.project.facet.core.nature" />
+		</condition>
+		<condition property="webcontent">
+			<and>
+				<available file="WebContent" />
+				<available file=".settings/org.eclipse.wst.common.component" />
+			</and>
+		</condition>
+	</target>
+
+	<!--
+	  - Changes the content directory form /WebContent to /webapp. WebContent
+	  - is the default name set by Eclipse when a Dynamic Web Project is created.
+	  -->
+	<target name="rename-content-dir" if="webcontent">
+		<replace file=".settings/org.eclipse.wst.common.component" token="/WebContent" value="/webapp" />
+		<delete dir="WebContent" />
+	</target>
+	
+	<!--
+	  - Adds the WST nature to an Eclipse project by applying the wst.patch file.
+	  -->
+	<target name="add-wst-nature" depends="check-project-nature,rename-content-dir,confirm-add-wst" unless="skip-add-wst">
+		<echo message="Adding WST nature ..." />
+		<patch patchfile="wst.patch" />
+	</target>
+	
+	<!--
+	  - Prompts the user whether the WST project nature should be added.
+	  -->
+	<target name="confirm-add-wst" unless="skip-add-wst">
+<echo>
+If you want to run your application from within Eclipse you can now convert your
+project into a "Dynamic Web Project". Make sure you have installed the Eclipse
+Web Standard Tools (WST).
+</echo>
+		<input validargs="y,n" addproperty="add-wst.input" defaultvalue="y" 
+			message="Do you want to add the the WST project nature? " />
+		
+		<condition property="skip-add-wst">
+			<equals arg1="${add-wst.input}" arg2="n" />
+		</condition>
+	</target>
+	
+	<!--
+	  - Adds the build/conf folder to the Eclipse classpath.
+	  -->
+	<target name="add-conf-folder" if=".classpath.available">
+		<patch patchfile="classpath.patch" />
+	</target>
+		
+</project>

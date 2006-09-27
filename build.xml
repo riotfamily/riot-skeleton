@@ -79,6 +79,9 @@
 		<exclude name="**/*.java" />
 	</patternset>
 
+	<target name="setup" depends="resolve,resolve-jdbc-driver,webapp" 
+		description="Performs an inital setup." />
+	
 	<!--
 	  - Resolves the project's dependencies. Runtime dependencies are copied
 	  - to ${web.lib.dir} (webapp/WEB-INF/lib). Dependencies that are provided
@@ -102,7 +105,7 @@
 	</target>
 
 	<!--
-	  -
+	  - Copys the compiled classes (and merged properties) to WEB-INF/classes.
 	  -->
 	<target name="webapp" depends="configure,compile">
 		<copy todir="${web.dir}/WEB-INF/classes">
@@ -137,7 +140,7 @@
 	</target>
 	
 	<!--
-	  -
+	  - Creates a war file.
 	  -->
 	<target name="war" depends="configure,jar" description="Creates a war file.">
 		<delete file="${war.location}" />
@@ -308,8 +311,13 @@
 	  -->
 	<target name="report" depends="resolve">
     	<ivy:report todir="${build.dir}/reports" conf="runtime" graph="false" />
+		
+		<property name="dotxsl.file" value="${build.dir}/report2dot.xsl" />
+		<get src="http://www.riotfamily.org/ivy/report2dot.xsl" 
+				dest="${dotxsl.file}" />
+		
     	<ivy:report todir="${build.dir}/reports" conf="runtime" graph="false" 
-    		xslfile="report2dot.xsl" xslext="dot" />
+    		xslfile="${dotxsl.file}" xslext="dot" />
     	
     	<exec executable="/usr/bin/dot">
     		<arg value="-Tpng" />

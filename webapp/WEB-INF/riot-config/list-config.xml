@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list-config
+	xmlns="http://www.riotfamily.org/schema/riot/list-config"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.riotfamily.org/schema/riot/list-config
+		http://www.riotfamily.org/schema/riot/list-config-6.3.xsd">
+	
+	
+	<list id="riotUsers">
+		<dao ref="hqlDao">
+			<property name="entityClass" value="org.riotfamily.riot.hibernate.security.User" />
+		</dao>
+		<columns>
+			<column property="id" />
+			<column property="name" />
+			<command id="edit" />
+			<command id="delete" />
+		</columns>
+		<command id="add" />
+	</list>
+
+</list-config>

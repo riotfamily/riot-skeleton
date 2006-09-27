@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+<wb-module deploy-name="riot-skeleton">
+<wb-resource deploy-path="/" source-path="/webapp"/>
+<wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+<wb-resource deploy-path="/WEB-INF/classes" source-path="/build/conf"/>
+<property name="java-output-path" value="build/classes"/>
+<property name="context-root" value="jdsoftware"/>
+</wb-module>
+</project-modules>

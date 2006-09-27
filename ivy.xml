@@ -1,0 +1,25 @@
+<ivy-module version="1.3">
+    <info 
+    	organisation="riotfamily" 
+    	module="riot-skeleton" 
+    	status="integration" />
+
+	<configurations>
+		<conf name="standalone" />
+		<conf name="runtime" />
+		<conf name="hsqldb" extends="runtime" />
+		<conf name="postgreql" extends="runtime" />
+	</configurations>    	
+	
+	<!--
+	  - This project's dependencies.
+	  - See http://www.jayasoft.org/ivy/doc/ivyfile/dependency
+	  -->
+    <dependencies>
+	    <dependency org="riotfamily" name="riot-pages" rev="latest.integration" conf="runtime" />
+	    <dependency org="sun" name="servlet-api" rev="2.4" conf="standalone->default" />
+	    <dependency org="hsqldb" name="hsqldb" rev="latest.release" conf="hsqldb->default" />
+	    <dependency org="postgresql" name="jdb3" rev="8.1-407" conf="postgresql->default" />
+    </dependencies>
+
+</ivy-module>

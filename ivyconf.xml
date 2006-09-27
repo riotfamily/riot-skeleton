@@ -1,0 +1,18 @@
+<ivyconf>
+	<!-- 
+	  - Ivy configuration, see http://www.jayasoft.org/ivy/doc/configuration
+	  -->
+	<conf defaultResolver="default" />
+	<include url="${ivy.default.conf.dir}/ivyconf-local.xml"/>
+	<resolvers>
+		<url name="riotfamily">
+			<ivy pattern="http://riotfamily.org/ivy/repo/[organisation]/[module]/[revision]/ivy.xml" />
+			<artifact pattern="http://riotfamily.org/ivy/repo/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" />
+			<artifact pattern="http://riotfamily.org/ivy/repo/[organisation]/[module]/[revision]/[artifact].[ext]" />
+		</url>
+		<chain name="default" returnFirst="true">
+			<resolver ref="local" />
+			<resolver ref="riotfamily" />
+		</chain>
+	</resolvers>
+</ivyconf>

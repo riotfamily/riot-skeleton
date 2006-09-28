@@ -16,23 +16,15 @@
 				<exclude name="build/**" />
 				<exclude name="webapp/WEB-INF/classes/**" />
 				<exclude name="webapp/WEB-INF/lib/**" />
-				<exclude name="build.xml" />
-				<exclude name="ivy.xml" />
-				<exclude name=".settings/org.eclipse.wst.common.component" />
 			</fileset>
 		</copy>
 		
-		<copy todir="${archive.dir}">
-			<fileset dir=".">
-				<include name="build.xml" />
-				<include name="ivy.xml" />
-				<include name=".settings/org.eclipse.wst.common.component" />
-			</fileset>
-			<filterset begintoken="&quot;" endtoken="&quot;">
-				<filter token="riot-skeleton" value="&quot;@project-name@&quot;" />
-			</filterset>
-		</copy>
-		
+		<replace dir="${archive.dir}" token="riot-skeleton" value="@project-name@">
+			<include name="build.xml" />
+			<include name="ivy.xml" />
+			<include name=".settings/org.eclipse.wst.common.component" />
+		</replace>
+
 		<zip destfile="${build.dir}/skeleton.zip" basedir="${archive.dir}" />
 		<scp file="${build.dir}/skeleton.zip" 
 			todir="${user.name}@riotfamily.org:/var/www/riotfamily.org/htdocs/setup"

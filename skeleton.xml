@@ -11,7 +11,6 @@
 		</replace>
 		<delete file="classpath.patch" />
 		<delete file="wst.patch" />
-		<delete file="skeleton.xml" />
 		<ant antfile="build.xml" target="setup" />
 	</target>
 
@@ -56,7 +55,9 @@
 	  -->
 	<target name="check-project-nature" if="eclipse">
 		<condition property="skip-add-wst">
-			<contains string="${projectDescription.natures.nature}" substring="org.eclipse.wst.common.project.facet.core.nature" />
+			<contains 
+				string="${projectDescription.natures.nature}" 
+				substring="org.eclipse.wst.common.project.facet.core.nature" />
 		</condition>
 		<condition property="webcontent">
 			<and>
@@ -78,8 +79,10 @@
 	<!--
 	  - Adds the WST nature to an Eclipse project by applying the wst.patch file.
 	  -->
-	<target name="add-wst-nature" depends="check-project-nature,rename-content-dir,confirm-add-wst,check-patch-support" 
-			if="patch.available" unless="skip-add-wst">
+	<target name="add-wst-nature" 
+		depends="check-project-nature,rename-content-dir,confirm-add-wst,check-patch-support-wst" 
+		if="patch.available" unless="skip-add-wst">
+		
 		<echo message="Adding WST nature ..." />
 		<patch patchfile="wst.patch" />
 	</target>
@@ -105,7 +108,10 @@ Web Standard Tools (WST). Pressing 'y' will apply a patch to your .project and
 	<!--
 	  - Adds the build/conf folder to the Eclipse classpath.
 	  -->
-	<target name="add-conf-folder" depends="show-classpath-patch-message,check-patch-support" if="patch.available">
+	<target name="add-conf-folder" 
+		depends="show-classpath-patch-message,check-patch-support" 
+		if="patch.available">
+		
 		<patch patchfile="classpath.patch" />
 	</target>
 		
@@ -119,10 +125,18 @@ patch file in order to perform this change automatically.
 	</target>
 	
 	<!--
+	  - Checks patch support (only if wst patch needs to be applied).
+	  -->
+	<target name="check-patch-support-wst" unless="skip-add-wst">
+		<antcall target="check-patch-support" />
+	</target>
+	
+	<!--
 	  - Checks whether the patch task is supported on the system that executes
 	  - this build file.
 	  -->
-	<target name="check-patch-support" depends="try-patch-execution,show-patch-support-message">
+	<target name="check-patch-support" 
+		depends="try-patch-execution,show-patch-support-message">
 	</target>
 	
 	<!--
@@ -140,11 +154,17 @@ patch file in order to perform this change automatically.
 	  -->
 	<target name="show-patch-support-message" if="eclipse" unless="patch.available">
 <echo>
-The GNU patch program is not available on your system. 
-Either hit Ctrl-C to stop the build and place the patch binary in your execution 
-path or press Return to continue without applying the patch.
+The GNU patch program is not available on your system. You can either interrupt
+the setup process and place the patch binary in your execution path or continue
+without applying the patch.
 </echo>
-		<input />
+		<input validargs="y,n" addproperty="continue-without-patch.input" defaultvalue="y" 
+				message="Do you want to continue without applying the patch? " />
+				
+		<condition property="continue-without-patch">
+			<equals arg1="${continue-without-patch.input}" arg2="y" />
+		</condition>
+		<fail unless="continue-without-patch" message="Setup interrupted." />
 	</target>
 	
 </project>

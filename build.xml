@@ -1,4 +1,4 @@
-<project name="riot-skeleton" default="compile" xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
+<project name="riot-skeleton" default="default" xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
 
 	<!-- 
 	  - File and directory names
@@ -79,9 +79,6 @@
 		<exclude name="**/*.java" />
 	</patternset>
 
-	<target name="setup" depends="resolve,resolve-jdbc-driver,webapp" 
-		description="Performs an inital setup." />
-	
 	<!--
 	  - Resolves the project's dependencies. Runtime dependencies are copied
 	  - to ${web.lib.dir} (webapp/WEB-INF/lib). Dependencies that are provided
@@ -187,6 +184,9 @@
 		<antcall target="-restore-config" />
 	</target>
 
+	<!--
+	  - Installs the Tomcat deployer.
+	  -->
 	<target name="-retrieve-tomcat-deployer" depends="-configure-ivy" unless="tomcat-deployer.available">
 		<ivy:retrieve organisation="apache" module="tomcat-deployer" conf="ant" inline="true" pattern="${lib.dir}/[artifact].[ext]" />
 	</target>
@@ -250,6 +250,9 @@
     	</fail>
     </target>
 	
+	<!--
+	  - Resolves the JDBC driver.
+	  -->
 	<target name="resolve-jdbc-driver" depends="-configure-ivy,-set-dbconf-by-driver">
 		<ivy:resolve showprogress="false" />
 		<condition property="conf.known">
@@ -326,44 +329,55 @@
     	</exec>
     </target>
 	
-	<target name="-configure-ivy" depends="-setup-ivy">
+	<target name="-configure-ivy" depends="-install-ivy">
 		<ivy:configure file="ivyconf.xml" />
-	</target>
-		
-	<!--
-	 - Installs and configures ivy.
-	 -->
-	<target name="-setup-ivy">
-		<available resource="fr/jayasoft/ivy/ant/antlib.xml" property="ivy.available" />
-		<condition property="ivy.configured">
-			<isreference refid="ivy.instance" />
-		</condition>
-		<antcall target="-install-ivy" />
 	</target>
 	
 	<!--
-	  - Checks whether the ivy jar is present and optionally downloads it.
-	  - This target is invoked by -setup-ivy unless ivy is available in the 
-	  - the classpath.
+	  - Invoked by skeleton.xml to perform initial setup.
 	  -->
-	<target name="-install-ivy" unless="ivy.available">
-		<echo>Ivy is not installed ANT_HOME/lib, using local version ...</echo>
-		<available file="${ivy.jar}" property="ivy.jar.available" />
-		<antcall target="-download-ivy" />
+	<target name="setup" depends="resolve,resolve-jdbc-driver,webapp" />
+	
+	<!--
+	  - The default target.
+	  -->
+	<target name="default" depends="-process-skeleton,setup">
+		<echo>The project setup is completed. Type 'ant -projecthelp' to see what you can do now.</echo>
 	</target>
 
 	<!--
-	  - Downloads the ivy jar file from riotfamily.org.
-	  - This target is invoked by -install-ivy unless the jar file has already
-	  - been downloaded.
+	  - Invokes the default target in skeleton.xml
 	  -->
-	<target name="-download-ivy" unless="ivy.jar.available">
-		<echo>This project uses Ivy (http://jayasoft.org/ivy) to manage dependencies.</echo>
-		<echo>Since Ivy was not found in the classpath the JAR file will now be downloaded ...</echo>
-		<delete dir="${lib.dir}" />
-		<mkdir dir="${lib.dir}" />
-		<echo message="*" file="${lib.dir}/.cvsignore" />
-		<get src="http://riotfamily.org/ivy/ivy-1.4-RC1.jar" dest="${ivy.jar}" verbose="true" />
+	<target name="-process-skeleton" depends="-prompt-continue" if="process-skeleton">
+		<ant antfile="skeleton.xml" />
+	</target>
+			
+	<!--
+	  - Prompts if the processing of the skeleton should be continued.
+	  -->
+	<target name="-prompt-continue" depends="-check-skeleton" if="skeleton.available">
+		<echo>A skeleton.xml file was found in the project directory. This usually means that
+a previous setup attempt was not successfully completed.</echo>
+		
+		<input message="Do want to continue the setup? " validargs="y,n"
+			defaultvalue="y" addproperty="continue-setup.input" />
+		
+		<condition property="process-skeleton">
+			<equals arg1="${continue-setup.input}" arg2="y" />
+		</condition>
+	</target>
+	
+	<!--
+	  - Checks whether a skeleton.xml file is (still) present.
+	  -->
+	<target name="-check-skeleton">
+		<available file="skeleton.xml" property="skeleton.available" />
+	</target>
+	
+	<!--
+	  - Installs Ivy (if needed).
+	  -->
+	<target name="-install-ivy" depends="-download-ivy" if="ivy.downloaded">
 		<fail>Ant needs to be restarted.
 ==============================================================================
 Ivy has been successfully downloaded and a local copy has been installed in
@@ -371,7 +385,30 @@ the project's lib directory. Please re-execute ant in order to continue the
 build process with Ivy support.
 ==============================================================================
 		</fail>
-			
+	</target>
+	
+	<!--
+	  - Downloads the Ivy jar file from riotfamily.org.
+	  -->
+	<target name="-download-ivy" depends="-check-ivy" unless="ivy.available">
+		<echo>This project uses Ivy (http://jayasoft.org/ivy) to manage dependencies.</echo>
+		<echo>Since Ivy was not found in the classpath the JAR file will now be downloaded ...</echo>
+		<delete dir="${lib.dir}" />
+		<mkdir dir="${lib.dir}" />
+		<get src="http://riotfamily.org/ivy/ivy-1.4-RC1.jar" dest="${ivy.jar}" verbose="true" />
+		<property name="ivy.downloaded" value="true" />
+	</target>
+	
+	<!--
+	  - Checks whether Ivy is available in the classpath.
+	  -->
+	<target name="-check-ivy">
+		<condition property="ivy.available">
+			<or>
+				<available resource="fr/jayasoft/ivy/ant/antlib.xml" />
+				<available file="${ivy.jar}" />
+			</or>
+		</condition>
 	</target>
 
 </project>

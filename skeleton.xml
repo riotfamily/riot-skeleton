@@ -11,6 +11,7 @@
 		</replace>
 		<delete file="classpath.patch" />
 		<delete file="wst.patch" />
+		<delete file="skeleton.xml" />
 		<ant antfile="build.xml" target="setup" />
 	</target>
 
@@ -18,20 +19,19 @@
 	  - Checks whether the directory contains an Eclipse .project file.
 	  -->
 	<target name="check-eclipse">
-		<condition property="noeclipse.istrue">
-			<istrue value="${noeclipse}" />
+		<condition property="eclipse">
+			<and>
+				<available file=".project" />
+				<available file=".classpath" />
+				<isfalse value="${noeclipse}" />
+			</and>
 		</condition>
-		<available file=".project" property=".project.available" />
 	</target>
 	
 	<!--
 	  - Reads all properties from an Eclipse .project file.
 	  -->
-	<target name="parse-project-file" depends="check-eclipse" if=".project.available" unless="noeclipse.istrue">
-		<echo>If you are not using Eclipse but see this message, your IDE created 
-a file called '.project'. In case this file is not well-formed XML
-the build will fail. Use the -Dnoeclipse=true command line option to skip
-the Eclipse setup.</echo>
+	<target name="parse-project-file" depends="check-eclipse" if="eclipse">
 		<xmlproperty file=".project" />
 	</target>
 	
@@ -41,7 +41,6 @@ the Eclipse setup.</echo>
 	<target name="get-eclipse-project-name" depends="parse-project-file" if="projectDescription.name">
 		<property name="project.name" value="${projectDescription.name}" />
 		<echo message="Using project name set in Eclipse: ${project.name}" />
-		<available file=".classpath" property=".classpath.available" />
 	</target>
 	
 	<!--
@@ -55,7 +54,7 @@ the Eclipse setup.</echo>
 	<!--
 	  - Checks whether the project already has the WST nature.
 	  -->
-	<target name="check-project-nature">
+	<target name="check-project-nature" if="eclipse">
 		<condition property="skip-add-wst">
 			<contains string="${projectDescription.natures.nature}" substring="org.eclipse.wst.common.project.facet.core.nature" />
 		</condition>
@@ -79,7 +78,8 @@ the Eclipse setup.</echo>
 	<!--
 	  - Adds the WST nature to an Eclipse project by applying the wst.patch file.
 	  -->
-	<target name="add-wst-nature" depends="check-project-nature,rename-content-dir,confirm-add-wst" unless="skip-add-wst">
+	<target name="add-wst-nature" depends="check-project-nature,rename-content-dir,confirm-add-wst,check-patch-support" 
+			if="patch.available" unless="skip-add-wst">
 		<echo message="Adding WST nature ..." />
 		<patch patchfile="wst.patch" />
 	</target>
@@ -87,14 +87,15 @@ the Eclipse setup.</echo>
 	<!--
 	  - Prompts the user whether the WST project nature should be added.
 	  -->
-	<target name="confirm-add-wst" unless="skip-add-wst">
+	<target name="confirm-add-wst" if="eclipse" unless="skip-add-wst">
 <echo>
 If you want to run your application from within Eclipse you can now convert your
 project into a "Dynamic Web Project". Make sure you have installed the Eclipse
-Web Standard Tools (WST).
+Web Standard Tools (WST). Pressing 'y' will apply a patch to your .project and
+.classpath file.
 </echo>
 		<input validargs="y,n" addproperty="add-wst.input" defaultvalue="y" 
-			message="Do you want to add the the WST project nature? " />
+			message="Do you want to add the the WST project nature now? " />
 		
 		<condition property="skip-add-wst">
 			<equals arg1="${add-wst.input}" arg2="n" />
@@ -104,8 +105,46 @@ Web Standard Tools (WST).
 	<!--
 	  - Adds the build/conf folder to the Eclipse classpath.
 	  -->
-	<target name="add-conf-folder" if=".classpath.available">
+	<target name="add-conf-folder" depends="show-classpath-patch-message,check-patch-support" if="patch.available">
 		<patch patchfile="classpath.patch" />
 	</target>
 		
+	<target name="show-classpath-patch-message" if="eclipse">
+<echo>
+In order to run your application from within Eclipse the folder build/conf must 
+be added to the Eclipse build path. This folder contains the merged .properties
+files created by your project's configure target. We will now try to apply a
+patch file in order to perform this change automatically.
+</echo>
+	</target>
+	
+	<!--
+	  - Checks whether the patch task is supported on the system that executes
+	  - this build file.
+	  -->
+	<target name="check-patch-support" depends="try-patch-execution,show-patch-support-message">
+	</target>
+	
+	<!--
+	  - Trys to execute 'patch -v'.
+	  -->
+	<target name="try-patch-execution" if="eclipse">
+		<exec executable="patch" failifexecutionfails="false" 
+			searchpath="true" resultproperty="patch.available">
+			<arg value="-v" />
+		</exec>
+	</target>
+	
+	<!--
+	  - Displays a message when the patch binary is not present.
+	  -->
+	<target name="show-patch-support-message" if="eclipse" unless="patch.available">
+<echo>
+The GNU patch program is not available on your system. 
+Either hit Ctrl-C to stop the build and place the patch binary in your execution 
+path or press Return to continue without applying the patch.
+</echo>
+		<input />
+	</target>
+	
 </project>

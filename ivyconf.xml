@@ -3,9 +3,15 @@
 	  - Ivy configuration, see http://www.jayasoft.org/ivy/doc/configuration
 	  -->
 	<conf defaultResolver="default" />
-	<include url="${ivy.default.conf.dir}/ivyconf-local.xml"/>
+	<property name="ivy.local.default.root" value="${ivy.default.ivy.user.dir}/local" override="false"/>
+	<property name="ivy.local.default.ivy.pattern" value="[organisation]/[module]/[revision]/[type]s/[artifact].[ext]" override="false"/>
+	<property name="ivy.local.default.artifact.pattern" value="[organisation]/[module]/[revision]/[type]s/[artifact].[ext]" override="false"/>
 	<resolvers>
-		<url name="riotfamily">
+		<filesystem name="local" changingPattern=".+-SNAPSHOT$">
+			<ivy pattern="${ivy.local.default.root}/${ivy.local.default.ivy.pattern}" />
+			<artifact pattern="${ivy.local.default.root}/${ivy.local.default.artifact.pattern}" />
+		</filesystem>
+		<url name="riotfamily" changingPattern=".+-SNAPSHOT$">
 			<ivy pattern="http://riotfamily.org/ivy/repo/[organisation]/[module]/[revision]/ivy.xml" />
 			<artifact pattern="http://riotfamily.org/ivy/repo/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]" />
 			<artifact pattern="http://riotfamily.org/ivy/repo/[organisation]/[module]/[revision]/[artifact].[ext]" />

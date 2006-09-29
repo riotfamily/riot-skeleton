@@ -72,7 +72,10 @@
 	  - is the default name set by Eclipse when a Dynamic Web Project is created.
 	  -->
 	<target name="rename-content-dir" if="webcontent">
-		<replace file=".settings/org.eclipse.wst.common.component" token="/WebContent" value="/webapp" />
+		<replace dir=".settings" token="/WebContent" value="/webapp">
+			<include name=".component" />
+			<include name="org.eclipse.wst.common.component" />
+		</replace>
 		<delete dir="WebContent" />
 	</target>
 	

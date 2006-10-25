@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.riotfamily.org/schema/pages/page"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.riotfamily.org/schema/pages/page
+		http://www.riotfamily.org/schema/pages/page-6.3.xsd">
     
     <!-- Read placeholders from application.properties  -->
 	<bean id="configurer" class="org.riotfamily.common.beans.config.PlaceholderWithDefaultConfigurer">
@@ -63,22 +66,8 @@
  		</property>
  	</bean>
 
-	<bean class="org.riotfamily.riot.hibernate.support.SetupBean">
- 		<property name="sessionFactory"><ref bean="sessionFactory" /></property>
- 		<property name="condition"><value>select count(*) from PersistentPage</value></property>
- 		<property name="objects">
- 			<list>
- 				<bean class="org.riotfamily.pages.page.PersistentPage">
- 					<property name="pathComponent"><value>index</value></property>
- 					<property name="published" value="true" />
-					<property name="metaData">
-						<bean class="org.riotfamily.pages.page.meta.MetaData">
-							<property name="title"><value>Home</value></property>
-						</bean>
-					</property>
- 				</bean>
- 			</list>
- 		</property>
- 	</bean>
+	<p:setup dao="pageDao">
+		<p:page path-component="index" title="Home" />
+	</p:setup>
  	
 </beans>

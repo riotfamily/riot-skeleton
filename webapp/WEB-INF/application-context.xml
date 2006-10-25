@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-	<bean id="configurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean id="configurer" class="org.riotfamily.common.beans.config.PlaceholderWithDefaultConfigurer">
 		<property name="ignoreUnresolvablePlaceholders"><value>true</value></property>
 		<property name="locations">
 			<list>

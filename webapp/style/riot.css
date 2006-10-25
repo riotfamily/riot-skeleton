@@ -1,3 +1,7 @@
+.riot-insert-button {
+clear:both;
+}
+
 #extra .riot-insert-button {
 width:174px;
 }
@@ -6,10 +10,15 @@ width:174px;
 overflow:hidden;
 }
 
+.riot-component-image {
+z-index: 1;
+}
+
 .riot-noimage {
 background:url(no-image.gif);
 height:84px;
 padding:10px;
+clear:both;
 }
 #content .riot-noimage {
 margin-bottom:32px;

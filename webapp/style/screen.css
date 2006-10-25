@@ -39,10 +39,10 @@ background:#908c83 url(header_bg.png) repeat-x;
 #logo {
 display:block;
 position:relative;
-top:16px;
-left:18px;
-width:144px;
-height:66px;
+top:17px;
+left:35px;
+width:99px;
+height:62px;
 background:url(riot-logo.jpg) no-repeat;
 }
 
@@ -113,7 +113,7 @@ text-decoration:none;
 background-image:url(arrow.gif);
 }
 #menu div.active {
-font-weight:bold;
+color: #a8ff00;
 background-image:url(arrow.gif);
 }
 #menu a:hover {
@@ -133,6 +133,10 @@ font-size:11px;
 line-height:20px;
 font-family:verdana;
 }
+#content .title {
+clear: both;
+margin-bottom:25px;
+}
 #content h1 {
 color:#fff;
 font-family: "Trebuchet MS";
@@ -145,7 +149,6 @@ font-family: "Trebuchet MS";
 font-size:15px;
 font-weight:bold;
 margin-top:0;
-margin-bottom:25px;
 }
 #content p,
 #content pre,
@@ -154,9 +157,24 @@ margin-top:0px;
 margin-bottom:25px;
 paddint-top:0;
 }
-#content img {
-margin-bottom:32px;
+#content strong {
+color:#fff;
 }
+
+img {
+margin-bottom: 32px;
+}
+
+img.left {
+float:left;
+margin: 5px 10px 5px 0;
+}
+
+img.right {
+float:right;
+margin: 5px 0 5px 10px;
+}
+
 #content a {
 color:${pageFgColor};
 }

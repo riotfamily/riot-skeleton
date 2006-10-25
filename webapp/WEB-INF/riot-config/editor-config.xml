@@ -5,9 +5,9 @@
 	xsi:schemaLocation="
 		http://www.riotfamily.org/schema/riot/editor-config
 		http://www.riotfamily.org/schema/riot/editor-config-6.3.xsd">
-		
+	
 	<group name="riot" icon="tools">	
-		<list list-ref="riotUsers" icon="users">
+		<list list-ref="riotUsers">
 			<form form-ref="riotUser" />
 		</list>
 	</group>

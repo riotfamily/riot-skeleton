@@ -6,7 +6,6 @@
 		http://www.riotfamily.org/schema/riot/list-config
 		http://www.riotfamily.org/schema/riot/list-config-6.3.xsd">
 	
-	
 	<list id="riotUsers">
 		<dao ref="hqlDao">
 			<property name="entityClass" value="org.riotfamily.riot.hibernate.security.User" />

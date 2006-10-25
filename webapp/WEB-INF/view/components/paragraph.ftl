@@ -1,7 +1,7 @@
-<#if clear?exists && clear = "true">
+<#if clear?exists && clear>
 	<br clear="both" />
 </#if>
-<@riot.inplace key="body">
+<@riot.inplace key="body" editor="richtext-chunks">
 	<p>
 	Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
 	Nulla magna. Nullam tempus orci a dui. Nullam venenatis. Nullam convallis. 

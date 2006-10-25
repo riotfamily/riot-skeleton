@@ -20,7 +20,6 @@
 	<bean class="org.riotfamily.pages.page.PageHandlerMapping">
 		<constructor-arg ref="pageMap" />
 		<property name="order" value="2" />
-		<property name="pageAttribute" value="page" />
 		<property name="interceptors">
 			<list>
 				<ref bean="riotAccessControlInterceptor" />

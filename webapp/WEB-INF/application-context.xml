@@ -21,6 +21,7 @@
 	    <property name="jdbcUrl"><value>${jdbc.url}</value></property>
 	    <property name="user"><value>${jdbc.username}</value></property>
 	    <property name="password"><value>${jdbc.password}</value></property>
+	    <property name="maxPoolSize"><value>${jdbc.maxPoolSize=10}</value></property>
 	</bean>
 	
 	<!-- The Hibernate SessionFactory -->

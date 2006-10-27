@@ -27,7 +27,7 @@
 
 		<zip destfile="${build.dir}/skeleton.zip" basedir="${archive.dir}" />
 		<scp file="${build.dir}/skeleton.zip" 
-			todir="${user.name}@riotfamily.org:/var/www/riotfamily.org/htdocs/setup"
+			todir="${user.name}@riotfamily.org:/var/www/riotfamily.org/www/htdocs/setup"
 			keyfile="${user.home}/.ssh/id_rsa" passphrase="" trust="true" />
 
 	</target>

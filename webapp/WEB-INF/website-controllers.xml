@@ -20,7 +20,7 @@
 	<!-- Page types -->
 	<!-- ========== -->
 	
-	<template:definition name="default" view-name="templates/default.ftl">
+	<template:definition id="default" view-name="templates/default.ftl">
 		<template:insert slot="head" url="/inc/metadata.html" />
 		<template:insert slot="menu" url="/inc/menu.html" />
 		<template:insert slot="content" url="/inc/content.html" />
@@ -33,6 +33,9 @@
 
 	<!-- Controller that renders page meta data (title, keywords, description) -->
 	<bean name="/inc/metadata.html" class="org.riotfamily.pages.page.meta.MetaDataController">
+		<property name="metaDataProvider">
+			<bean class="org.riotfamily.pages.page.meta.PageMetaDataProvider" />
+		</property>
 	</bean>
 	
 	<bean name="/inc/menu.html" class="org.riotfamily.pages.menu.MenuController">

@@ -16,6 +16,7 @@
 	  - See http://www.jayasoft.org/ivy/doc/ivyfile/dependency
 	  -->
     <dependencies>
+	    <dependency org="riotfamily" name="riot-core" rev="latest.integration" conf="runtime" />
 	    <dependency org="riotfamily" name="riot-pages" rev="latest.integration" conf="runtime" />
 	    <dependency org="sun" name="servlet-api" rev="2.4" conf="standalone->default" />
 	    <dependency org="hsqldb" name="hsqldb" rev="latest.release" conf="hsqldb->default" />

@@ -8,6 +8,19 @@
 
 	<import resource="website-controllers.xml" />
 
+	<bean id="configurer" class="org.riotfamily.common.beans.config.PlaceholderWithDefaultConfigurer">
+		<property name="ignoreUnresolvablePlaceholders"><value>true</value></property>
+		<property name="locations">
+			<list>
+				<value>classpath:/application.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="org.riotfamily.common.web.servlet.ReloadableDispatcherServletConfig">
+		<property name="reloadable" value="${website-servlet.reloadable=false}" />
+	</bean>
+	
 	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
 		<property name="order" value="1" />
 		 <property name="interceptors">

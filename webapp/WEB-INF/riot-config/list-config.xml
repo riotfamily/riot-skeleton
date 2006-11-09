@@ -5,18 +5,5 @@
 	xsi:schemaLocation="
 		http://www.riotfamily.org/schema/riot/list-config
 		http://www.riotfamily.org/schema/riot/list-config-6.3.xsd">
-	
-	<list id="riotUsers">
-		<dao ref="hqlDao">
-			<property name="entityClass" value="org.riotfamily.riot.hibernate.security.User" />
-		</dao>
-		<columns>
-			<column property="id" />
-			<column property="name" />
-			<command id="edit" />
-			<command id="delete" />
-		</columns>
-		<command id="add" />
-	</list>
 
 </list-config>

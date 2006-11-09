@@ -5,21 +5,5 @@
 	xsi:schemaLocation="
 		http://www.riotfamily.org/schema/forms/form-config
 		http://www.riotfamily.org/schema/forms/form-config-6.3.xsd">
-	
-	<form id="riotUser" bean-class="org.riotfamily.riot.hibernate.security.User">
-		<group>
-			<editable-if-new>
-				<textfield bind="id" required="true" />
-			</editable-if-new>
-			<selectbox bind="role" required="true">
-				<model ref="roles" />
-			</selectbox>
-			<textfield bind="name" />
-			<textfield bind="email" />
-		</group>
-		<group>
-			<textfield bind="newPassword" />
-		</group>
-	</form>
 
 </form-config>

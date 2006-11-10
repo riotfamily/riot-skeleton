@@ -7,25 +7,21 @@
 		http://www.riotfamily.org/schema/forms/form-config-6.3.xsd">
 
 	<form id="title">
-		<group label-key="label.componentForm">
-			<checkbox bind="showHeadline" />
-			<checkbox bind="showSubline" />
-		</group>
+		<checkbox bind="showHeadline" default="checked" />
+		<checkbox bind="showSubline" default="checked" />
 	</form>
 	
-	<form id="image">
-		<group label-key="label.componentForm">
-			<image-upload bind="image" store="defaultFileStore" required="true" />
-			<selectbox bind="class" required="true" 
-				label-message-key="imageComponent.class." append-label="true">
-				<model class="org.riotfamily.forms.element.support.select.StaticOptionsModel">
-					<set-property name="commaDelimitedValues" value="block,right,left" />
-				</model>
-			</selectbox>
-			<checkbox bind="clear" />
-			<textfield bind="link" max-length="255" />
-			<textfield bind="caption" max-length="255" />
-		</group>
+	<form id="image">		
+		<image-upload bind="image" store="defaultFileStore" required="true" />
+		<selectbox bind="class" required="true" 
+			label-message-key="imageComponent.class." append-label="true">
+			<model class="org.riotfamily.forms.element.support.select.StaticOptionsModel">
+				<set-property name="commaDelimitedValues" value="block,right,left" />
+			</model>
+		</selectbox>
+		<checkbox bind="clear" />
+		<textfield bind="link" max-length="255" />
+		<textfield bind="caption" max-length="255" />		
 	</form>
 	
 	<form id="paragraph">

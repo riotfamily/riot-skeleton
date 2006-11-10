@@ -9,22 +9,7 @@
 		http://www.riotfamily.org/schema/pages/component
 		http://www.riotfamily.org/schema/pages/component-6.3.xsd">
 
-	<!-- PropertyEditor to edit boolean values -->
-	<bean id="booleanEditor" class="org.riotfamily.common.beans.propertyeditors.BooleanEditor" />
 		
-	<c:view-component id="image" view-name="components/image.ftl">
-		<c:property-editor property="clear" ref="booleanEditor" />
-	</c:view-component>
-	
-	<c:view-component id="paragraph" view-name="components/paragraph.ftl">
-		<c:property-editor property="clear" ref="booleanEditor" />
-	</c:view-component>
-	
-	<c:view-component id="title" view-name="components/title.ftl">
-		<c:property-editor property="showHeadline" ref="booleanEditor" default="true" />
-		<c:property-editor property="showSubline" ref="booleanEditor" default="true" />
-	</c:view-component>
-	
 	<c:view-component id="extra-box" view-name="components/extra-box.ftl">
 		<c:defaults>
 			<c:property name="className" value="box" />
@@ -41,8 +26,6 @@
 		<c:defaults>
 			<c:property name="className" value="box filled-box important" />
 		</c:defaults>
-	</c:view-component>
-		
-	<c:inheriting-component id="inherit" />	
+	</c:view-component>	
 
 </beans>

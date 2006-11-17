@@ -9,28 +9,35 @@
 	<form id="title">
 		<checkbox bind="showHeadline" default="checked" />
 		<checkbox bind="showSubline" default="checked" />
+		<textfield bind="anchor" regex="[A-Za-z0-9_-]*" />
 	</form>
 	
-	<form id="image">		
+	<form id="image">
 		<image-upload bind="image" store="defaultFileStore" required="true" />
 		<selectbox bind="class" required="true" 
-			label-message-key="imageComponent.class." append-label="true">
+			label-message-key="image.class." append-label="true">
 			<model class="org.riotfamily.forms.element.support.select.StaticOptionsModel">
 				<set-property name="commaDelimitedValues" value="block,right,left" />
 			</model>
 		</selectbox>
 		<checkbox bind="clear" />
-		<textfield bind="link" max-length="255" />
-		<textfield bind="caption" max-length="255" />		
 	</form>
 	
 	<form id="paragraph">
 		<checkbox bind="clear" />
 	</form>
 	
-	<form id="teaser">
+	<form id="extra-box">
+		<selectbox bind="className" required="true">
+			<model class="org.riotfamily.forms.element.support.select.StaticOptionsModel">
+				<set-property name="commaDelimitedValues" value="normal,filled,important" />
+			</model>
+		</selectbox>
 		<image-upload bind="image" store="defaultFileStore" />
-		<textfield bind="imageLink" max-length="255" />
+	</form>
+	
+	<form id="html">
+		<textarea bind="html" />
 	</form>
 		
 </form-config>

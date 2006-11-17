@@ -47,11 +47,12 @@
 	<!-- Component Lists -->
 	<!-- =============== -->
 	
-	<mvc:component-list name="/inc/content.html"
-		validComponentTypes="paragraph,title,image"
-		initialComponentTypes="title,paragraph" />
 	
-	<mvc:component-list name="/inc/extra.html"
-		validComponentTypes="extra-box,filled-extra-box,important-extra-box,inherit" />
-			
+	<mvc:component-list name="/inc/content.html" 
+			validComponentTypes="paragraph,title,image"
+			initialComponentTypes="title,paragraph" />
+	
+	<mvc:component-list name="/inc/extra.html" 
+			validComponentTypes="extra-box,html,inherit" />
+	
 </beans>

@@ -12,19 +12,7 @@
 		
 	<c:view-component id="extra-box" view-name="components/extra-box.ftl">
 		<c:defaults>
-			<c:property name="className" value="box" />
-		</c:defaults>
-	</c:view-component>
-	
-	<c:view-component id="filled-extra-box" view-name="components/extra-box.ftl">
-		<c:defaults>
-			<c:property name="className" value="box filled-box" />
-		</c:defaults>
-	</c:view-component>
-	
-	<c:view-component id="important-extra-box" view-name="components/extra-box.ftl">
-		<c:defaults>
-			<c:property name="className" value="box filled-box important" />
+			<c:property name="className" value="normal" />
 		</c:defaults>
 	</c:view-component>	
 

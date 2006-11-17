@@ -47,27 +47,11 @@
 	<!-- Component Lists -->
 	<!-- =============== -->
 	
-	<bean id="abstractComponentList" abstract="true"
-		class="org.riotfamily.pages.component.ComponentListController">
-		
-		<constructor-arg ref="componentDao" />
-		<constructor-arg ref="componentRepository" />
-		<constructor-arg ref="websiteCache" />
-		<property name="viewModeResolver" ref="viewModeResolver" />
-		<property name="componentPathResolver">
-			<bean class="org.riotfamily.pages.component.resolver.PageComponentPathResolver" />
-		</property>
-	</bean>
+	<mvc:component-list name="/inc/content.html"
+		validComponentTypes="paragraph,title,image"
+		initialComponentTypes="title,paragraph" />
 	
-	<bean name="/inc/content.html" parent="abstractComponentList">
-		<property name="validComponentTypes" 
-			value="paragraph,title,image" />
+	<mvc:component-list name="/inc/extra.html"
+		validComponentTypes="extra-box,filled-extra-box,important-extra-box,inherit" />
 			
-		<property name="initialComponentTypes" value="title,paragraph" />
-	</bean>
-	
-	<bean name="/inc/extra.html" parent="abstractComponentList">
-		<property name="validComponentTypes" value="extra-box,filled-extra-box,important-extra-box,inherit" />
-	</bean>
-	
 </beans>

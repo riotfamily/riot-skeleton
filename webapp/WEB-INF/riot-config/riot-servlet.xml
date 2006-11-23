@@ -53,7 +53,7 @@
  	</bean>
  	
  	<bean class="org.riotfamily.riot.hibernate.support.SetupBean">
- 		<property name="sessionFactory"><ref bean="sessionFactory" /></property>
+ 		<property name="sessionFactory"><ref bean="riotSessionFactory" /></property>
  		<property name="condition"><value>from User where id='admin'</value></property>
  		<property name="objects">
  			<list>

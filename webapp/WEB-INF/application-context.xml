@@ -7,16 +7,11 @@
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
 	<bean id="configurer" class="org.riotfamily.common.beans.config.PlaceholderWithDefaultConfigurer">
-		<property name="ignoreUnresolvablePlaceholders"><value>true</value></property>
-		<property name="locations">
-			<list>
-				<value>classpath:/application.properties</value>
-			</list>
-		</property>
+		<property name="location" value="classpath:/application.properties" />
 	</bean>
 	
-	<!-- JDBC Data source pooled by C3P0 -->
-	<bean id="localDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+	<!-- JDBC DataSource pooled by C3P0 -->
+	<bean id="riotDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass"><value>${jdbc.driver_class}</value></property>
 	    <property name="jdbcUrl"><value>${jdbc.url}</value></property>
 	    <property name="user"><value>${jdbc.username}</value></property>
@@ -24,34 +19,31 @@
 	    <property name="maxPoolSize"><value>${jdbc.maxPoolSize=10}</value></property>
 	</bean>
 	
-	<!-- The Hibernate SessionFactory -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-		<property name="dataSource"><ref bean="localDataSource"></ref></property>
-		<property name="mappingLocations">
-			<bean class="org.riotfamily.common.beans.module.ModularListFactoryBean">
-				<property name="key"><value>hibernateMappingLocations</value></property>
-				<property name="sourceList">
-					<list>
-						<!-- Insert your project's mapping locations here -->
-					</list>
-				</property>
-			</bean>
+	<bean id="riotHibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="dialect">org.hibernate.dialect.HSQLDialect</prop>
+				<prop key="cache.provider_class">net.sf.ehcache.hibernate.Provider</prop>
+			</props>
 		</property>
+	</bean>
+	
+	<!-- The Hibernate SessionFactory -->
+	<!-- 
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource"><ref bean="localDataSource"></ref></property>
+		<property name="configLocation"><value>/WEB-INF/hibernate.cfg.xml</value></property>
 		<property name="hibernateProperties">
 			<bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 				<property name="location"><value>classpath:/application.properties</value></property>
 				<property name="properties">
 					<props>
+						<prop key="jdbc.use_streams_for_binary">true</prop>
 						<prop key="cache.provider_class">net.sf.ehcache.hibernate.Provider</prop>
 					</props>
 				</property>
 			</bean>
 		</property>
 	</bean>
-
-	<!-- The Transaction Manager -->
-	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
-	</bean>
-
+	-->
 </beans>	

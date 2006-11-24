@@ -8,6 +8,7 @@
 
 	<bean id="configurer" class="org.riotfamily.common.beans.config.PlaceholderWithDefaultConfigurer">
 		<property name="location" value="classpath:/application.properties" />
+		<property name="contextOverride" value="true" />
 	</bean>
 	
 	<!-- JDBC DataSource pooled by C3P0 -->
@@ -19,31 +20,19 @@
 	    <property name="maxPoolSize"><value>${jdbc.maxPoolSize=10}</value></property>
 	</bean>
 	
+	<!-- Overwrites the riotHibernateProperties to set them via application.properties -->
 	<bean id="riotHibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-		<property name="properties">
-			<props>
-				<prop key="dialect">org.hibernate.dialect.HSQLDialect</prop>
-				<prop key="cache.provider_class">net.sf.ehcache.hibernate.Provider</prop>
-			</props>
-		</property>
+		<property name="properties" value="${hibernate.*}" />
 	</bean>
 	
-	<!-- The Hibernate SessionFactory -->
-	<!-- 
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="dataSource"><ref bean="localDataSource"></ref></property>
-		<property name="configLocation"><value>/WEB-INF/hibernate.cfg.xml</value></property>
-		<property name="hibernateProperties">
-			<bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-				<property name="location"><value>classpath:/application.properties</value></property>
-				<property name="properties">
-					<props>
-						<prop key="jdbc.use_streams_for_binary">true</prop>
-						<prop key="cache.provider_class">net.sf.ehcache.hibernate.Provider</prop>
-					</props>
-				</property>
-			</bean>
-		</property>
+	<!-- Overwrites the evolver to control automatic evolution via application.properties -->
+	<bean id="evolver" class="org.riotfamily.revolt.Evolver">
+		<property name="automatic" value="${riot.automaticSchemaEvolution=false}" />
 	</bean>
-	-->
+
+	<!-- Overwrites the websiteCache to set the capacity via application.properties -->	
+	<bean id="websiteCache" class="org.riotfamily.cachius.spring.CacheFactoryBean">
+		<property name="capacity" value="${riot.websiteCache.capacity=10000}" />
+    </bean>
+
 </beans>	

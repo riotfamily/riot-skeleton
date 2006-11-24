@@ -17,6 +17,7 @@
 	  -->
     <dependencies>
 	    <dependency org="riotfamily" name="riot-common" rev="latest.integration" conf="runtime" />
+	    <dependency org="riotfamily" name="cachius" rev="latest.integration" conf="runtime" />
 	    <dependency org="riotfamily" name="riot-core" rev="latest.integration" conf="runtime" />
 	    <dependency org="riotfamily" name="riot-hibernate" rev="latest.integration" conf="runtime" />
 	    <dependency org="riotfamily" name="riot-pages" rev="latest.integration" conf="runtime" />

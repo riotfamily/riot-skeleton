@@ -3,9 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
 	<title>RiotFamily.org</title>
-	<meta name="robots" CONTENT="noindex,nofollow" />
-	<script src="${request.contextPath}/style/1px-corner.js" langauage="Javascript" type="text/javascript"></script>
-	<link type="text/css" href="${request.contextPath}/style/screen.css" rel="stylesheet" media="screen" />
+	<script src="${stamp('/style/1px-corner.js')}" language="Javascript" type="text/javascript"></script>
+	<link type="text/css" href="${stamp('/style/screen.css')}" rel="stylesheet" media="screen" />
 </head>
 <body>
 <div id="page-frame">
@@ -33,9 +32,8 @@
 
 <div id="footer">
 	<div id="footer-content">
-		&copy;2006 Riotfamily.org
+		Powered by Riot
 	</div>
-	<a id="spring-button" href="http://www.springframework.org" target="_blank"></a>
 </div>
 
 </div><!-- #page -->

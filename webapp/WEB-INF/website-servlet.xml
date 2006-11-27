@@ -45,6 +45,14 @@
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="templateLoaderPath" value="/WEB-INF/view" />
 		<property name="freemarkerSettings" value="${website-servlet.freemarker.*}" />
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="url"><bean class="org.riotfamily.common.web.view.freemarker.EncodeUrlMethod" /></entry>
+				<entry key="include"><bean class="org.riotfamily.common.web.view.freemarker.IncludeMethod" /></entry>
+				<entry key="isExternal"><bean class="org.riotfamily.common.web.view.freemarker.ExternalUrlMethod" /></entry>
+				<entry key="stamp"><bean class="org.riotfamily.common.web.view.freemarker.AddTimestampMethod" /></entry>
+			</map>
+		</property>
 	</bean>
 			 
 </beans>

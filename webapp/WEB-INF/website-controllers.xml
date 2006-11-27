@@ -11,11 +11,7 @@
 		http://www.riotfamily.org/schema/pages/mvc-6.3.xsd
 		http://www.riotfamily.org/schema/pages/template
 		http://www.riotfamily.org/schema/pages/template-6.3.xsd">
-	
-
-	<!-- Controller that serves dynamic stylesheetes -->
-	<bean name="/**/*.css" class="org.riotfamily.pages.css.CssTemplateController" />
-		
+			
 	<!-- ========== -->
 	<!-- Page types -->
 	<!-- ========== -->

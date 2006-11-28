@@ -13,7 +13,9 @@
 	</form>
 	
 	<form id="image">
-		<image-upload bind="image" store="defaultFileStore" required="true" />
+		<image-upload bind="image" store="defaultFileStore" 
+			width-property="imageWidth" required="true" />
+			
 		<selectbox bind="class" required="true" 
 			label-message-key="image.class." append-label="true">
 			<model class="org.riotfamily.forms.element.support.select.StaticOptionsModel">
@@ -21,6 +23,7 @@
 			</model>
 		</selectbox>
 		<checkbox bind="clear" />
+		<textarea bind="caption" rows="3" />
 	</form>
 	
 	<form id="paragraph">

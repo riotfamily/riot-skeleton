@@ -173,16 +173,26 @@ img {
 	color: #fff;
 }
 
-#content img {
+#content img,
+#content .labeled-image {
 	margin-bottom: 32px;
 }
 
-#content img.left {
+#content .labeled-image img {
+	margin-bottom: 3px;
+}
+
+#content .labeled-image .caption {
+	font-size: 9px;
+	line-height: 14px;
+}
+
+#content .image-left {
 	float: left;
 	margin: 5px 10px 5px 0;
 }
 
-#content img.right {
+#content .image-right {
 	float: right;
 	margin: 5px 0 5px 10px;
 }

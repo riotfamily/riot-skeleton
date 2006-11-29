@@ -8,19 +8,6 @@
 
 	<import resource="website-controllers.xml" />
 
-	<bean id="configurer" class="org.riotfamily.common.beans.config.PlaceholderWithDefaultConfigurer">
-		<property name="location" value="classpath:/application.properties" />
-		<property name="contextOverride" value="true" />
-	</bean>
-	
-	<bean class="org.riotfamily.common.web.servlet.ReloadableDispatcherServletConfig">
-		<property name="reloadable" value="${website-servlet.reloadable=false}" />
-	</bean>
-	
-	<bean id="noCacheInterceptor" class="org.riotfamily.pages.util.NoCacheHeaderInterceptor">
-		<property name="includes" value="**/*.html" />
-	</bean>
-	
 	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
 		<property name="order" value="1" />
 		 <property name="interceptors">

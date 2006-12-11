@@ -14,6 +14,7 @@
 	
 	<form id="image">
 		<image-upload bind="image" store="defaultFileStore" 
+			max-width="476" max-height="350"
 			width-property="imageWidth" required="true" />
 			
 		<selectbox bind="class" required="true" 
@@ -36,7 +37,8 @@
 				<set-property name="commaDelimitedValues" value="normal,filled,important" />
 			</model>
 		</selectbox>
-		<image-upload bind="image" store="defaultFileStore" />
+		<image-upload bind="image" store="defaultFileStore" 
+				width="180" max-height="250" />
 	</form>
 	
 	<form id="html">

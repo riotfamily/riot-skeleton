@@ -27,12 +27,14 @@
 	<property name="build.classes.dir" value="${build.dir}/classes" />
 	
 	<!-- 
-	  - The default configuration target. The term 'target' has nothing to
-	  - with Ant targets, so don't get confused. It's the target system or
-	  - target platform where project is deployed. Read the conf/README file
-	  - to see what this is about.
+	  - Backwards Compatibility Note: 
+	  -
+	  - The argument 'conf' was called 'target' in previous released. Because
+	  - that name could easily be confused with Ant targets it has been renamed.
+	  - Using '-Dtarget=...' still works but will be removed in future versions.
 	  -->
 	<property name="target" value="development" />
+	<property name="conf" value="${target}" />
 	
 	<!-- The default configuration profile -->
 	<property name="profile" value="${user.name}" />
@@ -47,13 +49,13 @@
 	<property name="jar.name" value="${ant.project.name}.jar" />
 	
 	<!-- Name of the war file created by the war target -->
-	<property name="war.name" value="${ant.project.name}-${target}-${profile}.war" />
+	<property name="war.name" value="${ant.project.name}-${conf}-${profile}.war" />
 	
 	<!-- Location of the war file created by the war target -->
 	<property name="war.location" location="${build.dir}/${war.name}" />
 
 	<!-- Name of the schema file created by the export-schema target -->
-	<property name="schema.name" value="${ant.project.name}-${target}-${profile}.sql" />
+	<property name="schema.name" value="${ant.project.name}-${conf}-${profile}.sql" />
 		
 	<property name="ivy.jar" value="${lib.dir}/ivy.jar" />
 	
@@ -80,12 +82,22 @@
 	</patternset>
 
 	<!--
+	  - Configures the project by merging the selected configuration files.
+	  -->
+	<target name="configure" description="Configures the project">
+		<echo>Merging configuration. Target: ${conf} Profile: ${profile}</echo>
+		<merge-properties name="application" />
+		<merge-properties name="log4j" />
+	</target>
+	
+	<!--
 	  - Resolves the project's dependencies. Runtime dependencies are copied
 	  - to ${web.lib.dir} (webapp/WEB-INF/lib). Dependencies that are provided
 	  - by the container during runtime, but are required in order to compile
 	  - the project with Ant are copied to ${lib.dir}.
 	  -->
-	<target name="resolve" depends="-configure-ivy">
+	<target name="resolve" depends="-configure-ivy" 
+		description="Resolves the project's dependencies">
 		<echo message="Retrieving module dependencies" />
 		<ivy:resolve showprogress="false" />
 		<ivy:retrieve pattern="${web.lib.dir}/[artifact].[ext]" conf="runtime" />
@@ -93,29 +105,10 @@
 	</target>
 
 	<!--
-	  - Configures the project by merging the selected configuration files.
-	  -->
-	<target name="configure" description="Configures the project.">
-		<echo>Merging configuration. Target: ${target} Profile: ${profile}</echo>
-		<merge-properties name="application" />
-		<merge-properties name="log4j" />
-	</target>
-
-	<!--
-	  - Copys the compiled classes (and merged properties) to WEB-INF/classes.
-	  -->
-	<target name="webapp" depends="configure,compile">
-		<copy todir="${web.dir}/WEB-INF/classes">
-			<fileset dir="${build.classes.dir}" />
-			<fileset dir="${build.conf.dir}" />
-		</copy>
-	</target>
-	
-	<!--
 	  - Compiles the java sources to ${build.classes.dir}. Additionally all
 	  - files matched by the jar.resource.patterns patternset are copied.
 	  -->
-	<target name="compile" description="Compiles the project sources.">
+	<target name="compile" description="Compiles the project's Java sources">
 		<mkdir dir="${build.classes.dir}" />
 		<javac srcdir="${src.dir}" destdir="${build.classes.dir}" deprecation="on" debug="on">
 			<classpath refid="classpath" />
@@ -126,11 +119,23 @@
     		</fileset>
     	</copy>
 	</target>
+
+	<!--
+	  - Copys the compiled classes (and merged properties) to WEB-INF/classes.
+	  -->
+	<target name="webapp" depends="configure,compile"
+		description="Copys the compiled classes to WEB-INF/classes">
+		<copy todir="${web.dir}/WEB-INF/classes">
+			<fileset dir="${build.classes.dir}" />
+			<fileset dir="${build.conf.dir}" />
+		</copy>
+	</target>
 	
 	<!--
 	  - Creates a jar file containing all files in ${build.classes.dir}.
 	  -->
-	<target name="jar" depends="compile" description="Creates the project jar file.">
+	<target name="jar" depends="compile" 
+		description="Creates a Jar file containing the files in /build/classes">
 		<jar jarfile="${build.dir}/${jar.name}">
 			<fileset dir="${build.classes.dir}" />
 		</jar>
@@ -139,7 +144,7 @@
 	<!--
 	  - Creates a war file.
 	  -->
-	<target name="war" depends="configure,jar" description="Creates a war file.">
+	<target name="war" depends="configure,jar" description="Creates a WAR archive">
 		<delete file="${war.location}" />
 		<war destfile="${war.location}" webxml="${web.dir}/WEB-INF/web.xml">
 			<fileset dir="${web.dir}">
@@ -157,38 +162,52 @@
 	<!--
 	  - Deploys a war file.
 	  -->
-	<target name="deploy" depends="-backup-config,war">
-		<property file="${conf.dir}/${target}/${profile}/tomcat.properties" />
-		<property file="${conf.dir}/${target}/default/tomcat.properties" />
+	<target name="deploy" depends="-backup-config,war,-restore-config,-upload-war,-exec-deploy-command"
+		description="Deploys a WAR file to a remote server via SCP">
+	</target>
+	
+	<!--
+	  - Uploads a WAR file via scp.
+	  -->
+	<target name="-upload-war">
+		<!-- Check if JSch is available -->
+		<available classname="com.jcraft.jsch.JSchException" property="jsch.available" value="true" />
+		<fail unless="jsch.available" message="The deploy target uses the scp and sshexec tasks which both depend on jsch.jar. See http://ant.apache.org/manual/install.html#librarydependencies for details." />		
 		
-		<available property="tomcat-deployer.available" classname="org.apache.catalina.ant.DeployTask" />
-		<antcall target="-retrieve-tomcat-deployer" />
+		<!-- Read properties from the deploy.properties file(s) -->
+		<property file="${conf.dir}/${target}/${profile}/deploy.properties" />
+		<property file="${conf.dir}/${target}/default/deploy.properties" />
 		
-		<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" 
-				classpathref="classpath" />
-		
-		<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask"
-				classpathref="classpath" />
-		
-		<undeploy url="${tomcat.manager.url}"
-				username="${tomcat.manager.username}" 
-				password="${tomcat.manager.password}" 
-				path="${tomcat.contextPath}" failonerror="false" />
-		
-		<deploy url="${tomcat.manager.url}"
-				username="${tomcat.manager.username}" 
-				password="${tomcat.manager.password}" 
-				path="${tomcat.contextPath}" 
-				war="${war.location}" />
+		<fail unless="deploy.host" message="The property deploy.host must be specified in ${conf.dir}/$${target}/$${profile}/deploy.properties" />
 
-		<antcall target="-restore-config" />
+		<!-- Set some reasonable defaults -->
+		<property name="deploy.user.name" value="${user.name}" />
+		<property name="deploy.keyfile" value="${user.home}/.ssh/id_rsa" />
+		<property name="deploy.passphrase" value="" />
+		<property name="deploy.upload.dir" value="~" />
+
+		<!-- Append a timestamp to the remote filename -->
+		<tstamp>
+			<format property="deploy.timestamp" pattern="yyyyMMddHHmmss" />
+		</tstamp>
+		<property name="deploy.upload.name" value="${ant.project.name}-${deploy.timestamp}.war" />
+		<property name="deploy.upload.location" value="${deploy.upload.dir}/${deploy.upload.name}" />
+
+		<!-- Finally upload the file -->
+		<scp keyfile="${deploy.keyfile}" passphrase="${deploy.passphrase}" trust="true"
+			localFile="${war.location}"
+			remoteTofile="${deploy.user.name}@${deploy.host}:${deploy.upload.location}" />
 	</target>
 
 	<!--
-	  - Installs the Tomcat deployer.
+	  - Executes ${deploy.command} on ${deploy.host} via ssh.
 	  -->
-	<target name="-retrieve-tomcat-deployer" depends="-configure-ivy" unless="tomcat-deployer.available">
-		<ivy:retrieve organisation="apache" module="tomcat-deployer" conf="ant" inline="true" pattern="${lib.dir}/[artifact].[ext]" />
+	<target name="-exec-deploy-command" depends="-upload-war" if="deploy.command">
+		<property prefix="eval" file="${conf.dir}/${target}/${profile}/deploy.properties" />
+		<property prefix="eval" file="${conf.dir}/${target}/default/deploy.properties" />
+		<sshexec host="${deploy.host}" username="${deploy.user.name}" trust="true"
+			keyfile="${deploy.keyfile}" passphrase="${deploy.passphrase}" 
+			command="${eval.deploy.command}" />
 	</target>
 	
 	<!--
@@ -197,8 +216,8 @@
 	<macrodef name="merge-properties">
 	   <attribute name="name" />
 	   <sequential>
-		   	<property file="${conf.dir}/${target}/${profile}/@{name}.properties" prefix="@{name}." />
-	   		<property file="${conf.dir}/${target}/default/@{name}.properties" prefix="@{name}." />
+		   	<property file="${conf.dir}/${conf}/${profile}/@{name}.properties" prefix="@{name}." />
+	   		<property file="${conf.dir}/${conf}/default/@{name}.properties" prefix="@{name}." />
 	   		
 	   		<mkdir dir="${build.conf.dir}" />
    			<echoproperties destfile="${build.conf.dir}/@{name}.properties">
@@ -268,7 +287,7 @@
 	  - Exports the database schema as SQL file.
 	  -->
 	<target name="schema-export" depends="-backup-config,configure,compile" 
-			description="Exports the DB schema as SQL file.">
+			description="Exports the DB schema as SQL file">
 		
 		<taskdef name="hibernatetool" 
 			classname="org.hibernate.tool.ant.HibernateToolTask"
@@ -324,7 +343,8 @@
 	  - created and rendered using GraphViz (if available). If you are using
 	  - a Mac you can also import the .dot file into OmniGraffle.
 	  -->
-	<target name="report" depends="resolve">
+	<target name="report" depends="resolve" 
+		description="Creates a dependency report as HTML file">
     	<ivy:report todir="${build.dir}/reports" conf="runtime" graph="false" />
 		
 		<property name="dotxsl.file" value="${build.dir}/report2dot.xsl" />
@@ -367,7 +387,7 @@
 		<echo>Since Ivy was not found in the classpath the JAR file will now be downloaded ...</echo>
 		<delete dir="${lib.dir}" />
 		<mkdir dir="${lib.dir}" />
-		<get src="http://riotfamily.org/ivy/ivy.jar" dest="${ivy.jar}" verbose="true" />
+		<get src="http://www.riotfamily.org/ivy/ivy.jar" dest="${ivy.jar}" verbose="true" />
 		<property name="ivy.downloaded" value="true" />
 	</target>
 	

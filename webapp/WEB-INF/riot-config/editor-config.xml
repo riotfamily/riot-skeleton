@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.riotfamily.org/schema/riot/editor-config
-		http://www.riotfamily.org/schema/riot/editor-config-6.3.xsd">
+		http://www.riotfamily.org/schema/riot/editor-config-6.4.xsd">
 		
 	<custom name="preview" url="/index.html" target="_blank" icon="external" />
 		

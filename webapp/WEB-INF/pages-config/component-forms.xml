@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.riotfamily.org/schema/forms/form-config
-		http://www.riotfamily.org/schema/forms/form-config-6.3.xsd">
+		http://www.riotfamily.org/schema/forms/form-config-6.4.xsd">
 
 	<form id="title">
 		<checkbox bind="showHeadline" default="checked" />
@@ -32,7 +32,7 @@
 	</form>
 	
 	<form id="extra-box">
-		<selectbox bind="className" required="true">
+		<selectbox bind="className" required="true" label-message-key="extra-box.className." append-label="true">
 			<model class="org.riotfamily.forms.element.support.select.StaticOptionsModel">
 				<set-property name="commaDelimitedValues" value="normal,filled,important" />
 			</model>

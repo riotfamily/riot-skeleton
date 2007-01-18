@@ -4,6 +4,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.riotfamily.org/schema/riot/list-config
-		http://www.riotfamily.org/schema/riot/list-config-6.3.xsd">
+		http://www.riotfamily.org/schema/riot/list-config-6.4.xsd">
 
 </list-config>

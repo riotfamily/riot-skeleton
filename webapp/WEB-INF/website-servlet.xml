@@ -46,11 +46,6 @@
 				<entry key="stamp"><bean class="org.riotfamily.common.web.view.freemarker.AddTimestampMethod" /></entry>
 			</map>
 		</property>
-		<property name="freemarkerSettings">
-			<props>
-				<prop key="number_format" >0.######</prop>
-			</props>
-		</property>
 	</bean>
 			 
 </beans>

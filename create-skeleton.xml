@@ -1,9 +1,19 @@
-<project name="create-skeleton" default="create-archive">
+<project name="create-skeleton" default="zip">
 	
 	<property name="build.dir" value="build" />
 	<property name="archive.dir" value="${build.dir}/archive" />
 	
-	<target name="create-archive">
+	<target name="zip">
+		
+		<condition property="skeleton-or-release">
+			<or>
+				<isset property="skeleton" />
+				<isset property="release" />
+			</or>
+		</condition>
+		<fail unless="skeleton-or-release" message="Either of the properties 'release' or 'skeleton' must be set." />
+		<property name="skeleton" value="skeleton-${release}" />
+		
 		<delete dir="${archive.dir}" />
 		<mkdir dir="${archive.dir}" />
 
@@ -25,11 +35,13 @@
 			<include name=".settings/org.eclipse.wst.common.component" />
 		</replace>
 
-		<zip destfile="${build.dir}/skeleton.zip" basedir="${archive.dir}" />
-		<scp file="${build.dir}/skeleton.zip" 
-			todir="${user.name}@riotfamily.org:/var/www/riotfamily.org/www/htdocs/setup"
-			keyfile="${user.home}/.ssh/id_rsa" passphrase="" trust="true" />
-
+		<zip destfile="${build.dir}/${skeleton}.zip" basedir="${archive.dir}" />
 	</target>
 	
+	<target name="upload" depends="zip">
+		<scp file="${build.dir}/${skeleton}.zip" 
+			todir="${user.name}@riotfamily.org:/var/www/riotfamily.org/www/htdocs/setup"
+			keyfile="${user.home}/.ssh/id_rsa" passphrase="" trust="true" />
+	</target>
+
 </project>

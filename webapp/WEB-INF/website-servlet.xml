@@ -37,6 +37,10 @@
 	<bean id="freemarkerConfig" class="org.riotfamily.pages.freemarker.FreeMarkerConfigurer">
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="templateLoaderPath" value="/WEB-INF/view" />
+		<property name="postTemplateLoaders">
+			<!-- Allow resolution of classpath: views as provided by some modules -->
+			<bean class="org.riotfamily.common.web.view.freemarker.ResourceTemplateLoader" />
+		</property>
 		<property name="freemarkerSettings" value="${website-servlet.freemarker.*}" />
 		<property name="freemarkerVariables">
 			<map>

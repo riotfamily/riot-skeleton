@@ -8,9 +8,9 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.riotfamily.org/schema/pages/mvc
-		http://www.riotfamily.org/schema/pages/mvc-6.3.xsd
+		http://www.riotfamily.org/schema/pages/mvc-6.4.xsd
 		http://www.riotfamily.org/schema/pages/template
-		http://www.riotfamily.org/schema/pages/template-6.3.xsd">
+		http://www.riotfamily.org/schema/pages/template-6.4.xsd">
 			
 	<!-- ========== -->
 	<!-- Page types -->

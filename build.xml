@@ -175,10 +175,10 @@
 		<fail unless="jsch.available" message="The deploy target uses the scp and sshexec tasks which both depend on jsch.jar. See http://ant.apache.org/manual/install.html#librarydependencies for details." />		
 		
 		<!-- Read properties from the deploy.properties file(s) -->
-		<property file="${conf.dir}/${target}/${profile}/deploy.properties" />
-		<property file="${conf.dir}/${target}/default/deploy.properties" />
+		<property file="${conf.dir}/${conf}/${profile}/deploy.properties" />
+		<property file="${conf.dir}/${conf}/default/deploy.properties" />
 		
-		<fail unless="deploy.host" message="The property deploy.host must be specified in ${conf.dir}/$${target}/$${profile}/deploy.properties" />
+		<fail unless="deploy.host" message="The property deploy.host must be specified in ${conf.dir}/$${conf}/$${profile}/deploy.properties" />
 
 		<!-- Set some reasonable defaults -->
 		<property name="deploy.user.name" value="${user.name}" />
@@ -203,8 +203,8 @@
 	  - Executes ${deploy.command} on ${deploy.host} via ssh.
 	  -->
 	<target name="-exec-deploy-command" depends="-upload-war" if="deploy.command">
-		<property prefix="eval" file="${conf.dir}/${target}/${profile}/deploy.properties" />
-		<property prefix="eval" file="${conf.dir}/${target}/default/deploy.properties" />
+		<property prefix="eval" file="${conf.dir}/${conf}/${profile}/deploy.properties" />
+		<property prefix="eval" file="${conf.dir}/${conf}/default/deploy.properties" />
 		<sshexec host="${deploy.host}" username="${deploy.user.name}" trust="true"
 			keyfile="${deploy.keyfile}" passphrase="${deploy.passphrase}" 
 			command="${eval.deploy.command}" />

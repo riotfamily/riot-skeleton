@@ -16,7 +16,8 @@
 	  - See http://www.jayasoft.org/ivy/doc/ivyfile/dependency
 	  -->
     <dependencies>
-	    <dependency org="riotfamily" name="riot-pages" rev="6.4-RC1" conf="runtime" />
+	    <dependency org="riotfamily" name="riot-pages" rev="6.4+" conf="runtime" />
+	    <dependency org="hibernate" name="hibernate-tools" rev="3.2.0.beta9a" conf="standalone->default" /> 
 	    <dependency org="sun" name="servlet-api" rev="2.4" conf="standalone->default" />
 	    <dependency org="hsqldb" name="hsqldb" rev="latest.release" conf="hsqldb->default" />
 	    <dependency org="postgresql" name="jdbc3" rev="8.1-407" conf="postgresql->default" />

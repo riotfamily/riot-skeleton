@@ -25,21 +25,11 @@
 	
 	<!-- Directory where the compile target will generate the class files -->
 	<property name="build.classes.dir" value="${build.dir}/classes" />
-	
-	<!-- 
-	  - Backwards Compatibility Note: 
-	  -
-	  - The argument 'conf' was called 'target' in previous released. Because
-	  - that name could easily be confused with Ant targets it has been renamed.
-	  - Using '-Dtarget=...' still works but will be removed in future versions.
-	  -->
-	<property name="target" value="development" />
-	<property name="conf" value="${target}" />
-	
+		
 	<!-- The default configuration profile -->
 	<property name="profile" value="${user.name}" />
 	
-	<!-- Location of the different confiuration targets -->
+	<!-- Location of the different confiuration profiles -->
 	<property name="conf.dir" value="conf" />
 	
 	<!-- Directory where the merged configuration files are created -->
@@ -49,13 +39,13 @@
 	<property name="jar.name" value="${ant.project.name}.jar" />
 	
 	<!-- Name of the war file created by the war target -->
-	<property name="war.name" value="${ant.project.name}-${conf}-${profile}.war" />
+	<property name="war.name" value="${ant.project.name}-${profile}.war" />
 	
 	<!-- Location of the war file created by the war target -->
 	<property name="war.location" location="${build.dir}/${war.name}" />
 
 	<!-- Name of the schema file created by the export-schema target -->
-	<property name="schema.name" value="${ant.project.name}-${conf}-${profile}.sql" />
+	<property name="schema.name" value="${ant.project.name}-${profile}.sql" />
 		
 	<property name="ivy.jar" value="${lib.dir}/ivy.jar" />
 	
@@ -85,7 +75,7 @@
 	  - Configures the project by merging the selected configuration files.
 	  -->
 	<target name="configure" description="Configures the project">
-		<echo>Merging configuration. Target: ${conf} Profile: ${profile}</echo>
+		<echo>Merging configuration. Profile: ${profile}</echo>
 		<merge-properties name="application" />
 		<merge-properties name="log4j" />
 	</target>
@@ -175,10 +165,10 @@
 		<fail unless="jsch.available" message="The deploy target uses the scp and sshexec tasks which both depend on jsch.jar. See http://ant.apache.org/manual/install.html#librarydependencies for details." />		
 		
 		<!-- Read properties from the deploy.properties file(s) -->
-		<property file="${conf.dir}/${conf}/${profile}/deploy.properties" />
-		<property file="${conf.dir}/${conf}/default/deploy.properties" />
+		<property file="${conf.dir}/${profile}/deploy.properties" />
+		<property file="${conf.dir}/default/deploy.properties" />
 		
-		<fail unless="deploy.host" message="The property deploy.host must be specified in ${conf.dir}/$${conf}/$${profile}/deploy.properties" />
+		<fail unless="deploy.host" message="The property deploy.host must be specified in ${conf.dir}/$${profile}/deploy.properties" />
 
 		<!-- Set some reasonable defaults -->
 		<property name="deploy.user.name" value="${user.name}" />
@@ -203,8 +193,8 @@
 	  - Executes ${deploy.command} on ${deploy.host} via ssh.
 	  -->
 	<target name="-exec-deploy-command" depends="-upload-war" if="deploy.command">
-		<property prefix="eval" file="${conf.dir}/${conf}/${profile}/deploy.properties" />
-		<property prefix="eval" file="${conf.dir}/${conf}/default/deploy.properties" />
+		<property prefix="eval" file="${conf.dir}/${profile}/deploy.properties" />
+		<property prefix="eval" file="${conf.dir}/default/deploy.properties" />
 		<sshexec host="${deploy.host}" username="${deploy.user.name}" trust="true"
 			keyfile="${deploy.keyfile}" passphrase="${deploy.passphrase}" 
 			command="${eval.deploy.command}" />
@@ -216,8 +206,8 @@
 	<macrodef name="merge-properties">
 	   <attribute name="name" />
 	   <sequential>
-		   	<property file="${conf.dir}/${conf}/${profile}/@{name}.properties" prefix="@{name}." />
-	   		<property file="${conf.dir}/${conf}/default/@{name}.properties" prefix="@{name}." />
+		   	<property file="${conf.dir}/${profile}/@{name}.properties" prefix="@{name}." />
+	   		<property file="${conf.dir}/default/@{name}.properties" prefix="@{name}." />
 	   		
 	   		<mkdir dir="${build.conf.dir}" />
    			<echoproperties destfile="${build.conf.dir}/@{name}.properties">

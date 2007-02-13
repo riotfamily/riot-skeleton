@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-2.0.xsd
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
@@ -34,22 +37,11 @@
 		<property name="exposeRequestAttributes" value="true" />
 	</bean>
 	
-	<bean id="freemarkerConfig" class="org.riotfamily.pages.freemarker.FreeMarkerConfigurer">
-		<property name="defaultEncoding" value="UTF-8" />
-		<property name="templateLoaderPath" value="/WEB-INF/view" />
-		<property name="postTemplateLoaders">
-			<!-- Allow resolution of classpath: views as provided by some modules -->
-			<bean class="org.riotfamily.common.web.view.freemarker.ResourceTemplateLoader" />
-		</property>
-		<property name="freemarkerSettings" value="${website-servlet.freemarker.*}" />
-		<property name="freemarkerVariables">
-			<map>
-				<entry key="url"><bean class="org.riotfamily.common.web.view.freemarker.EncodeUrlMethod" /></entry>
-				<entry key="include"><bean class="org.riotfamily.common.web.view.freemarker.IncludeMethod" /></entry>
-				<entry key="isExternal"><bean class="org.riotfamily.common.web.view.freemarker.ExternalUrlMethod" /></entry>
-				<entry key="stamp"><bean class="org.riotfamily.common.web.view.freemarker.AddTimestampMethod" /></entry>
-			</map>
-		</property>
-	</bean>
+	<util:map id="freemarkerVariables">
+		<entry key="url"><bean class="org.riotfamily.common.web.view.freemarker.EncodeUrlMethod" /></entry>
+		<entry key="include"><bean class="org.riotfamily.common.web.view.freemarker.IncludeMethod" /></entry>
+		<entry key="isExternal"><bean class="org.riotfamily.common.web.view.freemarker.ExternalUrlMethod" /></entry>
+		<entry key="stamp"><bean class="org.riotfamily.common.web.view.freemarker.AddTimestampMethod" /></entry>
+	</util:map>
 			 
 </beans>

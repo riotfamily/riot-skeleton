@@ -15,7 +15,6 @@
 		<property name="order" value="1" />
 		 <property name="interceptors">
 			<list>
-				<ref bean="riotAccessControlInterceptor" />
 				<ref bean="noCacheInterceptor" />
 			</list>
 		</property>
@@ -26,7 +25,6 @@
 		<property name="order" value="2" />
 		<property name="interceptors">
 			<list>
-				<ref bean="riotAccessControlInterceptor" />
 				<ref bean="noCacheInterceptor" />
 			</list>
 		</property>

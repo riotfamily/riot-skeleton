@@ -6,7 +6,6 @@
     version="2.4">
         
     <!-- Config locations for the application context -->
-    
     <context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -76,10 +75,6 @@
 		<filter-name>website-servlet-filter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	<listener>
-		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
 	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

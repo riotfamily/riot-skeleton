@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<configExtensions>
+		<configExtension>xml</configExtension>
+	</configExtensions>
+	<configs>
+		<config>webapp/WEB-INF/riot-config/riot-servlet.xml</config>
+		<config>webapp/WEB-INF/application-context.xml</config>
+		<config>webapp/WEB-INF/website-controllers.xml</config>
+		<config>webapp/WEB-INF/website-servlet.xml</config>
+	</configs>
+	<configSets>
+		<configSet>
+			<name>website</name>
+			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+				<config>webapp/WEB-INF/application-context.xml</config>
+				<config>webapp/WEB-INF/website-servlet.xml</config>
+				<config>webapp/WEB-INF/website-controllers.xml</config>
+			</configs>
+		</configSet>
+	</configSets>
+</beansProjectDescription>

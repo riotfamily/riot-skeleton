@@ -1,0 +1,145 @@
+@import url(reset.yui.css);
+@import url(font.yui.css);
+
+body {
+	font-size: 77%; /* always use percentage! @see http://developer.yahoo.com/yui/fonts/#using for conversion table */
+}
+
+h1,h2,h3,h4,h5,h6,table {
+	clear: both;
+}
+
+p {
+	line-height: 1.4em;
+}
+
+p, table, pre, blockquote, ul, ol, .image-block, .gallery {
+	margin-bottom: 1.5em;
+}
+
+.image-left {
+	float: left;
+	margin: 3px 10px 1px 0;
+}
+
+.image-right {
+	float: right;
+	margin: 3px 0 1px 10px;
+}
+
+.gallery {
+	clear: both;
+	background: #aaa;
+	overflow: hidden;
+}
+.gallery a {
+	float: left;
+	margin: 5px;
+	display: block;
+	width: 100px;
+	height: 100px;
+	background-position: center; 
+	background-repeat: no-repeat;
+}
+.gallery .riot-noimage {
+	float: left;
+	margin: 5px;
+	width: 100px;
+	height: auto;
+}
+
+strong, b {
+	font-weight: bold;
+}
+em, i {
+	font-style: italic;
+}
+blockquote {
+	border-left: 10px solid #ddd;
+	margin-left: 10px;
+}
+
+h1 {
+	font-size: 200%;
+	line-height: 1.5em;
+	margin-bottom: 0.5em;
+}
+h2 {
+	font-size: 150%;
+    line-height: 1.5em;
+	margin-bottom: 0.5em;
+}
+h3 {
+	font-size: 130%;
+	line-height: 1.3em;
+	margin-bottom: 0.5em;
+}
+h4 {
+	font-size: 120%;
+	line-height: 1.3em;
+	margin-bottom: 0.25em;
+}
+h5 {
+	font-size: 110%;
+	line-height: 1.3em;
+	margin-bottom: 0.25em;
+}
+h6 {
+	line-height: 1.3em;
+	margin-bottom: 0.25em;
+}
+
+.caption {
+	font-size: 80%;
+}
+
+.header h1 {
+	color: #79B30B;
+	margin: 0;
+}
+.header {
+	background: #eee;
+}
+.navigation {
+	xbackground: #B9CAFF;
+}
+.extra {
+	xbackground: #FF8539;
+}
+.footer {
+	background: #333;
+	color: #FFF;
+}
+.padding {
+	margin: 10px;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 2px;
+	width: 100%;
+}
+td {
+	vertical-align: top;
+}
+th, td {
+	padding: 3px;
+}
+th {
+	background: #333;
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+}
+tr.even td.even {
+	background: #aaa;
+}
+tr.even td.odd {
+	background: #bbb;
+}
+tr.odd td.even {
+	background: #ccc;
+}
+tr.odd td.odd {
+	background: #ddd;
+}

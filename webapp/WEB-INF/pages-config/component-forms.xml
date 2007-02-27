@@ -7,14 +7,19 @@
 		http://www.riotfamily.org/schema/forms/form-config-6.4.xsd">
 
 	<form id="title">
-		<checkbox bind="showHeadline" default="checked" />
-		<checkbox bind="showSubline" default="checked" />
 		<textfield bind="anchor" regex="[A-Za-z0-9_-]*" />
+	</form>
+	
+	<form id="table">
+		<checkbox bind="showHeadings" default="checked" />
+		<numberfield bind="rows" min-value="1" required="true" />
+		<numberfield bind="cols" min-value="1" required="true" />
+		<!-- <textarea bind="csv" rows="2" /> -->
 	</form>
 	
 	<form id="image">
 		<image-upload bind="image" store="defaultFileStore" 
-			max-width="476" max-height="350"
+			widths="100,200,476" max-height="250"
 			width-property="imageWidth" required="true" />
 			
 		<selectbox bind="class" required="true" 
@@ -25,6 +30,11 @@
 		</selectbox>
 		<checkbox bind="clear" />
 		<textarea bind="caption" rows="3" />
+	</form>
+	
+	<form id="lightbox-image">
+		<image-upload bind="image" store="defaultFileStore" 
+			crop="false" required="true" />
 	</form>
 	
 	<form id="paragraph">

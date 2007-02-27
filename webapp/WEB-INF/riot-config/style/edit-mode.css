@@ -1,0 +1,7 @@
+.riot-noimage {
+	background: url(images/checkerboard_dark.gif);
+	height: 50px;
+}
+.riot-noimage a {
+	color: #fff;
+}

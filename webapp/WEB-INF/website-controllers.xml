@@ -18,7 +18,7 @@
 	
 	<template:definition id="default" view-name="templates/default.ftl">
 		<template:insert slot="head" url="/inc/metadata.html" />
-		<template:insert slot="menu" url="/inc/menu.html" />
+		<template:insert slot="navigation" url="/inc/menu.html" />
 		<template:insert slot="content" url="/inc/content.html" />
 		<template:insert slot="extra" url="/inc/extra.html" />
 	</template:definition>
@@ -45,10 +45,15 @@
 	
 	
 	<mvc:component-list name="/inc/content.html" 
-			validComponentTypes="paragraph,title,image"
-			initialComponentTypes="title,paragraph" />
+			validComponentTypes="paragraph,headline,image,gallery,table"
+			initialComponentTypes="headline,paragraph" />
 	
+	<mvc:component-list name="/inc/gallery-components.html" 
+			validComponentTypes="lightbox-image"
+			initialComponentTypes="lightbox-image" 
+			minComponents="1" />
+			
 	<mvc:component-list name="/inc/extra.html" 
-			validComponentTypes="extra-box,html,inherit" />
+			validComponentTypes="extra-box,inherit" />
 	
 </beans>

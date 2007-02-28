@@ -49,8 +49,8 @@
 			initialComponentTypes="headline,paragraph" />
 	
 	<mvc:component-list name="/inc/gallery-components.html" 
-			validComponentTypes="lightbox-image"
-			initialComponentTypes="lightbox-image" 
+			validComponentTypes="greybox-image"
+			initialComponentTypes="greybox-image" 
 			minComponents="1" />
 			
 	<mvc:component-list name="/inc/extra.html" 

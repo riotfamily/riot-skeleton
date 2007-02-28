@@ -46,5 +46,20 @@
 			</property>
 		</bean>		
 	</c:view-component>
+	
+	<c:view-component id="greybox-image" view-name="components/greybox-image.ftl"
+			onchange="GB_SETS = {};decoGreyboxLinks();">
+			
+		<bean class="org.riotfamily.pages.component.property.ThumbnailPropertyProcessor">
+			<property name="source" value="image" />
+			<property name="dest" value="thumb" />
+			<property name="fileStore" ref="defaultFileStore" />
+			<property name="width" value="100" />
+			<property name="height" value="100" />
+			<property name="thumbnailer">
+				<bean class="org.riotfamily.common.thumbnail.ImageMagickThumbnailer" />
+			</property>
+		</bean>		
+	</c:view-component>
 
 </beans>

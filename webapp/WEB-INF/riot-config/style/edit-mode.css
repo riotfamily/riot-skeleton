@@ -1,7 +1,38 @@
+/* The images within the gallery component are inline elements,
+ * therefore we have to set the surrounding div to display:inline too.
+ *
+ * The zoom property triggers IE's hasLayout mode. If omitted, the hover-outline
+ * is displayed at the wrong position for elements that wrap to the next line.
+ * See: http://msdn.microsoft.com/workshop/author/dhtml/reference/properties/haslayout.asp 
+ */
+.riot-component-greybox-image {
+	display: inline;
+	zoom: 1; 
+}
+
+/* Styles for the no-image placehoders: */
+
 .riot-noimage {
 	background: url(images/checkerboard_dark.gif);
-	height: 50px;
+	xheight: 50px;
 }
-.riot-noimage a {
+
+.riot-noimage a,
+a.riot-noimage {
 	color: #fff;
+}
+
+.gallery a.riot-noimage {
+	display: -moz-inline-box;
+	display: inline-block;
+	height: 100px;
+	width: 100px;
+	vertical-align: middle;
+}
+
+.gallery a.riot-noimage div {
+	height: 80px;
+	width: 80px;
+	margin: 10px;
+	font-size: 12px;
 }

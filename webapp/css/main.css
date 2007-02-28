@@ -31,23 +31,14 @@ p, table, pre, blockquote, ul, ol, .image-block, .gallery {
 	clear: both;
 	background: #aaa;
 	overflow: hidden;
+	font-size: 1px;
 }
 .gallery a {
-	float: left;
 	margin: 5px;
-	display: block;
-	width: 100px;
-	height: 100px;
-	background-position: center; 
-	background-repeat: no-repeat;
 }
-.gallery .riot-noimage {
-	float: left;
-	margin: 5px;
-	width: 100px;
-	height: auto;
+.gallery img {
+	vertical-align: middle;
 }
-
 strong, b {
 	font-weight: bold;
 }

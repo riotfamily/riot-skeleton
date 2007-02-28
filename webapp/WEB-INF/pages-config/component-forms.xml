@@ -32,8 +32,10 @@
 		<textarea bind="caption" rows="3" />
 	</form>
 	
-	<form id="lightbox-image">
+	<form id="greybox-image">
+		<textfield bind="title" />
 		<image-upload bind="image" store="defaultFileStore" 
+			max-width="1024" max-height="768" 
 			crop="false" required="true" />
 	</form>
 	

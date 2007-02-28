@@ -6,16 +6,15 @@
 	<link rel="stylesheet" type="text/css" href="${stamp('/css/' + springMacroRequestContext.theme.name +'.grid.css')}" title="grid01" media="screen" />
 	<link rel="stylesheet" type="text/css" href="${stamp('/css/main.css')}" media="screen" />
 	
-	<#-- 
-	  - JavaScripts for the gallery component. These can be removed if you 
-	  - don't want to use Lightbox. We use the prototype and scriptaculous 
-	  - versions provided by Riot to avoid conflicts.
-	  -->
-	<link rel="stylesheet" href="${stamp('/css/lightbox.css')}" type="text/css" media="screen" />
-	<script type="text/javascript" src="${stamp('/riot/resources/latest/prototype/prototype.js')}"></script>
-	<script type="text/javascript" src="${stamp('/riot/resources/latest/scriptaculous/effects.js')}"></script>
-	<script type="text/javascript" src="${stamp('/js/lightbox.js')}"></script>
-	
+	<#-- Greybox -->
+	<script type="text/javascript">
+    	var GB_ROOT_DIR = "${request.contextPath}/greybox/";
+	</script>
+	<script type="text/javascript" src="${stamp('/greybox/AJS.js')}"></script>
+    <script type="text/javascript" src="${stamp('/greybox/AJS_fx.js')}"></script>
+    <script type="text/javascript" src="${stamp('/greybox/gb_scripts.js')}"></script>
+    <link href="${stamp('/greybox/gb_styles.css')}" rel="stylesheet" type="text/css" media="screen" />
+    
 </head>
 <body>
 <div id="container" class="container">

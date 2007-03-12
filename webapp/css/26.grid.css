@@ -1,22 +1,33 @@
+/**
+ * Based on Layout Gala by Alessandro Fulciniti
+ * See http://blog.html.it/layoutgala/
+ *
+ * <#assign navigationWidth = 33 />
+ * <#assign containerPadding = 50 />
+ */
+#container {
+	margin: 0 ${containerPadding}px
+}
+
 #wrapper {
 	float: right;
 	width: 100%;
-	margin-right: -33%
+	margin-right: -${navigationWidth}%
 }
 
 #content {
-	margin-right: 33%
+	margin-right: ${navigationWidth}%
 }
 
 #navigation {
 	float: left;
-	width: 32.9%
+	width: ${navigationWidth - 0.1}%
 }
 
 #extra {
 	float: left;
 	clear: left;
-	width: 32.9%
+	width: ${navigationWidth - 0.1}%
 }
 
 #footer {

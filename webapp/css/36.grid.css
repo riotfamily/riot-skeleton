@@ -1,21 +1,28 @@
+/**
+ * Based on Layout Gala by Alessandro Fulciniti
+ * See http://blog.html.it/layoutgala/
+ *
+ * <#assign contentWidth = 500 />
+ * <#assign navigationWidth = 200 />
+ */
 #container {
-	width: 700px;
+	width: ${contentWidth + navigationWidth}px;
 	margin: 0 auto
 }
 
 #content {
 	float: right;
-	width: 500px
+	width: ${contentWidth}px
 }
 
 #navigation {
 	float: left;
-	width: 200px
+	width: ${navigationWidth}px
 }
 
 #extra {
 	float: right;
-	width: 500px
+	width: ${contentWidth}px
 }
 
 #footer {

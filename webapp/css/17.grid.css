@@ -1,21 +1,32 @@
+/**
+ * Based on Layout Gala by Alessandro Fulciniti
+ * See http://blog.html.it/layoutgala/
+ *
+ * <#assign navigationWidth = 200 />
+ * <#assign extraWidth = 180 />
+ * <#assign containerPadding = 50 />
+ */
+#container {
+	margin: 0 ${containerPadding}px
+}
 #wrapper {
 	float: right;
 	width: 100%;
-	margin-left: -400px
+	margin-left: -${extraWidth + navigationWidth}px
 }
 
 #content {
-	margin-left: 400px
+	margin-left: ${extraWidth + navigationWidth}px
 }
 
 #navigation {
 	float: right;
-	width: 200px
+	width: ${navigationWidth}px
 }
 
 #extra {
 	float: right;
-	width: 200px
+	width: ${extraWidth}px
 }
 
 #footer {

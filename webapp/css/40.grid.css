@@ -1,16 +1,23 @@
+/**
+ * Based on Layout Gala by Alessandro Fulciniti
+ * See http://blog.html.it/layoutgala/
+ *
+ * <#assign extraWidth = 300 />
+ * <#assign navigationWidth = 400 />
+ */
 #container {
-	width: 700px;
+	width: ${extraWidth + navigationWidth}px;
 	margin: 0 auto
 }
 
 #navigation {
 	float: right;
-	width: 350px
+	width: ${navigationWidth}px
 }
 
 #extra {
 	float: left;
-	width: 350px
+	width: ${extraWidth}px
 }
 
 #footer {

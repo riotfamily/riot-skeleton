@@ -1,5 +1,13 @@
+/**
+ * Based on Layout Gala by Alessandro Fulciniti
+ * See http://blog.html.it/layoutgala/
+ *
+ * <#assign navigationWidth = 150 />
+ * <#assign contentWidth = 400 />
+ * <#assign extraWidth = 150 />
+ */
 #container {
-	width: 700px;
+	width: ${extraWidth + navigationWidth + contentWidth}px;
 	margin: 0 auto
 }
 
@@ -9,19 +17,19 @@
 }
 
 #content {
-	margin-left: 300px
+	margin-left: ${navigationWidth + extraWidth}px
 }
 
 #navigation {
 	float: left;
-	width: 150px;
-	margin-left: -700px
+	width: ${navigationWidth}px;
+	margin-left: -${extraWidth + navigationWidth + contentWidth}px
 }
 
 #extra {
 	float: left;
-	width: 150px;
-	margin-left: -550px
+	width: ${extraWidth}px;
+	margin-left: -${navigationWidth + contentWidth}px
 }
 
 #footer {

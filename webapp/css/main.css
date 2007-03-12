@@ -92,19 +92,23 @@ h6 {
 	background: #eee;
 }
 .navigation {
-	xbackground: #B9CAFF;
+	background: #B9CAFF;
 }
 .extra {
-	xbackground: #FF8539;
+	background: #FF8539;
 }
 .footer {
 	background: #333;
 	color: #FFF;
 }
-.padding {
-	margin: 10px;
+.footer a,
+.footer a:visited {
+	color: #fff;
 }
-
+.padding {
+	margin: 0 10px;
+	padding: 10px 0;
+}
 table {
 	border-collapse: separate;
 	border-spacing: 2px;

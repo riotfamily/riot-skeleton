@@ -42,13 +42,14 @@
 	</div>
 	<div id="footer" class="footer">
 		<div class="padding">
-			<p>Powered by Riot</p>
-			<form action="?" method="get">
-			<select name="theme" onchange="this.form.submit()">
-				<#list 1..40 as theme>
-					<option value="${theme?string('00')}">${theme?string('00')}</option>
-				</#list>
-			</select>
+			<form id="themeChooser" action="?" method="get">
+				<select name="theme" onchange="this.form.submit()">
+					<#list 1..40 as themeIndex>
+						<#assign theme = themeIndex?string('00') />
+						<option value="${theme}"<#if theme == springMacroRequestContext.theme.name> selected="selected"</#if>>${theme}</option>
+					</#list>
+				</select>
+				<a href="?theme=${(springMacroRequestContext.theme.name?number + 1)?string('00')}">Next Theme</a>
 			</form>
 		</div>
 	</div>

@@ -106,8 +106,8 @@ h6 {
 	color: #fff;
 }
 .padding {
-	margin: 0 10px;
-	padding: 10px 0;
+	xmargin: 0 10px;
+	xpadding: 10px 0;
 }
 table {
 	border-collapse: separate;

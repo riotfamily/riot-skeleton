@@ -3,12 +3,7 @@
  * See http://blog.html.it/layoutgala/
  *
  * <#assign navigationWidth = 50 />
- * <#assign containerPadding = 50 />
  */
-#container {
-	margin: 0 ${containerPadding}px
-}
-
 #navigation {
 	float: left;
 	width: ${navigationWidth}%

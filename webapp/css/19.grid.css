@@ -4,12 +4,7 @@
  *
  * <#assign navigationWidth = 200 />
  * <#assign extraWidth = 33 />
- * <#assign containerPadding = 50 />
  */
-#container {
-	margin: 0 ${containerPadding}px
-}
-
 #wrapper {
 	float: left;
 	width: 100%

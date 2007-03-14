@@ -22,8 +22,8 @@
 				<exclude name="create-skeleton.xml" />
 				<exclude name=".classpath" />
 				<exclude name=".project" />
-				<exclude name="src/**" />
-				<exclude name="lib/**" />
+				<exclude name="src/*" />
+				<exclude name="lib/*" />
 				<exclude name="build/**" />
 				<exclude name="webapp/WEB-INF/classes/**" />
 				<exclude name="webapp/WEB-INF/lib/**" />

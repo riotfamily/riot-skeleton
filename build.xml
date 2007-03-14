@@ -329,14 +329,19 @@
 	</target>
 	
 	<!--
-	  - Creates a dependency report as HTML file. Additionally a .dot file is
-	  - created and rendered using GraphViz (if available). If you are using
-	  - a Mac you can also import the .dot file into OmniGraffle.
+	  - Creates a dependency report as HTML file.
 	  -->
 	<target name="report" depends="resolve" 
 		description="Creates a dependency report as HTML file">
     	<ivy:report todir="${build.dir}/reports" conf="runtime" graph="false" />
 		
+		<!-- 
+		  - Uncomment the following block to generate a .dot file render it 
+		  - using GraphViz (if available). If you are using a Mac you can also 
+		  - import the .dot file into OmniGraffle. 
+		  -->
+		
+		<!--
 		<property name="dotxsl.file" value="${build.dir}/report2dot.xsl" />
 		<get src="http://www.riotfamily.org/ivy/report2dot.xsl" 
 				dest="${dotxsl.file}" />
@@ -349,6 +354,7 @@
     		<arg value="-o${build.dir}/reports/dependencies.png" />
     		<arg value="${build.dir}/reports/${ivy.organisation}-${ivy.module}-runtime.dot" />
     	</exec>
+		-->
     </target>
 	
 	<target name="-configure-ivy" depends="-install-ivy">

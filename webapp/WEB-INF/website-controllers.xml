@@ -2,23 +2,25 @@
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.riotfamily.org/schema/pages/mvc"
-	xmlns:template="http://www.riotfamily.org/schema/pages/template"
+	xmlns:component="http://www.riotfamily.org/schema/components/controller"
+	xmlns:template="http://www.riotfamily.org/schema/website/template"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-		http://www.riotfamily.org/schema/pages/mvc
-		http://www.riotfamily.org/schema/pages/mvc-6.4.xsd
-		http://www.riotfamily.org/schema/pages/template
-		http://www.riotfamily.org/schema/pages/template-6.4.xsd">
+		http://www.riotfamily.org/schema/components/controller
+		http://www.riotfamily.org/schema/components/controller-6.5.xsd
+		http://www.riotfamily.org/schema/website/template
+		http://www.riotfamily.org/schema/website/template-6.5.xsd">
 			
 	<!-- ========== -->
 	<!-- Page types -->
 	<!-- ========== -->
 	
 	<template:definition id="default" view-name="templates/default.ftl">
+		<!-- 
 		<template:insert slot="head" url="/inc/metadata.html" />
 		<template:insert slot="navigation" url="/inc/menu.html" />
+		 -->
 		<template:insert slot="content" url="/inc/content.html" />
 		<template:insert slot="extra" url="/inc/extra.html" />
 	</template:definition>
@@ -28,32 +30,36 @@
 	<!-- ======== -->
 
 	<!-- Controller that renders page meta data (title, keywords, description) -->
-	<bean name="/inc/metadata.html" class="org.riotfamily.pages.page.meta.MetaDataController">
+	<!--
+	<bean name="/inc/metadata.html" class="org.riotfamily.pages.meta.MetaDataController">
 		<property name="metaDataProvider">
 			<bean class="org.riotfamily.pages.page.meta.PageMetaDataProvider" />
 		</property>
 	</bean>
+	-->
 	
-	<bean name="/inc/menu.html" class="org.riotfamily.pages.menu.MenuController">
+	<!--
+	<bean name="/inc/menu.html" class="org.riotfamily.website.menu.MenuController">
 		<property name="menuBuilder"><ref bean="pageMenuBuilder" /></property>
 		<property name="viewName"><value>nav.ftl</value></property>
 	</bean>
+	-->
 		
 	<!-- =============== -->
 	<!-- Component Lists -->
 	<!-- =============== -->
 	
 	
-	<mvc:component-list name="/inc/content.html" 
+	<component:list name="/inc/content.html" 
 			validComponentTypes="paragraph,headline,image,gallery,table"
 			initialComponentTypes="headline,paragraph" />
 	
-	<mvc:component-list name="/inc/gallery-components.html" 
-			validComponentTypes="greybox-image"
+	<component:list name="/inc/gallery-components.html" 
+			validComponentTypes="greybox-image,gallery"
 			initialComponentTypes="greybox-image" 
 			minComponents="1" />
 			
-	<mvc:component-list name="/inc/extra.html" 
+	<component:list name="/inc/extra.html" 
 			validComponentTypes="extra-box,inherit" />
 	
 </beans>

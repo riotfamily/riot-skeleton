@@ -24,9 +24,11 @@
 		</property>
 	</bean>
 	
-	<bean class="org.riotfamily.pages.page.PageHandlerMapping">
-		<constructor-arg ref="pageMap" />
-		<property name="order" value="2" />
+	<bean class="org.riotfamily.pages.mapping.PageHandlerMapping">
+		<constructor-arg ref="pageDao" />
+		<constructor-arg ref="transactionManager" />
+		<constructor-arg ref="pageLocationResolver" />
+		<property name="defaultPageHandler" ref="default" />
 		<property name="interceptors">
 			<list>
 				<ref bean="noCacheInterceptor" />

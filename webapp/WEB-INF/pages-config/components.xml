@@ -2,15 +2,15 @@
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:c="http://www.riotfamily.org/schema/pages/component"
+	xmlns:c="http://www.riotfamily.org/schema/components/component"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-		http://www.riotfamily.org/schema/pages/component
-		http://www.riotfamily.org/schema/pages/component-6.4.xsd">
+		http://www.riotfamily.org/schema/components/component
+		http://www.riotfamily.org/schema/components/component-6.5.xsd">
 	
 	<c:view-component id="extra-box" view-name="components/extra-box.ftl">
-		<bean class="org.riotfamily.pages.component.property.DefaultValuePropertyProcessor">
+		<bean class="org.riotfamily.components.property.DefaultValuePropertyProcessor">
 			<property name="values">
 				<props>
 					<prop key="className">important</prop>
@@ -20,7 +20,7 @@
 	</c:view-component>	
 	
 	<c:view-component id="table" view-name="components/table.ftl">
-		<bean class="org.riotfamily.pages.component.property.DefaultValuePropertyProcessor">
+		<bean class="org.riotfamily.components.property.DefaultValuePropertyProcessor">
 			<property name="values">
 				<props>
 					<prop key="rows">3</prop>
@@ -35,7 +35,7 @@
 	<c:view-component id="lightbox-image" view-name="components/lightbox-image.ftl"
 			onchange="addToLightbox(this.element)">
 			
-		<bean class="org.riotfamily.pages.component.property.ThumbnailPropertyProcessor">
+		<bean class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
 			<property name="source" value="image" />
 			<property name="dest" value="thumb" />
 			<property name="fileStore" ref="defaultFileStore" />
@@ -50,7 +50,7 @@
 	<c:view-component id="greybox-image" view-name="components/greybox-image.ftl"
 			onchange="GB_SETS = {};decoGreyboxLinks();">
 			
-		<bean class="org.riotfamily.pages.component.property.ThumbnailPropertyProcessor">
+		<bean class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
 			<property name="source" value="image" />
 			<property name="dest" value="thumb" />
 			<property name="fileStore" ref="defaultFileStore" />

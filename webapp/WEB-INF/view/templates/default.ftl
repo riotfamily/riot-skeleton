@@ -55,6 +55,6 @@
 	</div>
 </div>
 
-<@riot.toolbar />
+<@edit.toolbar />
 </body>
 </html>

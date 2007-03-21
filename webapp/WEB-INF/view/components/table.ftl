@@ -8,7 +8,7 @@
 				<#list 1..cols as col>
 					<#assign cell=chars[col-1] />
 					<#if col % 2 == 0><#assign thclass="odd" /><#else><#assign thclass="even" /></#if>
-					<@riot.text tag="th" key=cell class=thclass>${cell}</@riot.text>
+					<@edit.text tag="th" key=cell class=thclass>${cell}</@edit.text>
 				</#list>
 			</tr>
 		</thead>
@@ -19,7 +19,7 @@
 				<#list 1..cols as col>
 					<#assign cell=chars[col-1] + row />
 					<#if col % 2 == 0><#assign tdclass="odd" /><#else><#assign tdclass="even" /></#if>
-					<@riot.text tag="td" key=cell class=tdclass>${cell}</@riot.text>
+					<@edit.text tag="td" key=cell class=tdclass>${cell}</@edit.text>
 				</#list>
 			</tr>
 		</#list>

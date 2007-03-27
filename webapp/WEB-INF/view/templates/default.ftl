@@ -49,7 +49,7 @@
 						<option value="${theme}"<#if theme == springMacroRequestContext.theme.name> selected="selected"</#if>>${theme}</option>
 					</#list>
 				</select>
-				<a href="?theme=${(springMacroRequestContext.theme.name?number % theme?number + 1)?string('00')}">Next Theme</a>
+				<a href="?theme=${(springMacroRequestContext.theme.name?number % theme?number + 1)?string('00')}" rel="nofollow">Next Theme</a>
 			</form>
 		</div>
 	</div>

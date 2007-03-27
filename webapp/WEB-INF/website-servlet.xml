@@ -26,7 +26,6 @@
 	
 	<bean class="org.riotfamily.pages.mapping.PageHandlerMapping">
 		<constructor-arg ref="pageDao" />
-		<constructor-arg ref="transactionManager" />
 		<constructor-arg ref="pageLocationResolver" />
 		<property name="defaultPageHandler" ref="default" />
 		<property name="interceptors">

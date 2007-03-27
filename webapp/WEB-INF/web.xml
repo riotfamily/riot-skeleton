@@ -33,6 +33,11 @@
 		</init-param>
 	</filter>
 	
+	<filter>
+		<filter-name>hibernate-session</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	
 	<!-- 
 	  - Filter that prevents URLs from beeing rewritten if the request is 
 	  - originated by a search engine robot. 
@@ -50,10 +55,6 @@
 	<filter>
 		<filter-name>website-servlet-filter</filter-name>
 		<filter-class>org.riotfamily.common.web.filter.PluginFilter</filter-class>
-		<init-param>
-			<param-name>exclude</param-name>
-			<param-value>/riot/**</param-value>
-		</init-param>
 	</filter>
 	 
 	<filter-mapping>
@@ -62,8 +63,13 @@
 	</filter-mapping>
 	
 	<filter-mapping>
+		<filter-name>hibernate-session</filter-name>
+		<servlet-name>website</servlet-name>
+	</filter-mapping>
+	
+	<filter-mapping>
 		<filter-name>bot-session-filter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<servlet-name>website</servlet-name>
 	</filter-mapping>
 	
 	<filter-mapping>
@@ -73,7 +79,7 @@
 	
 	<filter-mapping>
 		<filter-name>website-servlet-filter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<servlet-name>website</servlet-name>
 	</filter-mapping>
 	
 	<listener>

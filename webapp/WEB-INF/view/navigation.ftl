@@ -30,5 +30,5 @@
 	<#if page.versionContainer.previewVersion?exists>
 		<#local attrs = attrs + {"riot:dirty": "true"} />	
 	</#if>
-	<@edit.editable key=key scope=props editor="text" attributes=attrs><#nested /></@edit.editable>
+	<@component.editable key=key scope=props editor="text" attributes=attrs><#nested /></@component.editable>
 </#macro>

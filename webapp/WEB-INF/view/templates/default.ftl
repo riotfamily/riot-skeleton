@@ -55,6 +55,6 @@
 	</div>
 </div>
 
-<@edit.toolbar />
+<@component.toolbar />
 </body>
 </html>

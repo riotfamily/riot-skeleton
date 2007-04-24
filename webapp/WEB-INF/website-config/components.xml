@@ -32,9 +32,7 @@
 	
 	<c:view-component id="group" view-name="components/group.ftl" dynamic="true" />
 	
-	<c:view-component id="lightbox-image" view-name="components/lightbox-image.ftl"
-			onchange="addToLightbox(this.element)">
-			
+	<c:view-component id="lightbox-image" view-name="components/lightbox-image.ftl">
 		<bean class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
 			<property name="source" value="image" />
 			<property name="dest" value="thumb" />
@@ -47,9 +45,7 @@
 		</bean>		
 	</c:view-component>
 	
-	<c:view-component id="greybox-image" view-name="components/greybox-image.ftl"
-			onchange="GB_SETS = {};decoGreyboxLinks();">
-			
+	<c:view-component id="greybox-image" view-name="components/greybox-image.ftl">
 		<bean class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
 			<property name="source" value="image" />
 			<property name="dest" value="thumb" />

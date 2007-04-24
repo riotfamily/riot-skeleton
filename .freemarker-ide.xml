@@ -1,0 +1,13 @@
+<config>
+	<context-values>
+		<resource path="">
+			<value key="request" object-class="javax.servlet.http.HttpServletRequest"/>
+		</resource>
+	</context-values>
+	<macro-library>
+		<entry namespace="component" path="org/riotfamily/components/macro/component.ftl" type="jarEntry"/>
+		<entry namespace="page" path="org/riotfamily/pages/macro/page.ftl" type="jarEntry"/>
+		<entry namespace="common" path="org/riotfamily/common/web/view/freemarker/common.ftl" type="jarEntry"/>
+		<entry namespace="riot" path="org/riotfamily/riot/runtime/macro/riot.ftl" type="jarEntry"/>
+	</macro-library>
+</config>

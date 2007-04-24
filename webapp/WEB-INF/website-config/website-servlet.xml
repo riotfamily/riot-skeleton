@@ -41,13 +41,6 @@
 		<property name="exposeRequestAttributes" value="true" />
 	</bean>
 	
-	<util:map id="freemarkerVariables">
-		<entry key="url"><bean class="org.riotfamily.common.web.view.freemarker.EncodeUrlMethod" /></entry>
-		<entry key="include"><bean class="org.riotfamily.common.web.view.freemarker.IncludeMethod" /></entry>
-		<entry key="isExternal"><bean class="org.riotfamily.common.web.view.freemarker.ExternalUrlMethod" /></entry>
-		<entry key="stamp"><bean class="org.riotfamily.common.web.view.freemarker.AddTimestampMethod" /></entry>
-	</util:map>
-	
 	<bean id="themeResolver" class="org.springframework.web.servlet.theme.SessionThemeResolver">
 		<property name="defaultThemeName" value="01" />
 	</bean>

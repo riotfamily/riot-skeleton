@@ -3,17 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Riot Project Skeleton</title>
-	<link rel="stylesheet" type="text/css" href="${stamp('/css/' + springMacroRequestContext.theme.name +'.grid.css')}" title="grid01" media="screen" />
-	<link rel="stylesheet" type="text/css" href="${stamp('/css/main.css')}" media="screen" />
+	<link rel="stylesheet" type="text/css" href="${common.resource('/css/' + springMacroRequestContext.theme.name +'.grid.css')}" title="grid01" media="screen" />
+	<link rel="stylesheet" type="text/css" href="${common.resource('/css/main.css')}" media="screen" />
 	
 	<#-- Greybox -->
 	<script type="text/javascript">
     	var GB_ROOT_DIR = "${request.contextPath}/greybox/";
 	</script>
-	<script type="text/javascript" src="${stamp('/greybox/AJS.js')}"></script>
-    <script type="text/javascript" src="${stamp('/greybox/AJS_fx.js')}"></script>
-    <script type="text/javascript" src="${stamp('/greybox/gb_scripts.js')}"></script>
-    <link href="${stamp('/greybox/gb_styles.css')}" rel="stylesheet" type="text/css" media="screen" />
+	<script type="text/javascript" src="${common.resource('/greybox/AJS.js')}"></script>
+    <script type="text/javascript" src="${common.resource('/greybox/AJS_fx.js')}"></script>
+    <script type="text/javascript" src="${common.resource('/greybox/gb_scripts.js')}"></script>
+    <link href="${common.resource('/greybox/gb_styles.css')}" rel="stylesheet" type="text/css" media="screen" />
     
 </head>
 <body>
@@ -26,18 +26,18 @@
 	<div id="wrapper" class="wrapper">
 		<div id="content" class="content">
 			<div class="padding">
-				<@riot.include content />
+				<@common.include content />
 			</div>
 		</div>
 	</div>
 	<div id="navigation" class="navigation">
 		<div class="padding">
-			<@riot.include navigation />
+			<@common.include navigation />
 		</div>
 	</div>
 	<div id="extra" class="extra">
 		<div class="padding">
-			<@riot.include extra />
+			<@common.include extra />
 		</div>
 	</div>
 	<div id="footer" class="footer">

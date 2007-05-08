@@ -1,9 +1,9 @@
-<ivyconf>
-	<!-- 
-	  - Ivy configuration, see http://www.jayasoft.org/ivy/doc/configuration
+<ivysettings>
+	<!--
+	  - Ivy settings, see http://incubator.apache.org/ivy/doc/configuration.html
 	  -->
-	<conf defaultResolver="default" />
-	<include url="${ivy.default.conf.dir}/ivyconf-local.xml"/>
+	<settings defaultResolver="default" />
+	<include url="${ivy.default.settings.dir}/ivysettings-local.xml"/>
 	<resolvers>
 		<url name="riotfamily">
 			<ivy pattern="http://www.riotfamily.org/ivy/repo/[organisation]/[module]/[revision]/ivy.xml" />
@@ -15,4 +15,4 @@
 			<resolver ref="riotfamily" />
 		</chain>
 	</resolvers>
-</ivyconf>
+</ivysettings>

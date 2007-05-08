@@ -1,19 +1,19 @@
-<project name="riot-skeleton" default="webapp" xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
+<project name="riot-skeleton" default="webapp" xmlns:ivy="antlib:org.apache.ivy.ant">
 
-	<!-- 
+	<!--
 	  - File and directory names
 	  - ========================
 	  -
 	  - Only change these properties if you want to use
 	  - another project layout.
 	  -->
-	
+
 	<!-- Location of the project's source and resource files -->
 	<property name="src.dir" value="src" />
 
 	<!-- The web content -->
 	<property name="web.dir" value="webapp" />
-	
+
 	<!-- Location of the WEB-INF/lib directory -->
 	<property name="web.lib.dir" value="${web.dir}/WEB-INF/lib" />
 
@@ -22,37 +22,38 @@
 
 	<!-- Directory where classes and artifacts are created -->
 	<property name="build.dir" value="build" />
-	
+
 	<!-- Directory where the compile target will generate the class files -->
 	<property name="build.classes.dir" value="${build.dir}/classes" />
-		
+
 	<!-- The default configuration profile -->
 	<property name="profile" value="${user.name}" />
-	
+
 	<!-- Location of the different confiuration profiles -->
 	<property name="conf.dir" value="conf" />
-	
+
 	<!-- Directory where the merged configuration files are created -->
 	<property name="build.conf.dir" value="${build.dir}/conf" />
-		
+
 	<!-- Name of the jar file created by the jar target -->
 	<property name="jar.name" value="${ant.project.name}.jar" />
-	
+
 	<!-- Name of the war file created by the war target -->
 	<property name="war.name" value="${ant.project.name}-${profile}.war" />
-	
+
 	<!-- Location of the war file created by the war target -->
 	<property name="war.location" location="${build.dir}/${war.name}" />
 
 	<!-- Name of the schema file created by the export-schema target -->
 	<property name="schema.name" value="${ant.project.name}-${profile}.sql" />
-		
+
+	<property name="ivy.download" value="http://riotfamily.org/ivy/ivy-2.0.0-alpha-1-incubating.jar" />
 	<property name="ivy.jar" value="${lib.dir}/ivy.jar" />
-	
-	<taskdef resource="fr/jayasoft/ivy/ant/antlib.xml" 
-			uri="antlib:fr.jayasoft.ivy.ant" classpath="${ivy.jar}" 
+
+	<taskdef resource="org/apache/ivy/ant/antlib.xml"
+			uri="antlib:org.apache.ivy.ant" classpath="${ivy.jar}"
 			onerror="ignore" />
-	
+
 	<!--
 	  - The classpath. Includes all jar files in lib and WEB-INF/lib.
 	  -->
@@ -62,7 +63,7 @@
 		<pathelement path="${java.class.path}" />
 	</path>
 
-	<!-- 
+	<!--
 	  - Resource files to be included in the jar. By default all files found
 	  - the source directory are included except for .java files and Ant's
 	  - default excludes.
@@ -79,14 +80,14 @@
 		<merge-properties name="application" />
 		<merge-properties name="log4j" />
 	</target>
-	
+
 	<!--
 	  - Resolves the project's dependencies. Runtime dependencies are copied
 	  - to ${web.lib.dir} (webapp/WEB-INF/lib). Dependencies that are provided
 	  - by the container during runtime, but are required in order to compile
 	  - the project with Ant are copied to ${lib.dir}.
 	  -->
-	<target name="resolve" depends="-configure-ivy" 
+	<target name="resolve" depends="-configure-ivy"
 		description="Resolves the project's dependencies">
 		<echo message="Retrieving module dependencies" />
 		<ivy:resolve showprogress="false" />
@@ -120,17 +121,17 @@
 			<fileset dir="${build.conf.dir}" />
 		</copy>
 	</target>
-	
+
 	<!--
 	  - Creates a jar file containing all files in ${build.classes.dir}.
 	  -->
-	<target name="jar" depends="compile" 
+	<target name="jar" depends="compile"
 		description="Creates a Jar file containing the files in /build/classes">
 		<jar jarfile="${build.dir}/${jar.name}">
 			<fileset dir="${build.classes.dir}" />
 		</jar>
 	</target>
-	
+
 	<!--
 	  - Creates a war file.
 	  -->
@@ -148,26 +149,26 @@
 			<classes dir="${build.conf.dir}" />
         </war>
 	</target>
-	
+
 	<!--
 	  - Deploys a war file.
 	  -->
 	<target name="deploy" depends="-backup-config,war,-restore-config,-upload-war,-exec-deploy-command"
 		description="Deploys a WAR file to a remote server via SCP">
 	</target>
-	
+
 	<!--
 	  - Uploads a WAR file via scp.
 	  -->
 	<target name="-upload-war">
 		<!-- Check if JSch is available -->
 		<available classname="com.jcraft.jsch.JSchException" property="jsch.available" value="true" />
-		<fail unless="jsch.available" message="The deploy target uses the scp and sshexec tasks which both depend on jsch.jar. See http://ant.apache.org/manual/install.html#librarydependencies for details." />		
-		
+		<fail unless="jsch.available" message="The deploy target uses the scp and sshexec tasks which both depend on jsch.jar. See http://ant.apache.org/manual/install.html#librarydependencies for details." />
+
 		<!-- Read properties from the deploy.properties file(s) -->
 		<property file="${conf.dir}/${profile}/deploy.properties" />
 		<property file="${conf.dir}/default/deploy.properties" />
-		
+
 		<fail unless="deploy.host" message="The property deploy.host must be specified in ${conf.dir}/$${profile}/deploy.properties" />
 
 		<!-- Set some reasonable defaults -->
@@ -196,10 +197,10 @@
 		<property prefix="eval" file="${conf.dir}/${profile}/deploy.properties" />
 		<property prefix="eval" file="${conf.dir}/default/deploy.properties" />
 		<sshexec host="${deploy.host}" username="${deploy.user.name}" trust="true"
-			keyfile="${deploy.keyfile}" passphrase="${deploy.passphrase}" 
+			keyfile="${deploy.keyfile}" passphrase="${deploy.passphrase}"
 			command="${eval.deploy.command}" />
 	</target>
-	
+
 	<!--
 	  - Macro to merge property files. Invoked by the configure target.
 	  -->
@@ -208,7 +209,7 @@
 	   <sequential>
 		   	<property file="${conf.dir}/${profile}/@{name}.properties" prefix="@{name}." />
 	   		<property file="${conf.dir}/default/@{name}.properties" prefix="@{name}." />
-	   		
+
 	   		<mkdir dir="${build.conf.dir}" />
    			<echoproperties destfile="${build.conf.dir}/@{name}.properties">
    				<propertyset>
@@ -221,7 +222,7 @@
 
 	<!--
 	  - Creates a backup of the current configuration (build.conf.dir).
-	  - Invoked by the deploy and schema-export targets in order to 
+	  - Invoked by the deploy and schema-export targets in order to
 	  - backup/restore the local configuration.
 	  -->
 	<target name="-backup-config">
@@ -230,7 +231,7 @@
 			<fileset dir="${build.conf.dir}" />
 		</copy>
 	</target>
-	
+
 	<!--
 	  - Restores a previously backed-up configuration.
 	  -->
@@ -241,7 +242,7 @@
 	</target>
 
 	<!--
-	  - Sets the property ${dbconf} to either hsqldb, postgresql or mysql 
+	  - Sets the property ${dbconf} to either hsqldb, postgresql or mysql
 	  - depending on the selected JDBC driver class.
 	  -->
     <target name="-set-dbconf-by-driver" depends="configure">
@@ -258,7 +259,7 @@
     		Unknown JDBC driver: ${application.jdbc.driver_class}
     	</fail>
     </target>
-	
+
 	<!--
 	  - Resolves the JDBC driver.
 	  -->
@@ -276,13 +277,13 @@
 	<!--
 	  - Exports the database schema as SQL file.
 	  -->
-	<target name="schema-export" depends="-backup-config,configure,compile" 
+	<target name="schema-export" depends="-backup-config,configure,compile"
 			description="Exports the DB schema as SQL file">
-		
-		<taskdef name="hibernatetool" 
+
+		<taskdef name="hibernatetool"
 			classname="org.hibernate.tool.ant.HibernateToolTask"
 			classpathref="classpath" />
-		
+
 		<mkdir dir="${build.dir}" />
 		<property file="${build.conf.dir}/application.properties" />
 		<echoproperties destfile="${build.dir}/hibernate.properties">
@@ -292,17 +293,17 @@
 				<mapper type="glob" from="jdbc.*" to="hibernate.connection.*" />
 			</propertyset>
 		</echoproperties>
-		
+
 		<hibernatetool destdir="${build.dir}">
 			<classpath>
 				<pathelement location="${build.classes.dir}" />
 				<pathelement location="${build.conf.dir}" />
 				<path refid="classpath" />
 			</classpath>
-			
+
 			<!-- Uncomment the following to use Hibernate annotations -->
 			<!--
-			<annotationconfiguration 
+			<annotationconfiguration
 					configurationfile="${web.dir}/WEB-INF/hibernate.cfg.xml"
 					propertyfile="${build.dir}/hibernate.properties">
 					<fileset id="mappings" dir="${basedir}">
@@ -311,8 +312,8 @@
 					</fileset>
 				</annotationconfiguration>
 			-->
-			
-			<configuration 
+
+			<configuration
 				configurationfile="${web.dir}/WEB-INF/hibernate.cfg.xml"
 				propertyfile="${build.dir}/hibernate.properties">
 				<fileset id="mappings" dir="${basedir}">
@@ -320,35 +321,35 @@
 					<include name="${web.dir}/WEB-INF/lib/riot-*.jar" />
 				</fileset>
 			</configuration>
-		  		
+
 		  	<hbm2ddl drop="false" create="true" export="false" update="false"
 		  		 outputfilename="${schema.name}" delimiter=";" format="true" />
-		  		
+
 		</hibernatetool>
 		<antcall target="-restore-config" />
 	</target>
-	
+
 	<!--
 	  - Creates a dependency report as HTML file.
 	  -->
-	<target name="report" depends="resolve" 
+	<target name="report" depends="resolve"
 		description="Creates a dependency report as HTML file">
     	<ivy:report todir="${build.dir}/reports" conf="runtime" graph="false" />
-		
-		<!-- 
-		  - Uncomment the following block to generate a .dot file render it 
-		  - using GraphViz (if available). If you are using a Mac you can also 
-		  - import the .dot file into OmniGraffle. 
+
+		<!--
+		  - Uncomment the following block to generate a .dot file render it
+		  - using GraphViz (if available). If you are using a Mac you can also
+		  - import the .dot file into OmniGraffle.
 		  -->
-		
+
 		<!--
 		<property name="dotxsl.file" value="${build.dir}/report2dot.xsl" />
-		<get src="http://www.riotfamily.org/ivy/report2dot.xsl" 
+		<get src="http://www.riotfamily.org/ivy/report2dot.xsl"
 				dest="${dotxsl.file}" />
-		
-    	<ivy:report todir="${build.dir}/reports" conf="runtime" graph="false" 
+
+    	<ivy:report todir="${build.dir}/reports" conf="runtime" graph="false"
     		xslfile="${dotxsl.file}" xslext="dot" />
-    	
+
     	<exec executable="/usr/bin/dot">
     		<arg value="-Tpng" />
     		<arg value="-o${build.dir}/reports/dependencies.png" />
@@ -356,47 +357,44 @@
     	</exec>
 		-->
     </target>
-	
+
 	<target name="-configure-ivy" depends="-install-ivy">
-		<ivy:configure file="ivyconf.xml" />
+		<ivy:configure file="ivysettings.xml" />
 	</target>
-	
+
 	<!--
 	  - Invoked by skeleton.xml to perform initial setup.
 	  -->
 	<target name="setup" depends="resolve,resolve-jdbc-driver,webapp" />
-					
+
 	<!--
 	  - Installs Ivy (if needed).
 	  -->
 	<target name="-install-ivy" depends="-download-ivy" if="ivy.downloaded">
-		<taskdef resource="fr/jayasoft/ivy/ant/antlib.xml" 
-			uri="antlib:fr.jayasoft.ivy.ant" classpath="${ivy.jar}" 
+		<taskdef resource="org/apache/ivy/ant/antlib.xml"
+			uri="antlib:org.apache.ivy.ant" classpath="${ivy.jar}"
 			onerror="ignore" />
 	</target>
-	
+
 	<!--
 	  - Downloads the Ivy jar file from riotfamily.org.
 	  -->
 	<target name="-download-ivy" depends="-check-ivy" unless="ivy.available">
-		<echo>This project uses Ivy (http://jayasoft.org/ivy) to manage dependencies.</echo>
+		<echo>This project uses Ivy (http://incubator.apache.org/ivy/) to manage dependencies.</echo>
 		<echo>Since Ivy was not found in the classpath the JAR file will now be downloaded ...</echo>
 		<delete dir="${lib.dir}" />
 		<mkdir dir="${lib.dir}" />
-		<get src="http://www.riotfamily.org/ivy/ivy.jar" dest="${ivy.jar}" verbose="true" />
+		<get src="${ivy.download}" dest="${ivy.jar}" verbose="true" />
 		<property name="ivy.downloaded" value="true" />
 	</target>
-	
+
 	<!--
 	  - Checks whether Ivy is available in the classpath.
 	  -->
 	<target name="-check-ivy">
-		<condition property="ivy.available">
-			<or>
-				<available resource="fr/jayasoft/ivy/ant/antlib.xml" />
-				<available file="${ivy.jar}" />
-			</or>
-		</condition>
+		<available property="ivy.available"
+			resource="org/apache/ivy/ant/antlib.xml"
+			classpathref="classpath" />
 	</target>
 
 </project>

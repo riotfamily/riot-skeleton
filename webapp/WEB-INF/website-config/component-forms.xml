@@ -4,25 +4,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.riotfamily.org/schema/forms/form-config
-		http://www.riotfamily.org/schema/forms/form-config-6.4.xsd">
+		http://www.riotfamily.org/schema/forms/form-config-6.5.xsd">
 
 	<form id="title">
 		<textfield bind="anchor" regex="[A-Za-z0-9_-]*" />
 	</form>
-	
+
 	<form id="table">
 		<checkbox bind="showHeadings" default="checked" />
 		<numberfield bind="rows" min-value="1" required="true" />
 		<numberfield bind="cols" min-value="1" required="true" />
 		<!-- <textarea bind="csv" rows="2" /> -->
 	</form>
-	
+
 	<form id="image">
-		<image-upload bind="image" store="defaultFileStore" 
+		<image-upload bind="image" store="defaultFileStore"
 			widths="100,200,476" max-height="250"
 			width-property="imageWidth" required="true" />
-			
-		<selectbox bind="class" required="true" 
+
+		<selectbox bind="class" required="true"
 			label-message-key="image.class." append-label="true">
 			<model class="org.riotfamily.forms.element.support.select.StaticOptionsModel">
 				<set-property name="commaDelimitedValues" value="block,right,left" />
@@ -31,30 +31,30 @@
 		<checkbox bind="clear" />
 		<textarea bind="caption" rows="3" />
 	</form>
-	
+
 	<form id="greybox-image">
 		<textfield bind="title" />
-		<image-upload bind="image" store="defaultFileStore" 
-			max-width="1024" max-height="768" 
+		<image-upload bind="image" store="defaultFileStore"
+			max-width="1024" max-height="768"
 			crop="false" required="true" />
 	</form>
-	
+
 	<form id="paragraph">
 		<checkbox bind="clear" />
 	</form>
-	
+
 	<form id="extra-box">
 		<selectbox bind="className" required="true" label-message-key="extra-box.className." append-label="true">
 			<model class="org.riotfamily.forms.element.support.select.StaticOptionsModel">
 				<set-property name="commaDelimitedValues" value="normal,filled,important" />
 			</model>
 		</selectbox>
-		<image-upload bind="image" store="defaultFileStore" 
+		<image-upload bind="image" store="defaultFileStore"
 				width="180" max-height="250" />
 	</form>
-	
+
 	<form id="html">
 		<textarea bind="html" />
 	</form>
-		
+
 </form-config>

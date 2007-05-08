@@ -10,6 +10,12 @@
 	<script type="text/javascript">
     	var GB_ROOT_DIR = "${request.contextPath}/greybox/";
 	</script>
+	<@component.callbacks>
+		addRiotEditCallback(function(el) {
+    		//alert('ComponentList updated: ' + el.componentList.id);
+	   		GB_SETS = {};decoGreyboxLinks();
+    	});
+	</@component.callbacks>
 	<script type="text/javascript" src="${common.resource('/greybox/AJS.js')}"></script>
     <script type="text/javascript" src="${common.resource('/greybox/AJS_fx.js')}"></script>
     <script type="text/javascript" src="${common.resource('/greybox/gb_scripts.js')}"></script>

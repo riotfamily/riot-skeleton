@@ -4,8 +4,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.riotfamily.org/schema/riot/editor-config
-		http://www.riotfamily.org/schema/riot/editor-config-6.4.xsd">
-		
-	<custom name="preview" url="/index.html" target="_blank" icon="external" />
-		
+		http://www.riotfamily.org/schema/riot/editor-config-6.5.xsd">
+
+	<tree id="sitemap" list-ref="pages" icon="sitemap">
+		<form form-ref="page" label-property="pathComponent" />
+	</tree>
+
+	<!-- Use this setup instead if you want to manage mutiple sites -->
+	<!--
+	<list id="sitemap" list-ref="locales" icon="sitemap">
+		<tree list-ref="pages">
+			<form form-ref="page" label-property="pathComponent" />
+		</tree>
+	</list>
+	-->
+
+	<custom name="preview" url="/en_us/index.html" target="_blank" icon="external" />
+
 </editor-config>

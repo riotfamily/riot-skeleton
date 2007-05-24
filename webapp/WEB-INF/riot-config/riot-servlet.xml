@@ -5,7 +5,7 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-    
+
     <!-- Read placeholders from application.properties  -->
 	<bean id="configurer" class="org.riotfamily.common.beans.config.PlaceholderWithDefaultConfigurer">
 		<property name="ignoreResourceNotFound" value="true" />
@@ -15,11 +15,13 @@
 			</list>
 		</property>
 	</bean>
-	
+
+	<!-- FixedLocaleResolver to display the Riot user interface in English -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
-    	<property name="defaultLocale"><value>de_DE</value></property>
+    	<property name="defaultLocale"><value>en_US</value></property>
     </bean>
-    
+
+	<!-- Custom color scheme -->
     <bean id="cssProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
 			<props>
@@ -29,16 +31,9 @@
 		</property>
 	</bean>
 
-	<bean id="roles" class="org.springframework.beans.factory.config.ListFactoryBean">
-		<property name="sourceList">
-			<list>
-				<value>admin</value>
-			</list>
-		</property>
-	</bean>
- 	
+	<!-- Create an admin user on startup (if it doesn't exist) -->
  	<bean class="org.riotfamily.riot.hibernate.support.SetupBean">
- 		<property name="sessionFactory"><ref bean="riotSessionFactory" /></property>
+ 		<property name="sessionFactory" ref="sessionFactory" />
  		<property name="condition" value="from org.riotfamily.riot.hibernate.security.User where id='admin'" />
  		<property name="objects">
  			<list>
@@ -50,5 +45,17 @@
  			</list>
  		</property>
  	</bean>
+
+ 	<!--
+ 	  - List of roles available in the 'riotUser' defined in:
+ 	  - /riot-hibernate/src/org/riotfamily/riot/hibernate/runtime/riot-config.xml
+ 	  -->
+ 	<bean id="roles" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<value>admin</value>
+			</list>
+		</property>
+	</bean>
 
 </beans>

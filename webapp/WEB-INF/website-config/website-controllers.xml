@@ -11,52 +11,45 @@
 		http://www.riotfamily.org/schema/components/controller-6.5.xsd
 		http://www.riotfamily.org/schema/website/template
 		http://www.riotfamily.org/schema/website/template-6.5.xsd">
-			
+
 	<!-- ========== -->
 	<!-- Page types -->
 	<!-- ========== -->
-	
-	<template:definition id="default" view-name="templates/default.ftl">
-		<!-- 
-		<template:insert slot="head" url="/inc/metadata.html" />
-		-->
+
+	<template:definition id="locale-chooser" view-name="templates/default.ftl">
 		<template:insert slot="navigation" url="/inc/navigation.html" />
 		<template:insert slot="content" url="/inc/content.html" />
 		<template:insert slot="extra" url="/inc/extra.html" />
 	</template:definition>
 	
+	<template:definition id="default" view-name="templates/default.ftl">
+		<template:insert slot="navigation" url="/inc/navigation.html" />
+		<template:insert slot="content" url="/inc/content.html" />
+		<template:insert slot="extra" url="/inc/extra.html" />
+	</template:definition>
+
 	<!-- ======== -->
 	<!-- Includes -->
 	<!-- ======== -->
 
-	<!-- Controller that renders page meta data (title, keywords, description) -->
-	<!--
-	<bean name="/inc/metadata.html" class="org.riotfamily.pages.meta.MetaDataController">
-		<property name="metaDataProvider">
-			<bean class="org.riotfamily.pages.page.meta.PageMetaDataProvider" />
-		</property>
-	</bean>
-	-->
-	
 	<bean name="/inc/navigation.html" class="org.riotfamily.pages.PageController">
 		<property name="viewName"><value>navigation.ftl</value></property>
 	</bean>
-		
+
 	<!-- =============== -->
 	<!-- Component Lists -->
 	<!-- =============== -->
-	
-	
-	<component:list name="/inc/content.html" 
+
+	<component:list name="/inc/content.html"
 			validComponentTypes="paragraph,headline,image,gallery,table"
 			initialComponentTypes="headline,paragraph" />
-	
-	<component:list name="/inc/gallery-components.html" 
+
+	<component:list name="/inc/gallery-components.html"
 			validComponentTypes="greybox-image,gallery"
-			initialComponentTypes="greybox-image" 
+			initialComponentTypes="greybox-image"
 			minComponents="1" />
-			
-	<component:list name="/inc/extra.html" 
+
+	<component:list name="/inc/extra.html"
 			validComponentTypes="extra-box,inherit" />
-	
+
 </beans>

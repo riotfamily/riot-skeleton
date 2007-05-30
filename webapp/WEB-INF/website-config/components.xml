@@ -8,32 +8,32 @@
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.riotfamily.org/schema/components/component
 		http://www.riotfamily.org/schema/components/component-6.5.xsd">
-	
+
 	<c:view-component id="extra-box" view-name="components/extra-box.ftl">
-		<bean class="org.riotfamily.components.property.DefaultValuePropertyProcessor">
+		<c:property-processor class="org.riotfamily.components.property.DefaultValuePropertyProcessor">
 			<property name="values">
 				<props>
 					<prop key="className">important</prop>
 				</props>
 			</property>
-		</bean>
-	</c:view-component>	
-	
+		</c:property-processor>
+	</c:view-component>
+
 	<c:view-component id="table" view-name="components/table.ftl">
-		<bean class="org.riotfamily.components.property.DefaultValuePropertyProcessor">
+		<c:property-processor class="org.riotfamily.components.property.DefaultValuePropertyProcessor">
 			<property name="values">
 				<props>
 					<prop key="rows">3</prop>
 					<prop key="cols">3</prop>
 				</props>
 			</property>
-		</bean>
+		</c:property-processor>
 	</c:view-component>
-	
+
 	<c:view-component id="group" view-name="components/group.ftl" dynamic="true" />
-	
+
 	<c:view-component id="lightbox-image" view-name="components/lightbox-image.ftl">
-		<bean class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
+		<c:property-processor class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
 			<property name="source" value="image" />
 			<property name="dest" value="thumb" />
 			<property name="fileStore" ref="defaultFileStore" />
@@ -42,11 +42,11 @@
 			<property name="thumbnailer">
 				<bean class="org.riotfamily.common.thumbnail.ImageMagickThumbnailer" />
 			</property>
-		</bean>		
+		</c:property-processor>
 	</c:view-component>
-	
+
 	<c:view-component id="greybox-image" view-name="components/greybox-image.ftl">
-		<bean class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
+		<c:property-processor class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
 			<property name="source" value="image" />
 			<property name="dest" value="thumb" />
 			<property name="fileStore" ref="defaultFileStore" />
@@ -55,7 +55,7 @@
 			<property name="thumbnailer">
 				<bean class="org.riotfamily.common.thumbnail.ImageMagickThumbnailer" />
 			</property>
-		</bean>		
+		</c:property-processor>
 	</c:view-component>
 
 </beans>

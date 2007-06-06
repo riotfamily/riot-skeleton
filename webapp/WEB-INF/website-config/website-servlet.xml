@@ -47,7 +47,7 @@
 		<property name="exposeRequestAttributes" value="true" />
 	</bean>
 
-	<p:setup id="pageSetup" dao="pageDao" tx="transactionManager" locales="websiteLocales">
+	<p:setup id="pageSetup" dao="pageDao" tx="transactionManager">
  		<p:page path-component="index" system="false">
 	 		<p:page path-component="subpage" system="false" />
  		</p:page>

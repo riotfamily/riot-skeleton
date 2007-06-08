@@ -6,7 +6,7 @@
 		http://www.riotfamily.org/schema/forms/form-config
 		http://www.riotfamily.org/schema/forms/form-config-6.5.xsd">
 
-	<form id="title">
+	<form id="headline">
 		<textfield bind="anchor" regex="[A-Za-z0-9_-]*" />
 	</form>
 

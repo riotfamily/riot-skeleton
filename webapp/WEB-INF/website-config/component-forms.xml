@@ -53,8 +53,4 @@
 				width="180" max-height="250" />
 	</form>
 
-	<form id="html">
-		<textarea bind="html" />
-	</form>
-
 </form-config>

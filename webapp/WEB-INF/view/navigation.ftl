@@ -14,11 +14,9 @@
 			<#list pages as p>
 				<#if page.visible(p)>
 					<li>
+						<@page.link page=p />
 						<#if p == expandedPage>
-							<@page.text page=p key="title" tag="div" form="nav-color" style="color:#" + page.property(p, 'color')?default('000')>${p.pathComponent}</@page.text>
 	                        <@menu path=path level=level+1 />
-						<#else>
-							<@page.text page=p key="title" tag="a" href=page.url(p)>${p.pathComponent}</@page.text>
 						</#if>
 					</li>
 				</#if>

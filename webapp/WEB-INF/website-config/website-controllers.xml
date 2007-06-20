@@ -21,7 +21,7 @@
 		<template:insert slot="content" url="/inc/content.html" />
 		<template:insert slot="extra" url="/inc/extra.html" />
 	</template:definition>
-	
+
 	<template:definition id="default" view-name="templates/default.ftl">
 		<template:insert slot="navigation" url="/inc/navigation.html" />
 		<template:insert slot="content" url="/inc/content.html" />
@@ -32,7 +32,7 @@
 	<!-- Includes -->
 	<!-- ======== -->
 
-	<bean name="/inc/navigation.html" class="org.riotfamily.pages.PageController">
+	<bean name="/inc/navigation.html" class="org.riotfamily.components.ComponentSetController">
 		<property name="viewName"><value>navigation.ftl</value></property>
 	</bean>
 
@@ -45,7 +45,7 @@
 			initialComponentTypes="headline,paragraph" />
 
 	<component:list name="/inc/gallery-components.html"
-			validComponentTypes="greybox-image,gallery"
+			validComponentTypes="greybox-image"
 			initialComponentTypes="greybox-image"
 			minComponents="1" />
 

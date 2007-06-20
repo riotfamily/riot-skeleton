@@ -31,14 +31,17 @@ p, table, pre, blockquote, ul, ol, .image-block, .gallery {
 	clear: both;
 	background: #aaa;
 	overflow: hidden;
-	font-size: 1px;
 }
 .gallery a {
 	margin: 5px;
+	float: left;
+	display: block;
+	width: 100px;
+	height: 100px;
+	background-position: center center;
+	background-repeat: no-repeat;
 }
-.gallery img {
-	vertical-align: middle;
-}
+
 strong, b {
 	font-weight: bold;
 }

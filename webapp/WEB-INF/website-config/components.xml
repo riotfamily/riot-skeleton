@@ -10,24 +10,16 @@
 		http://www.riotfamily.org/schema/components/component-6.5.xsd">
 
 	<c:view-component id="extra-box" view-name="components/extra-box.ftl">
-		<c:property-processor class="org.riotfamily.components.property.DefaultValuePropertyProcessor">
-			<property name="values">
-				<props>
-					<prop key="className">important</prop>
-				</props>
-			</property>
-		</c:property-processor>
+		<c:defaults>
+			<prop key="className">important</prop>
+		</c:defaults>
 	</c:view-component>
 
 	<c:view-component id="table" view-name="components/table.ftl">
-		<c:property-processor class="org.riotfamily.components.property.DefaultValuePropertyProcessor">
-			<property name="values">
-				<props>
-					<prop key="rows">3</prop>
-					<prop key="cols">3</prop>
-				</props>
-			</property>
-		</c:property-processor>
+		<c:defaults>
+			<prop key="rows">3</prop>
+			<prop key="cols">3</prop>
+		</c:defaults>
 	</c:view-component>
 
 	<c:view-component id="group" view-name="components/group.ftl" dynamic="true" />

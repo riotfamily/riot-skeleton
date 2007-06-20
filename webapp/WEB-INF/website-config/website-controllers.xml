@@ -45,11 +45,32 @@
 			initialComponentTypes="headline,paragraph" />
 
 	<component:list name="/inc/gallery-components.html"
-			validComponentTypes="greybox-image"
-			initialComponentTypes="greybox-image"
+			validComponentTypes="lightbox-image"
+			initialComponentTypes="lightbox-image"
 			minComponents="1" />
 
 	<component:list name="/inc/extra.html"
 			validComponentTypes="extra-box,inherit" />
+
+
+	<!-- ================ -->
+	<!-- Text Replacement -->
+	<!-- ================ -->
+
+	<bean name="/txt2img.html" class="org.riotfamily.website.txt2img.Txt2ImgController">
+		<property name="generators">
+			<map>
+				<entry key="h1">
+					<bean class="org.riotfamily.website.txt2img.ImageGenerator">
+						<property name="font" value="/WEB-INF/fonts/Bitstream-Vera-Sans-Bold.ttf" />
+						<property name="size" value="24" />
+						<property name="lineSpacing" value="3" />
+						<property name="paddingTop" value="3" />
+						<property name="paddingBottom" value="3" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
 
 </beans>

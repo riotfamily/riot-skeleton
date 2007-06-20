@@ -6,20 +6,24 @@
 	<link rel="stylesheet" type="text/css" href="${common.resource('/css/07.grid.css')}" media="screen" />
 	<link rel="stylesheet" type="text/css" href="${common.resource('/css/main.css')}" media="screen" />
 
-	<#-- Greybox -->
-	<script type="text/javascript">
-    	var GB_ROOT_DIR = "${request.contextPath}/greybox/";
-	</script>
 	<@component.callbacks>
-		addRiotEditCallback(function(el) {
-    		//alert('ComponentList updated: ' + el.componentList.id);
-	   		GB_SETS = {};decoGreyboxLinks();
-    	});
+		addRiotEditCallback(function() {
+			myLightbox.updateImageList();
+		});
 	</@component.callbacks>
-	<script type="text/javascript" src="${common.resource('/greybox/AJS.js')}"></script>
-    <script type="text/javascript" src="${common.resource('/greybox/AJS_fx.js')}"></script>
-    <script type="text/javascript" src="${common.resource('/greybox/gb_scripts.js')}"></script>
-    <link href="${common.resource('/greybox/gb_styles.css')}" rel="stylesheet" type="text/css" media="screen" />
+
+	<#-- Txt2Img -->
+    <@riot.script src="prototype/prototype.js" />
+    <script src="${common.resource('/txt2img.html?locale=' + .locale)}" type="text/javascript"></script>
+
+	<#-- Lightbox -->
+	<@riot.script src="scriptaculous/effects.js" />
+	<link href="${common.resource('/lightbox/css/lightbox.css')}" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="${common.resource('/lightbox/js/lightbox.js')}"></script>
+    <script>
+    	fileLoadingImage = "${common.resource('/lightbox/images/loading.gif')}";
+		fileBottomNavCloseImage = "${common.resource('/lightbox/images/closelabel.gif')}";
+    </script>
 
 </head>
 <body>

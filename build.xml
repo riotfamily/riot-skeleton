@@ -246,6 +246,9 @@
 		<move todir="${build.conf.dir}">
 			<fileset dir="${build.dir}/conf.bak" />
 		</move>
+		<touch><!-- This is for Eclipse's autodeploy... -->
+			<fileset dir="${build.conf.dir}" />
+		</touch>
 	</target>
 
 	<!--

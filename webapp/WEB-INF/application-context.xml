@@ -18,7 +18,7 @@
 
 	<!-- Uncomment the following bean to use an AnnotationSessionFactory. -->
 	<!--
-	<bean id="riotSessionFactory" name="sessionFactory" depends-on="evolver" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+	<bean id="riotSessionFactory" name="sessionFactory" depends-on="revolt" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource"><ref bean="riotDataSource"></ref></property>
 		<property name="configLocation"><value>/WEB-INF/hibernate.cfg.xml</value></property>
 		<property name="mappingLocations" ref="riotHibernateMappingLocations" />

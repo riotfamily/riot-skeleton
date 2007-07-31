@@ -24,7 +24,7 @@
 
 		<selectbox bind="class" required="true"
 			label-message-key="image.class." append-label="true">
-			<model class="org.riotfamily.forms.element.support.select.StaticOptionsModel">
+			<model class="org.riotfamily.forms.element.select.StaticOptionsModel">
 				<set-property name="commaDelimitedValues" value="block,right,left" />
 			</model>
 		</selectbox>
@@ -45,7 +45,7 @@
 
 	<form id="extra-box">
 		<selectbox bind="className" required="true" label-message-key="extra-box.className." append-label="true">
-			<model class="org.riotfamily.forms.element.support.select.StaticOptionsModel">
+			<model class="org.riotfamily.forms.element.select.StaticOptionsModel">
 				<set-property name="commaDelimitedValues" value="normal,filled,important" />
 			</model>
 		</selectbox>

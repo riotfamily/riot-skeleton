@@ -4,7 +4,7 @@
 	<#if image?exists>
 		<img src="${request.contextPath}${image}" />
 	</#if>
-	<div class="content">
+	<div class="box-content">
 	<@component.richtext key="content">
 	<p>
 	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla enim justo, condimentum nec, rhoncus gravida, semper in, orci. 

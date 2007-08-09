@@ -6,30 +6,31 @@
 		http://www.riotfamily.org/schema/riot/editor-config
 		http://www.riotfamily.org/schema/riot/editor-config-6.5.xsd">
 
-	<list id="sitemap" list-ref="locales" icon="sitemap">
-		<tree list-ref="pages">
-			<form form-ref="page" label-property="pathComponent" />
-		</tree>
-	</list>
-
 	<!-- Use this setup if you have only one Locale ... -->
-	<!--
 	<tree id="sitemap" list-ref="pages" icon="sitemap">
 		<form form-ref="page" label-property="pathComponent" />
 	</tree>
-	-->
-
+	
+	<!-- and this one if you have a multi-lingual website ... -->
+	<!-- 
+	<list id="sitemap" list-ref="locales" icon="sitemap">
+		<tree list-ref="pages-i18n">
+			<form form-ref="page" label-property="pathComponent" />
+		</tree>
+	</list>
+    -->
+ 
 	<!-- ... or this if you want to manage mutiple sites -->
 	<!--
 	<list id="sitemap" list-ref="sites" icon="sitemap">
 		<list list-ref="locales">
-			<tree list-ref="pages">
+			<tree list-ref="pages-i18n">
 				<form form-ref="page" label-property="pathComponent" />
 			</tree>
 		</list>
 	</list>
 	-->
 
-	<custom name="preview" url="/en_us/index.html" target="_blank" icon="external" />
+	<custom name="preview" url="/index.html" target="_blank" icon="external" />
 
 </editor-config>

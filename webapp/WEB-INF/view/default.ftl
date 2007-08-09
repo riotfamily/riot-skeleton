@@ -3,8 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Riot Project Skeleton</title>
-	<link rel="stylesheet" type="text/css" href="${common.resource('/css/07.grid.css')}" media="screen" />
-	<link rel="stylesheet" type="text/css" href="${common.resource('/css/main.css')}" media="screen" />
+
+	<link rel="stylesheet" type="text/css" href="${common.resource('/style/yui/reset/reset.css')}" /> 
+	<link rel="stylesheet" type="text/css" href="${common.resource('/style/yui/base/base.css')}" />
+	
+	<link rel="stylesheet" type="text/css" href="${common.resource('/style/layout/07.grid.css')}" />
+	<link rel="stylesheet" type="text/css" href="${common.resource('/style/main.css')}" />
 
 	<@component.callbacks>
 		addRiotEditCallback(function() {
@@ -14,15 +18,15 @@
 
 	<#-- Txt2Img -->
     <@riot.script src="prototype/prototype.js" />
-    <script src="${common.resource('/txt2img.html?locale=' + .locale)}" type="text/javascript"></script>
+    <script src="${common.resource('/riot-utils/txt2img.js?locale=' + .locale)}" type="text/javascript"></script>
 
 	<#-- Lightbox -->
 	<@riot.script src="scriptaculous/effects.js" />
-	<link href="${common.resource('/lightbox/css/lightbox.css')}" rel="stylesheet" type="text/css" media="screen" />
-    <script type="text/javascript" src="${common.resource('/lightbox/js/lightbox.js')}"></script>
+	<link href="${common.resource('/style/lightbox/css/lightbox.css')}" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="${common.resource('/style/lightbox/js/lightbox.js')}"></script>
     <script>
-    	fileLoadingImage = "${common.resource('/lightbox/images/loading.gif')}";
-		fileBottomNavCloseImage = "${common.resource('/lightbox/images/closelabel.gif')}";
+    	fileLoadingImage = "${common.resource('/style/lightbox/images/loading.gif')}";
+		fileBottomNavCloseImage = "${common.resource('/style/lightbox/images/closelabel.gif')}";
     </script>
 
 </head>
@@ -30,7 +34,7 @@
 <div id="container" class="container">
 	<div id="header" class="header">
 		<div class="padding">
-			<h1>Header</h1>
+			<@common.include header />
 		</div>
 	</div>
 	<div id="wrapper" class="wrapper">
@@ -52,7 +56,7 @@
 	</div>
 	<div id="footer" class="footer">
 		<div class="padding">
-			Powered by Riot
+			<span class="poweredby">Powered by</span><span class="riot">Riot</span>
 		</div>
 	</div>
 </div>

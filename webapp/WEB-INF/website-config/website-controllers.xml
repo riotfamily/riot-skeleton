@@ -4,25 +4,23 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:component="http://www.riotfamily.org/schema/components/controller"
 	xmlns:template="http://www.riotfamily.org/schema/website/template"
+	xmlns:txt2img="http://www.riotfamily.org/schema/website/txt2img"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.riotfamily.org/schema/components/controller
 		http://www.riotfamily.org/schema/components/controller-6.5.xsd
 		http://www.riotfamily.org/schema/website/template
-		http://www.riotfamily.org/schema/website/template-6.5.xsd">
+		http://www.riotfamily.org/schema/website/template-6.5.xsd
+		http://www.riotfamily.org/schema/website/txt2img
+		http://www.riotfamily.org/schema/website/txt2img-6.5.xsd">
 
 	<!-- ========== -->
 	<!-- Page types -->
 	<!-- ========== -->
 
-	<template:definition id="locale-chooser" view-name="templates/default.ftl">
-		<template:insert slot="navigation" url="/inc/navigation.html" />
-		<template:insert slot="content" url="/inc/content.html" />
-		<template:insert slot="extra" url="/inc/extra.html" />
-	</template:definition>
-
-	<template:definition id="default" view-name="templates/default.ftl">
+	<template:definition id="default" view-name="default.ftl">
+		<template:insert slot="header" url="/inc/topnav.html" />
 		<template:insert slot="navigation" url="/inc/navigation.html" />
 		<template:insert slot="content" url="/inc/content.html" />
 		<template:insert slot="extra" url="/inc/extra.html" />
@@ -32,9 +30,8 @@
 	<!-- Includes -->
 	<!-- ======== -->
 
-	<bean name="/inc/navigation.html" class="org.riotfamily.components.ComponentSetController">
-		<property name="viewName"><value>navigation.ftl</value></property>
-	</bean>
+	<bean name="/inc/topnav.html" class="org.riotfamily.components.ComponentSetController" />
+	<bean name="/inc/navigation.html" class="org.riotfamily.components.ComponentSetController" />
 
 	<!-- =============== -->
 	<!-- Component Lists -->
@@ -57,20 +54,11 @@
 	<!-- Text Replacement -->
 	<!-- ================ -->
 
-	<bean name="/txt2img.html" class="org.riotfamily.website.txt2img.Txt2ImgController">
-		<property name="generators">
-			<map>
-				<entry key="h1">
-					<bean class="org.riotfamily.website.txt2img.ImageGenerator">
-						<property name="font" value="/WEB-INF/fonts/Bitstream-Vera-Sans-Bold.ttf" />
-						<property name="size" value="24" />
-						<property name="lineSpacing" value="3" />
-						<property name="paddingTop" value="3" />
-						<property name="paddingBottom" value="3" />
-					</bean>
-				</entry>
-			</map>
-		</property>
-	</bean>
+	<txt2img:config>
+		<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />
+		<txt2img:rule selector="#topnav a" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" padding-top="3" />
+		<txt2img:rule selector=".footer .poweredby, .footer .riot" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" padding-right="5" />
+		<txt2img:rule selector="h3" font="/WEB-INF/fonts/slkscr.ttf" size="8" anti-alias="false" />
+	</txt2img:config>
 
 </beans>

@@ -27,11 +27,13 @@
 	-->
 
 	<!-- Setup two locales, by default only en_US is configured -->
+	<!-- 
 	<util:list id="websiteLocales" value-type="java.util.Locale">
 		<value>en_US</value>
 		<value>de_DE</value>
 	</util:list>
-
+    -->
+ 
 	<bean id="defaultFileStore" class="org.riotfamily.common.web.file.DefaultFileStore">
 		<property name="uriPrefix"><value>/media</value></property>
 		<property name="storagePath"><value>${riot.media.storagePath}</value></property>

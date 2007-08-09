@@ -1,0 +1,133 @@
+<#assign color1 = "#86c500" />
+<#assign color2 = "#595959" />
+<#assign color3 = color.brightness(color1, 90) />
+
+body {
+	background: #fff url(images/bg.png) repeat-x;
+	color: #323232;
+	font-family: verdana;
+	font-size: 14px;
+}
+
+.padding {
+	margin: 0 10px;
+	padding: 10px 0;
+}
+
+.content .padding {
+	margin: 0 34px 0 24px; 
+}
+.extra .padding {
+	margin: 0; 
+}
+
+.header {
+	margin-top: 42px;
+	height: 40px;
+	overflow: hidden;
+}
+
+#topnav {
+	margin-left: 164px;
+}
+#topnav,
+#topnav a {
+	text-transform: uppercase;
+	color: ${color1};
+}
+#topnav a.active {
+	color: ${color2};
+}
+
+.header,
+.wrapper,
+.footer {
+	background: url(images/dots.gif) repeat-x;
+}
+
+.footer .padding {
+	margin-left: 174px;
+}
+
+.poweredby {
+	text-transform: uppercase;
+	color: ${color2};
+}
+.riot {
+	text-transform: uppercase;
+	color: ${color1};
+}
+
+.navigation {
+	margin-top: 37px;
+	background: ${color3};
+}
+.navigation, 
+.navigation a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 12px;
+}
+.navigation li {
+	list-style: none;
+}
+.navigation ul {
+	margin-left: 10px;
+}
+
+
+
+.content {
+	padding-top: 50px;
+	font-size: 12px;
+	line-height: 24px;
+}
+
+.extra {
+	font-size: 11px;
+	line-height: 20px;
+}
+
+.extra .box {
+	margin-top: 23px;
+}
+
+h1 {
+	color: ${color1};
+	font-family: Arial;
+	font-size: 26px;
+	line-height: 33px;
+}
+h2 {
+	color: ${color2};
+}
+.extra h3 {
+	color: ${color1};
+	font-size: 11px;
+	margin: 5px 0 3px 0;
+}
+
+.image-left {
+	float: left;
+	margin: 3px 10px 1px 0;
+}
+
+.image-right {
+	float: right;
+	margin: 3px 0 1px 10px;
+}
+
+.gallery {
+	clear: both;
+	background: #aaa;
+	overflow: hidden;
+}
+.gallery a {
+	margin: 5px;
+	float: left;
+	display: block;
+	width: 100px;
+	height: 100px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}

@@ -2,9 +2,9 @@
  * Based on Layout Gala by Alessandro Fulciniti
  * See http://blog.html.it/layoutgala/
  *
- * <#assign navigationWidth = 160 />
- * <#assign contentWidth = 490 />
- * <#assign extraWidth = 170 />
+ * <#assign navigationWidth = 150 />
+ * <#assign contentWidth = 530 />
+ * <#assign extraWidth = 180 />
  */
 #container {
 	width: ${navigationWidth + contentWidth + extraWidth}px;

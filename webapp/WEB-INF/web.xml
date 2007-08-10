@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
@@ -15,7 +13,6 @@
 	</context-param>
 	
 	<!-- Servlet filter to use UTF-8 for request and responses -->
-	
 	<filter>
 		<filter-name>encoding-filter</filter-name>
 		<filter-class>org.riotfamily.common.web.filter.CharacterEncodingFilter</filter-class>
@@ -90,8 +87,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	<!-- DispatcherServlet for the actual website  -->
-	
+	<!-- DispatcherServlet for the website  -->
 	<servlet>
 		<servlet-name>website</servlet-name>
 		<servlet-class>org.riotfamily.common.web.servlet.ReloadableDispatcherServlet</servlet-class>
@@ -105,8 +101,7 @@
 		<load-on-startup>2</load-on-startup>
 	</servlet>
 	
-	<!-- DispatcherServlet for the Riot Admin-Pages  -->
-	
+	<!-- DispatcherServlet for the Riot backoffice  -->
 	<servlet>
 		<servlet-name>riot</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -120,28 +115,48 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
-	<!-- Map all *.html requests to the website servlet  -->
+	<!-- Riot is mapped to /riot/* -->
+	<servlet-mapping>
+		<servlet-name>riot</servlet-name>
+		<url-pattern>/riot/*</url-pattern>
+	</servlet-mapping>
 	
+	<!-- 
+	  - By default the website-servlet is mapped to *.html. If you want to use
+	  - a prefix mapping instead you can uncomment the following block. Note 
+	  - that if you remove the *.html mapping you'll have to modify the bean 
+	  - names of the various controllers defined in website-controllers.xml.
+	  - If you want to save some time just leave the *.html mapping in place.
+	  -->   
+	<!-- 	 
+	<servlet-mapping>
+		<servlet-name>website</servlet-name>
+		<url-pattern>/pages/*</url-pattern>
+	</servlet-mapping>
+	-->
+	
+	<!-- Map all *.html requests to the website servlet  -->
 	<servlet-mapping>
 		<servlet-name>website</servlet-name>
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 
+	  - Mapping *.css allows us to use FreeMarker expressions in our stylesheets.
+	  - see org.riotfamily.website.css.CssTemplateController 
+	  -->
 	<servlet-mapping>
 		<servlet-name>website</servlet-name>
 		<url-pattern>*.css</url-pattern>
 	</servlet-mapping>
 	
+	<!--
+	  - Finally this mapping allows modules to serve dynamic resources, like
+	  - the org.riotfamily.website.txt2img.Txt2ImgController 
+	  -->
 	<servlet-mapping>
 		<servlet-name>website</servlet-name>
 		<url-pattern>/riot-utils/*</url-pattern>
-	</servlet-mapping>
-	
-	<!-- Riot is mapped to /riot/* -->
-	
-	<servlet-mapping>
-		<servlet-name>riot</servlet-name>
-		<url-pattern>/riot/*</url-pattern>
 	</servlet-mapping>
 			
 </web-app>

@@ -33,6 +33,8 @@ body {
 #topnav,
 #topnav a {
 	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 13px;
 	color: ${color1};
 }
 #topnav a.active {

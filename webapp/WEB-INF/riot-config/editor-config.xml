@@ -31,6 +31,6 @@
 	</list>
 	-->
 
-	<custom name="preview" url="/index.html" target="_blank" icon="external" />
+	<custom name="preview" url="/" target="_blank" icon="external" />
 
 </editor-config>

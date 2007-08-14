@@ -2,12 +2,15 @@
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:override="http://www.riotfamily.org/schema/common/override"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util-2.0.xsd
 		http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.riotfamily.org/schema/common/override
+		http://www.riotfamily.org/schema/common/override-6.5.xsd">
 
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="/WEB-INF/i18n/messages" />
@@ -18,12 +21,9 @@
 
 	<!-- Uncomment the following bean to use an AnnotationSessionFactory. -->
 	<!--
-	<bean id="riotSessionFactory" name="sessionFactory" depends-on="revolt" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="dataSource"><ref bean="riotDataSource"></ref></property>
+	<override:bean ref="sessionFactory" merge="true" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="configLocation"><value>/WEB-INF/hibernate.cfg.xml</value></property>
-		<property name="mappingLocations" ref="riotHibernateMappingLocations" />
-		<property name="hibernateProperties" ref="riotHibernateProperties" />
-	</bean>
+	</override:bean>
 	-->
 
 	<!-- Setup two locales, by default only en_US is configured -->

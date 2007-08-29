@@ -1,4 +1,6 @@
-<@menu path=page.currentPage().ancestors />
+<@component.componentSet>
+	<@menu path=page.currentPage().ancestors />
+</@component.componentSet>
 
 <#macro menu path, level=0>
 	<#local pages=[] />
@@ -7,7 +9,7 @@
 		<#local pages=page.pageAndSiblings(expandedPage) />
 	<#elseif level == path?size>
 		<#local expandedPage = path[level-1] />
-		<#local pages=page.getVisiblePages(expandedPage.childPages) />
+		<#local pages=page.visiblePages(expandedPage.childPages) />
 	</#if>
 	<#if pages?has_content>
 		<ul>

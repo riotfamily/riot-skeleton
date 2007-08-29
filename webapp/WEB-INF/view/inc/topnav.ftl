@@ -1,3 +1,4 @@
+<@component.componentSet>
 <div id="topnav">
 	<#assign activePage = page.currentPage().ancestors[0] />
 	<#assign pages = page.pageAndSiblings(activePage) />
@@ -12,3 +13,4 @@
 		</#list>
 	</#if>
 </div>
+</@component.componentSet>

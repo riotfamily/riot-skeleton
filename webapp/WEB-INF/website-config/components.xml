@@ -32,7 +32,7 @@
 			<property name="width" value="100" />
 			<property name="height" value="100" />
 			<property name="thumbnailer">
-				<bean class="org.riotfamily.common.thumbnail.ImageMagickThumbnailer" />
+				<bean class="org.riotfamily.common.image.ImageMagickThumbnailer" />
 			</property>
 		</c:property-processor>
 	</c:view-component>
@@ -45,7 +45,7 @@
 			<property name="width" value="100" />
 			<property name="height" value="100" />
 			<property name="thumbnailer">
-				<bean class="org.riotfamily.common.thumbnail.ImageMagickThumbnailer" />
+				<bean class="org.riotfamily.common.image.ImageMagickThumbnailer" />
 			</property>
 		</c:property-processor>
 	</c:view-component>

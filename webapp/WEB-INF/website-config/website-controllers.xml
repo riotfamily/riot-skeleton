@@ -3,6 +3,7 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:component="http://www.riotfamily.org/schema/components/controller"
+	xmlns:generic="http://www.riotfamily.org/schema/website/generic"
 	xmlns:template="http://www.riotfamily.org/schema/website/template"
 	xmlns:txt2img="http://www.riotfamily.org/schema/website/txt2img"
 	xsi:schemaLocation="
@@ -12,47 +13,28 @@
 		http://www.riotfamily.org/schema/components/controller-6.5.xsd
 		http://www.riotfamily.org/schema/website/template
 		http://www.riotfamily.org/schema/website/template-6.5.xsd
+		http://www.riotfamily.org/schema/website/generic
+		http://www.riotfamily.org/schema/website/generic-6.5.xsd
 		http://www.riotfamily.org/schema/website/txt2img
 		http://www.riotfamily.org/schema/website/txt2img-6.5.xsd">
-
-	<!-- ========== -->
-	<!-- Page types -->
-	<!-- ========== -->
 
 	<template:definition id="default" view-name="default.ftl">
 		<template:insert slot="header" url="/inc/topnav.html" />
 		<template:insert slot="navigation" url="/inc/navigation.html" />
-		<template:insert slot="content" url="/inc/content.html" />
-		<template:insert slot="extra" url="/inc/extra.html" />
+		<template:insert slot="content">
+			<component:list valid="paragraph,headline,image,gallery,table"
+					initial="headline,paragraph" />
+		</template:insert>
+		<template:insert slot="extra">
+			<component:list valid="extra-box,inherit" />
+		</template:insert>
 	</template:definition>
 
-	<!-- ======== -->
-	<!-- Includes -->
-	<!-- ======== -->
-
-	<bean name="/inc/topnav.html" class="org.riotfamily.components.ComponentSetController" />
-	<bean name="/inc/navigation.html" class="org.riotfamily.components.ComponentSetController" />
-
-	<!-- =============== -->
-	<!-- Component Lists -->
-	<!-- =============== -->
-
-	<component:list name="/inc/content.html"
-			validComponentTypes="paragraph,headline,image,gallery,table"
-			initialComponentTypes="headline,paragraph" />
+	<generic:view name="/inc/topnav.html" />
+	<generic:view name="/inc/navigation.html" />
 
 	<component:list name="/inc/gallery-components.html"
-			validComponentTypes="lightbox-image"
-			initialComponentTypes="lightbox-image"
-			minComponents="1" />
-
-	<component:list name="/inc/extra.html"
-			validComponentTypes="extra-box,inherit" />
-
-
-	<!-- ================ -->
-	<!-- Text Replacement -->
-	<!-- ================ -->
+			valid="lightbox-image" initial="lightbox-image"	min="1" />
 
 	<txt2img:config>
 		<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />

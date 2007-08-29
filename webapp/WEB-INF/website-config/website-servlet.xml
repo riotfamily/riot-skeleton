@@ -35,6 +35,7 @@
 		<property name="interceptors">
 			<list>
 				<ref bean="noCacheInterceptor" />
+				<ref bean="storeContextInterceptor" />
 			</list>
 		</property>
 	</bean>

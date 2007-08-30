@@ -35,15 +35,6 @@
 		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
 	</filter>
 	
-	<!-- 
-	  - Filter that prevents URLs from beeing rewritten if the request is 
-	  - originated by a search engine robot. 
-	  -->
-	<filter>
-		<filter-name>bot-session-filter</filter-name>
-		<filter-class>org.riotfamily.common.web.filter.BotSessionFilter</filter-class>
-	</filter>
-	
 	<filter>
 		<filter-name>stamp-filter</filter-name>
 		<filter-class>org.riotfamily.common.web.filter.CacheStampedResourcesFilter</filter-class>
@@ -57,22 +48,21 @@
 			<param-value>/riot/**</param-value>
 		</init-param>
 	</filter>
-	 
+			
 	<filter-mapping>
 		<filter-name>encoding-filter</filter-name>
 		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 	
 	<filter-mapping>
 		<filter-name>hibernate-session</filter-name>
 		<servlet-name>website</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-	
-	<filter-mapping>
-		<filter-name>bot-session-filter</filter-name>
-		<servlet-name>website</servlet-name>
-	</filter-mapping>
-	
+		
 	<filter-mapping>
 		<filter-name>stamp-filter</filter-name>
 		<url-pattern>/style/*</url-pattern>
@@ -81,6 +71,8 @@
 	<filter-mapping>
 		<filter-name>website-filter</filter-name>
 		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 	
 	<listener>

@@ -19,8 +19,12 @@
 		http://www.riotfamily.org/schema/website/txt2img-6.5.xsd">
 
 	<template:definition id="default" view-name="default.ftl">
-		<template:insert slot="header" url="/inc/topnav.html" />
-		<template:insert slot="navigation" url="/inc/navigation.html" />
+		<template:insert slot="header">
+			<generic:view view-name="/inc/topnav.ftl" />
+		</template:insert>
+		<template:insert slot="navigation">
+			<generic:view view-name="/inc/navigation.ftl" />
+		</template:insert>
 		<template:insert slot="content">
 			<component:list valid="paragraph,headline,image,gallery,table"
 					initial="headline,paragraph" />
@@ -29,9 +33,6 @@
 			<component:list valid="extra-box,inherit" />
 		</template:insert>
 	</template:definition>
-
-	<generic:view name="/inc/topnav.html" />
-	<generic:view name="/inc/navigation.html" />
 
 	<component:list name="/inc/gallery-components.html"
 			valid="lightbox-image" initial="lightbox-image"	min="1" />

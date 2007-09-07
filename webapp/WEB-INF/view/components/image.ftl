@@ -1,10 +1,11 @@
-<#assign class = class?exists?string("image-" + class?if_exists, "") />
+<#assign class = "image-" + class?default("block") />
 <#assign style = clear?if_exists?string("clear:both", "") />
+<#assign defaultWidth = (class == "image-block")?string("100%", "100") />
 <#if caption?has_content>
 	<div class="labeled-image<#if class?has_content> ${class}</#if>"<#if style?has_content> style="${style}"</#if>>
-		<@component.image key="image" alt=alt?if_exists />
+		<@component.image key="image" alt=alt?if_exists maxWidth="auto" />
 		<div class="caption">${caption}</div>
 	</div>
 <#else>
-	<@component.image key="image" alt=alt?if_exists class=class style=style />
+	<@component.image key="image" alt=alt?if_exists class=class style=style defaultWidth=defaultWidth maxWidth="auto" />
 </#if>

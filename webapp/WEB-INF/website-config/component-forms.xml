@@ -18,10 +18,6 @@
 	</form>
 
 	<form id="image">
-		<image-upload bind="image" store="defaultFileStore"
-			widths="100,200,476" max-height="250"
-			width-property="imageWidth" required="true" />
-
 		<selectbox bind="class" required="true"
 			label-message-key="image.class." append-label="true">
 			<model class="org.riotfamily.forms.element.select.StaticOptionsModel">

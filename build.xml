@@ -47,6 +47,11 @@
 	<!-- Name of the schema file created by the export-schema target -->
 	<property name="schema.name" value="${ant.project.name}-${profile}.sql" />
 
+	<!-- Location of the hsqldb files -->
+	<property name="hsqldb.shared.dir" value="hsqldb" />
+	<property name="hsqldb.local.dir" value="${build.dir}/hsqldb" />
+	<property name="hsqldb.location" location="${hsqldb.local.dir}/${ant.project.name}" />
+
 	<property name="ivy.download" value="http://riotfamily.org/ivy/ivy-2.0.0-alpha-1-incubating.jar" />
 	<property name="ivy.jar" value="${lib.dir}/ivy.jar" />
 
@@ -79,6 +84,8 @@
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${lib.dir}" />
 		<mkdir dir="${web.lib.dir}" />
+		<available property="hsqldb.local.available" file="${hsqldb.local.dir}" />
+		<available property="hsqldb.shared.available" file="${hsqldb.shared.dir}" />
 	</target>
 	
 	<!--
@@ -93,7 +100,7 @@
 	<!--
 	  - Configures the project by merging the selected configuration files.
 	 -->
-	<target name="configure" depends="init" description="Configures the project">
+	<target name="configure" depends="init,-init-local-db" description="Configures the project">
 		<echo>Merging configuration. Profile: ${profile}</echo>
 		<merge-properties name="application" />
 		<merge-properties name="log4j" />
@@ -352,6 +359,37 @@
 		<antcall target="-restore-config" />
 	</target>
 
+	<!--
+	  - Copies the shared HSQLDB to the local directory unless it already exists.
+	 -->
+	<target name="-init-local-db" if="hsqldb.shared.available" unless="hsqldb.local.available">
+		<copy todir="${hsqldb.local.dir}">
+			<fileset dir="${hsqldb.shared.dir}" />
+		</copy>
+	</target>
+
+	<!--
+	  - Copies the shared HSQLDB to the local directory.
+	 -->
+	<target name="update-local-db" depends="init"
+			description="Copies the shared HSQLDB to the local directory">
+		<fail unless="hsqldb.shared.available" message="Shared HSQLDB does not exist." />
+		<copy todir="${hsqldb.local.dir}">
+			<fileset dir="${hsqldb.shared.dir}" />
+		</copy>				
+	</target>
+
+	<!--
+	  - Copies the local HSQLDB to the shared directory.
+	 -->
+	<target name="update-shared-db" depends="init"
+			description="Copies the local HSQLDB to the shared directory">
+		<fail unless="hsqldb.local.available" message="Local HSQLDB does not exist." />
+		<copy todir="${hsqldb.shared.dir}">
+			<fileset dir="${hsqldb.local.dir}" />
+		</copy>				
+	</target>
+	
 	<!--
 	  - Creates a dependency report as HTML file.
 	 -->

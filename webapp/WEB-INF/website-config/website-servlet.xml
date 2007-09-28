@@ -49,7 +49,7 @@
 		<property name="suffix" value=".ftl" />
 	</bean>
 
-	<p:setup id="pageSetup" dao="pageDao" tx="transactionManager">
+	<p:setup id="pageSetup">
  		<p:page path-component="welcome" system="false" />
  		<p:page path-component="look-around" system="false" />
  		<p:page path-component="start-playing" system="false" />

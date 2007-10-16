@@ -14,15 +14,14 @@
 		<checkbox bind="showHeadings" default="checked" />
 		<numberfield bind="rows" min-value="1" required="true" />
 		<numberfield bind="cols" min-value="1" required="true" />
-		<!-- <textarea bind="csv" rows="2" /> -->
 	</form>
 
 	<form id="image">
 		<selectbox bind="class" required="true"
 			label-message-key="image.class." append-label="true">
-			<model class="org.riotfamily.forms.element.select.StaticOptionsModel">
-				<set-property name="commaDelimitedValues" value="block,right,left" />
-			</model>
+			<option value="block" />
+			<option value="right" />
+			<option value="left" />
 		</selectbox>
 		<checkbox bind="clear" />
 		<textarea bind="caption" rows="3" />
@@ -41,9 +40,9 @@
 
 	<form id="extra-box">
 		<selectbox bind="className" required="true" label-message-key="extra-box.className." append-label="true">
-			<model class="org.riotfamily.forms.element.select.StaticOptionsModel">
-				<set-property name="commaDelimitedValues" value="normal,filled,important" />
-			</model>
+			<option value="normal" />
+			<option value="filled" />
+			<option value="important" />
 		</selectbox>
 		<image-upload bind="image" store="defaultFileStore"
 				width="180" max-height="250" />

@@ -1,13 +1,11 @@
-<@component.componentSet>
 <div id="topnav">
-	<#assign activePage = page.ancestors()[0] />
-	<#list page.pageAndSiblings(activePage) as p>
-		<#if p == activePage>
-			<@page.link page=p class="active" />
+	<#assign activePage = currentPage.ancestors[0] />
+	<#list activePage.siblings as page>
+		<#if page == activePage>
+			<@pages.link page=page class="active" />
 		<#else>
-			<@page.link page=p />
+			<@pages.link page=page />
 		</#if>
-		<#if p_has_next>|</#if>
+		<#if page_has_next>|</#if>
 	</#list>
 </div>
-</@component.componentSet>

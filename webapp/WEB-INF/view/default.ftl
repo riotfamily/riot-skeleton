@@ -10,11 +10,11 @@
 	<link rel="stylesheet" type="text/css" href="${common.resource('/style/layout/07.grid.css')}" />
 	<link rel="stylesheet" type="text/css" href="${common.resource('/style/main.css')}" />
 
-	<@component.callbacks>
+	<@inplace.callbacks>
 		addRiotEditCallback(function() {
 			myLightbox.updateImageList();
 		});
-	</@component.callbacks>
+	</@inplace.callbacks>
 
 	<#-- Txt2Img -->
     <@riot.script src="prototype/prototype.js" />
@@ -61,6 +61,6 @@
 	</div>
 </div>
 
-<@component.toolbar />
+<@inplace.toolbar />
 </body>
 </html>

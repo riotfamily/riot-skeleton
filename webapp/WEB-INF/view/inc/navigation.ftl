@@ -1,22 +1,20 @@
-<@component.componentSet>
-	<@menu path=page.currentPage().ancestors />
-</@component.componentSet>
+<@menu />
 
-<#macro menu path, level=0>
-	<#local pages=[] />
-	<#if level lt path?size>
+<#macro menu path=currentPage.ancestors, level=0>
+	<#local items=[] />
+	<#if (level < path?size)>
 		<#local expandedPage = path[level] />
-		<#local pages=page.pageAndSiblings(expandedPage) />
+		<#local items=expandedPage.siblings />
 	<#elseif level == path?size>
 		<#local expandedPage = path[level-1] />
-		<#local pages=page.visiblePages(expandedPage.childPages) />
+		<#local items=expandedPage.childPages />
 	</#if>
-	<#if pages?has_content>
+	<#if items?has_content>
 		<ul>
-			<#list pages as p>
+			<#list items as page>
 				<li>
-					<@page.link page=p />
-					<#if p == expandedPage>
+					<@pages.link page=page />
+					<#if page == expandedPage>
                         <@menu path=path level=level+1 />
 					</#if>
 				</li>

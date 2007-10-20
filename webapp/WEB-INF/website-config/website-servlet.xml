@@ -40,15 +40,15 @@
 		</property>
 	</bean>
 
-	<bean class="org.riotfamily.common.web.view.freemarker.RiotFreeMarkerViewResolver">
-		<property name="cache" value="${website-servlet.cacheViews=true}" />
-		<property name="exposeRequestAttributes" value="true" />
-	</bean>
-
 	<bean id="viewNameTranslator" class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator">
 		<property name="suffix" value=".ftl" />
 	</bean>
 
+	<override:properties ref="freemarkerConfig">
+		<property name="useTemplateCache" value="false" />
+		<property name="templateUpdateDelay" value="1" />
+	</override:properties>
+	
 	<p:setup id="pageSetup">
  		<p:page path-component="welcome" system="false" />
  		<p:page path-component="look-around" system="false" />

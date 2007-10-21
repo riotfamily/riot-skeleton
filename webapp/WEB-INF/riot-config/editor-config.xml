@@ -13,7 +13,7 @@
 	
 	<!-- and this one if you have a multi-lingual website ... -->
 	<!-- 
-	<list id="sitemap" list-ref="locales" icon="sitemap">
+	<list id="sitemap" list-ref="site-chooser" icon="sitemap">
 		<tree list-ref="pages">
 			<form form-ref="page" label-property="pathComponent" />
 		</tree>

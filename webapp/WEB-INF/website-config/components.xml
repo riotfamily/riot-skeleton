@@ -28,7 +28,7 @@
 		<c:property-processor property="thumb" class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
 			<property name="source" value="image" />
 			<property name="fileStore" ref="defaultFileStore" />
-			<property name="width" value="50" />
+			<property name="width" value="100" />
 			<property name="height" value="100" />
 			<property name="thumbnailer">
 				<bean class="org.riotfamily.common.image.ImageMagickThumbnailer" />

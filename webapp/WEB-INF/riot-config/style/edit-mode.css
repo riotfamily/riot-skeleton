@@ -2,16 +2,12 @@
 
 .riot-noimage {
 	background: url(images/checkerboard_dark.gif);
-}
-.riot-noimage div {
 	padding: 5px;
-}
-.gallery a.riot-noimage {
-	background: url(images/checkerboard_dark.gif) 0 0 repeat;
-}
-
-.riot-noimage a,
-a.riot-noimage {
 	color: #fff;
 	font-size: 12px;
 }
+.gallery .riot-noimage {
+	width: 100px;
+	height: 100px;
+}
+

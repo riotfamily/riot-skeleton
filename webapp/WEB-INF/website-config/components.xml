@@ -25,8 +25,7 @@
 	<c:view-component id="group" view-name="components/group.ftl" dynamic="true" />
 
 	<c:view-component id="lightbox-image" view-name="components/lightbox-image.ftl">
-		<c:property-processor class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
-			<property name="source" value="image" />
+		<c:property-processor property="image" class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
 			<property name="dest" value="thumb" />
 			<property name="fileStore" ref="defaultFileStore" />
 			<property name="width" value="100" />
@@ -38,8 +37,7 @@
 	</c:view-component>
 
 	<c:view-component id="greybox-image" view-name="components/greybox-image.ftl">
-		<c:property-processor class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
-			<property name="source" value="image" />
+		<c:property-processor property="image" class="org.riotfamily.components.property.ThumbnailPropertyProcessor">
 			<property name="dest" value="thumb" />
 			<property name="fileStore" ref="defaultFileStore" />
 			<property name="width" value="100" />

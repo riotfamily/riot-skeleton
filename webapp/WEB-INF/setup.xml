@@ -14,9 +14,7 @@
 	
 	<!-- Setup the default System pages -->
 	<p:setup>
-		<p:site locale="en" prefix="/int" name="International">
-			<p:site locale="de_DE" prefix="/de" name="Deutschland" />
-		</p:site>
+		<p:site locale="en" name="Default" />
  		<p:page path-component="welcome" system="false" />
  		<p:page path-component="look-around" system="false" />
  		<p:page path-component="start-playing" system="false" />

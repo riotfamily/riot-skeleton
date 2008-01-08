@@ -12,7 +12,6 @@
 		http://www.riotfamily.org/schema/media/setup
 		http://www.riotfamily.org/schema/media/setup-7.0.xsd ">
 	
-	<!-- Setup the default System pages -->
 	<p:setup>
 		<p:site locale="en" name="Default" />
  		<p:page path-component="welcome" system="false" />

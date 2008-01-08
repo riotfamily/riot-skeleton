@@ -10,8 +10,10 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.riotfamily.org/schema/common/override
-		http://www.riotfamily.org/schema/common/override-6.5.xsd">
+		http://www.riotfamily.org/schema/common/override-7.0.xsd">
 
+	<import resource="setup.xml" />
+	
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="/WEB-INF/i18n/messages" />
 		<property name="fallbackToSystemLocale" value="false" />

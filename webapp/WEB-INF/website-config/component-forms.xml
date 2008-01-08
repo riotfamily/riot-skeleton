@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form-config
 	xmlns="http://www.riotfamily.org/schema/forms/form-config"
+	xmlns:riot="http://www.riotfamily.org/schema/riot/form-elements"
+	xmlns:page="http://www.riotfamily.org/schema/pages/form-elements"
+	xmlns:content="http://www.riotfamily.org/schema/components/form-elements"
+	xmlns:media="http://www.riotfamily.org/schema/media/form-elements"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.riotfamily.org/schema/forms/form-config
-		http://www.riotfamily.org/schema/forms/form-config-6.5.xsd">
+		http://www.riotfamily.org/schema/forms/form-config-7.0.xsd
+		http://www.riotfamily.org/schema/pages/form-elements
+		http://www.riotfamily.org/schema/pages/form-elements-7.0.xsd
+		http://www.riotfamily.org/schema/media/form-elements
+		http://www.riotfamily.org/schema/media/form-elements-7.0.xsd
+		http://www.riotfamily.org/schema/components/form-elements
+		http://www.riotfamily.org/schema/components/form-elements-7.0.xsd
+		http://www.riotfamily.org/schema/riot/form-elements
+		http://www.riotfamily.org/schema/riot/form-elements-7.0.xsd">
 
 	<form id="headline">
 		<textfield bind="anchor" regex="[A-Za-z0-9_-]*" />
@@ -24,28 +36,18 @@
 			<option value="left" />
 		</selectbox>
 		<checkbox bind="clear" />
-		<textarea bind="caption" rows="3" />
+		<textarea bind="caption" />
 	</form>
 
 	<form id="lightbox-image">
 		<textfield bind="title" />
-		<image-upload bind="image" store="defaultFileStore"
+		<media:image-upload bind="image"
 			max-width="1024" max-height="768"
 			crop="false" required="true" />
 	</form>
 
 	<form id="paragraph">
 		<checkbox bind="clear" />
-	</form>
-
-	<form id="extra-box">
-		<selectbox bind="className" required="true" label-message-key="extra-box.className." append-label="true">
-			<option value="normal" />
-			<option value="filled" />
-			<option value="important" />
-		</selectbox>
-		<image-upload bind="image" store="defaultFileStore"
-				width="180" max-height="250" />
 	</form>
 
 </form-config>

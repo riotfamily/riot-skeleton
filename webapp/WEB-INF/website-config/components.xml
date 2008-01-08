@@ -7,35 +7,15 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.riotfamily.org/schema/components/component
-		http://www.riotfamily.org/schema/components/component-6.5.xsd">
-
-	<c:view-component id="extra-box" view-name="components/extra-box.ftl">
-		<c:defaults>
-			<prop key="className">important</prop>
-		</c:defaults>
-	</c:view-component>
+		http://www.riotfamily.org/schema/components/component-7.0.xsd">
 
 	<c:view-component id="table" view-name="components/table.ftl">
 		<c:defaults>
-			<prop key="rows">3</prop>
-			<prop key="cols">3</prop>
+			<entry key="rows" value="3" />
+			<entry key="cols" value="3" />
 		</c:defaults>
 	</c:view-component>
 
 	<c:view-component id="group" view-name="components/group.ftl" dynamic="true" />
-
-	<c:view-component id="lightbox-image" view-name="components/lightbox-image.ftl">
-		<c:listeners>
-			<bean class="org.riotfamily.components.listener.ThumbnailCreator">
-				<property name="property" value="thumb" />
-				<property name="source" value="image" />
-				<property name="width" value="100" />
-				<property name="height" value="100" />
-				<property name="thumbnailer">
-					<bean class="org.riotfamily.common.image.ImageMagickThumbnailer" />
-				</property>
-			</bean>
-		</c:listeners>
-	</c:view-component>
 
 </beans>

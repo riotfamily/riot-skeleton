@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:p="http://www.riotfamily.org/schema/pages/page"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:override="http://www.riotfamily.org/schema/common/override"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -10,10 +9,8 @@
 		http://www.springframework.org/schema/util/spring-util-2.0.xsd
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-		http://www.riotfamily.org/schema/pages/page
-		http://www.riotfamily.org/schema/pages/page-6.5.xsd
 		http://www.riotfamily.org/schema/common/override
-		http://www.riotfamily.org/schema/common/override-6.5.xsd">
+		http://www.riotfamily.org/schema/common/override-7.0.xsd">
 
 	<import resource="website-controllers.xml" />
 
@@ -48,10 +45,4 @@
 		<property name="templateUpdateDelay" value="1" />
 	</override:properties>
 	
-	<p:setup id="pageSetup">
- 		<p:page path-component="welcome" system="false" />
- 		<p:page path-component="look-around" system="false" />
- 		<p:page path-component="start-playing" system="false" />
- 	</p:setup>
-
 </beans>

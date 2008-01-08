@@ -12,11 +12,11 @@
 		http://www.riotfamily.org/schema/components/controller
 		http://www.riotfamily.org/schema/components/controller-6.5.xsd
 		http://www.riotfamily.org/schema/website/template
-		http://www.riotfamily.org/schema/website/template-6.5.xsd
+		http://www.riotfamily.org/schema/website/template-7.0.xsd
 		http://www.riotfamily.org/schema/website/generic
-		http://www.riotfamily.org/schema/website/generic-6.5.xsd
+		http://www.riotfamily.org/schema/website/generic-7.0.xsd
 		http://www.riotfamily.org/schema/website/txt2img
-		http://www.riotfamily.org/schema/website/txt2img-6.5.xsd">
+		http://www.riotfamily.org/schema/website/txt2img-7.0.xsd">
 
 	<template:definition id="default" view-name="default.ftl">
 		<template:insert slot="header">

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.riotfamily.org/schema/pages/page"
+	xmlns:media="http://www.riotfamily.org/schema/media/setup"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.riotfamily.org/schema/pages/page
+		http://www.riotfamily.org/schema/pages/page-7.0.xsd
+		http://www.riotfamily.org/schema/media/setup
+		http://www.riotfamily.org/schema/media/setup-7.0.xsd ">
+	
+	<!-- Setup the default System pages -->
+	<p:setup>
+		<p:site locale="en" prefix="/int" name="International">
+			<p:site locale="de_DE" prefix="/de" name="Deutschland" />
+		</p:site>
+ 		<p:page path-component="welcome" system="false" />
+ 		<p:page path-component="look-around" system="false" />
+ 		<p:page path-component="start-playing" system="false" />
+	</p:setup>
+
+</beans>

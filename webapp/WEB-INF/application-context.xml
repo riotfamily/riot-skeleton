@@ -14,13 +14,6 @@
 
 	<import resource="riot-config/setup.xml" />
 	
-	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="/WEB-INF/i18n/messages" />
-		<property name="fallbackToSystemLocale" value="false" />
-		<property name="defaultEncoding" value="UTF-8" />
-		<property name="cacheSeconds" value="1" />
-	</bean>
-
 	<!-- Uncomment the following bean to use an AnnotationSessionFactory. -->
 	<!--
 	<override:bean ref="sessionFactory" merge="true" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editor-config
+	xmlns="http://www.riotfamily.org/schema/riot/editor-config"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.riotfamily.org/schema/riot/editor-config
+		http://www.riotfamily.org/schema/riot/editor-config-7.0.xsd">
+
+	<list id="sitemap" list-ref="site-chooser" icon="sitemap">
+		<tree id="pages" list-ref="pages">
+			<form form-ref="page" label-property="pathComponent" />
+		</tree>
+	</list>
+	
+	<!-- Use this setup if you have only one Site/Locale -->
+	<!-- 
+	<tree id="sitemap" list-ref="pages" icon="sitemap">
+		<form form-ref="page" label-property="pathComponent" />
+	</tree>
+	-->
+
+	<custom name="preview" url="/" target="_blank" icon="external" />
+
+</editor-config>

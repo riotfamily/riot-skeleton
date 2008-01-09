@@ -12,7 +12,7 @@
 		http://www.riotfamily.org/schema/common/override
 		http://www.riotfamily.org/schema/common/override-7.0.xsd">
 
-	<import resource="setup.xml" />
+	<import resource="riot-config/setup.xml" />
 	
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="/WEB-INF/i18n/messages" />
@@ -28,14 +28,6 @@
 	</override:bean>
 	-->
 
-	<!-- Setup two locales, by default only en_US is configured -->
-	<!-- 
-	<util:list id="websiteLocales" value-type="java.util.Locale">
-		<value>en_US</value>
-		<value>de_DE</value>
-	</util:list>
-    -->
- 
 	<bean id="defaultFileStore" class="org.riotfamily.common.web.file.DefaultFileStore">
 		<property name="uriPrefix"><value>/media</value></property>
 		<property name="storagePath"><value>${riot.media.storagePath}</value></property>

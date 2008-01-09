@@ -13,7 +13,9 @@
 		http://www.riotfamily.org/schema/media/setup-7.0.xsd ">
 	
 	<p:setup>
-		<p:site locale="en" name="Default" />
+		<p:site locale="en" prefix="/en" name="English">
+			<p:site locale="de" prefix="/de" name="German" />
+		</p:site>
  		<p:page path-component="welcome" system="false" />
  		<p:page path-component="look-around" system="false" />
  		<p:page path-component="start-playing" system="false" />

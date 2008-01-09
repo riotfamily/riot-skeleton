@@ -87,7 +87,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
 				classpath*:/META-INF/riot/website-servlet.xml,
-				/WEB-INF/website-config/website-servlet.xml
+				/WEB-INF/riot-config/website-servlet.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>2</load-on-startup>

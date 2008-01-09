@@ -11,34 +11,10 @@
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.riotfamily.org/schema/common/override
 		http://www.riotfamily.org/schema/common/override-7.0.xsd">
-
-    <!-- Read placeholders from application.properties  -->
-	<bean id="configurer" class="org.riotfamily.common.beans.config.PlaceholderWithDefaultConfigurer">
-		<property name="ignoreResourceNotFound" value="true" />
-		<property name="locations">
-			<list>
-				<value>classpath:/application.properties</value>
-			</list>
-		</property>
-	</bean>
-
-	<!-- FixedLocaleResolver to display the Riot user interface in English -->
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
-    	<property name="defaultLocale"><value>en_US</value></property>
-    </bean>
-
-	<!-- Custom color scheme -->
-	<util:properties id="cssProperties">
-		<prop key="highlight">${riot.highlightColor=#cb0038}</prop>
-		<prop key="toolbarOutline">${riot.toolbarOutlineColor=#fff}</prop>
-	</util:properties>
-
- 	<!--
- 	  - List of roles available in the 'riotUser' form defined in:
- 	  - /riot-hibernate/src/org/riotfamily/riot/hibernate/runtime/riot-config.xml
- 	  -->
- 	<util:list id="roles">
-		<value>admin</value>
-	</util:list>
+	 
+   	<!-- Custom color scheme -->
+   	<override:put ref="cssProperties">
+		<entry key="highlight" value="#cb0038" />
+	</override:put>
 
 </beans>

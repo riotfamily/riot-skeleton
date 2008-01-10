@@ -14,7 +14,7 @@
 	
 	<p:setup>
 		<p:site locale="en" prefix="/en" name="English">
-			<p:site locale="de" prefix="/de" name="German" />
+			<p:site locale="de_DE" prefix="/de" name="German" />
 		</p:site>
  		<p:page path-component="welcome" system="false" />
  		<p:page path-component="look-around" system="false" />

@@ -25,11 +25,15 @@
 			<bean class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver" />
 		</property>
 		-->
-	</bean>
+	</bean>	
 
-	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+	<override:properties ref="folderFilterPlugin" >		
+		<property name="siteChooserUrl" value="/siteChooser.html" />
+	</override:properties> 
+
+	<bean class="org.riotfamily.common.web.mapping.AdvancedBeanNameHandlerMapping">
 		<property name="order" value="1" />
-		<property name="alwaysUseFullPath" value="true" />
+		<property name="stripServletMapping" value="false" />
 		<property name="interceptors">
 			<list>
 				<ref bean="riotInterceptors" />

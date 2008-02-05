@@ -33,6 +33,13 @@
 			<component:list valid="extra-box,inherit" />
 		</template:insert>
 	</template:definition>
+	
+	<bean name="/siteChooser.html" class="org.riotfamily.pages.controller.SiteListController">
+		<constructor-arg ref="pageDao" />
+		<constructor-arg ref="pathCompleter" />
+		<property name="viewName" value="siteChooser.ftl" />
+	</bean>
+	
 
 	<component:list name="/inc/gallery-components.html"
 			valid="lightbox-image" initial="lightbox-image"	min="1" />

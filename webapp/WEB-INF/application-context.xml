@@ -21,7 +21,7 @@
 	</override:bean>
 	-->
 
-	<bean id="defaultFileStore" class="org.riotfamily.common.web.file.DefaultFileStore">
+	<bean id="fileStore" class="org.riotfamily.media.store.DefaultFileStore">
 		<property name="uriPrefix"><value>/media</value></property>
 		<property name="storagePath"><value>${riot.media.storagePath}</value></property>
 	</bean>

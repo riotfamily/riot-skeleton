@@ -344,7 +344,6 @@
 			-->
 
 			<configuration
-				configurationfile="${web.dir}/WEB-INF/hibernate.cfg.xml"
 				propertyfile="${build.dir}/hibernate.properties">
 				<fileset id="mappings" dir="${basedir}">
 					<include name="${web.dir}/WEB-INF/hibernate-mappings/*.hbm.xml" />

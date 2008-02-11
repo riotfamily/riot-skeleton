@@ -119,6 +119,16 @@
 		<ivy:retrieve pattern="${web.lib.dir}/[artifact].[ext]" conf="runtime" />
 		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" conf="standalone" />
 	</target>
+	
+	<!--
+	 -->
+	<target name="retrieve-sources" depends="init,-configure-ivy"
+			description="Downloads the source code of the dependencies (if available)">
+		<echo message="Retrieving 3rd party sources" />
+		<ivy:resolve showprogress="false" />
+		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" conf="src" />
+	</target>
+
 
 	<!--
 	  - Compiles the java sources to ${build.classes.dir}. Additionally all

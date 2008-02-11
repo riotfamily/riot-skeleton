@@ -7,6 +7,7 @@
 	<configurations>
 		<conf name="standalone" />
 		<conf name="runtime" />
+		<conf name="src" />
 		<conf name="hsqldb" extends="runtime" />
 		<conf name="postgresql" extends="runtime" />
 	</configurations>    	
@@ -16,7 +17,7 @@
 	  - See http://incubator.apache.org/ivy/doc/ivyfile/dependencies.html
 	  -->
     <dependencies>
-	    <dependency org="riotfamily" name="riot-pages" rev="7.0+" conf="runtime" />
+	    <dependency org="riotfamily" name="riot-pages" rev="7.0+" conf="runtime->runtime;src->src" />
 	    <dependency org="hibernate" name="hibernate-tools" rev="3.2.0.beta9a" conf="standalone->default" /> 
 	    <dependency org="sun" name="servlet-api" rev="2.4" conf="standalone->default" />
 	    <dependency org="hsqldb" name="hsqldb" rev="latest.release" conf="hsqldb->default" />

@@ -133,6 +133,20 @@ h2 {
 	background-position: center center;
 	background-repeat: no-repeat;
 }
+
+table, td, th {
+	border: 1px solid #fff;
+}
+thead tr {
+	background: #ccc;
+}
+tbody tr.even {
+	background: #eee;
+}
+tbody tr.odd {
+	background: #ddd;
+}
+
 ul.country-chooser {
 	list-style-type: none;
 	margin-left: 0;

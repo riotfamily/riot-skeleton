@@ -11,8 +11,9 @@
 
 	<c:view-component id="table" view-name="components/table.ftl">
 		<c:defaults>
-			<entry key="rows" value="3" />
-			<entry key="cols" value="3" />
+			<entry key="showHeadings"><value type="java.lang.Boolean">true</value></entry>
+			<entry key="rows"><value type="java.math.BigDecimal">3</value></entry>
+			<entry key="cols"><value type="java.math.BigDecimal">3</value></entry>
 		</c:defaults>
 	</c:view-component>
 

@@ -17,4 +17,11 @@
 		<entry key="highlight" value="#cb0038" />
 	</override:put>
 
+	<bean id="galleryThumb" class="org.riotfamily.media.processing.ThumbnailCreator">
+		<constructor-arg ref="imageMagick" />
+		<property name="variant" value="thumb" />
+		<property name="width" value="110" />
+		<property name="height" value="90" />
+	</bean>
+
 </beans>

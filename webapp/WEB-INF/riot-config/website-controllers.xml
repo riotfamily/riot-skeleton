@@ -42,7 +42,7 @@
 	
 
 	<component:list name="/inc/gallery-components.html"
-			valid="lightbox-image" initial="lightbox-image"	min="1" />
+			valid="gallery-image" initial="gallery-image" min="1" />
 
 	<txt2img:config>
 		<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />

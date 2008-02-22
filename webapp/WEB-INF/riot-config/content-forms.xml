@@ -35,15 +35,13 @@
 			<option value="right" />
 			<option value="left" />
 		</selectbox>
-		<checkbox bind="clear" />
+		<textfield bind="alt" />
 		<textarea bind="caption" />
 	</form>
 
-	<form id="lightbox-image">
+	<form id="gallery-image">
 		<textfield bind="title" />
-		<media:image-upload bind="image"
-			max-width="1024" max-height="768"
-			crop="false" required="true" />
+		<media:image-upload bind="image" crop="false" required="true" processor="galleryThumb" />
 	</form>
 
 	<form id="paragraph">

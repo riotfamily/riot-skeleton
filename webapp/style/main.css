@@ -15,7 +15,7 @@ body {
 }
 
 .content .padding {
-	margin: 0 34px 0 24px; 
+	margin: 0 35px 0 25px; 
 }
 .extra .padding {
 	margin: 0; 
@@ -77,10 +77,8 @@ body {
 	margin-left: 10px;
 }
 
-
-
 .content {
-	padding-top: 50px;
+	padding-top: 37px;
 	font-size: 12px;
 	line-height: 24px;
 }
@@ -94,46 +92,78 @@ body {
 	margin-top: 23px;
 }
 
-h1 {
+.content h1 {
 	color: ${color1};
 	font-family: Arial;
 	font-size: 26px;
 	line-height: 33px;
+	padding: 20px 0 10px 0;
+	clear: both;
 }
-h2 {
+.content h1.first {
+	padding-top: 0;
+}
+
+.content h2 {
 	color: ${color2};
+	clear: both;
 }
+
+.content p {
+	margin-bottom: 16px;
+}
+
 .extra h3 {
 	color: ${color1};
 	font-size: 11px;
 	margin: 5px 0 3px 0;
 }
 
+.image-block {
+	clear: both;
+	margin: 4px 0 1px 0;
+}
+
 .image-left {
 	float: left;
-	margin: 3px 10px 1px 0;
+	margin: 4px 10px 1px 0;
 }
 
 .image-right {
 	float: right;
-	margin: 3px 0 1px 10px;
+	margin: 4px 0 1px 10px;
+}
+
+.image-after-paragraph {
+	clear: both;
+}
+
+.labeled-image .caption {
+	margin-top: 3px;
+	font-size: 10px;
+	line-height: 13px;
+	color: #777;
 }
 
 .gallery {
 	clear: both;
 	background: #aaa;
 	overflow: hidden;
+	padding-bottom: 10px;
+	margin-bottom: 16px;
 }
 .gallery a {
-	margin: 5px;
-	float: left;
 	display: block;
-	width: 100px;
-	height: 100px;
 	background-position: center center;
 	background-repeat: no-repeat;
+	margin: 10px 10px 0 0;
+	float: left;
+	width: 110px;
+	height: 90px;
 }
-
+.gallery a.every-4th {
+	margin-right: 0;
+}
 table, td, th {
 	border: 1px solid #fff;
 }

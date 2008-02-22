@@ -1,13 +1,18 @@
 /* Styles for the no-image placehoders: */
 
-.riot-noimage {
-	background: url(images/checkerboard_dark.gif);
-	padding: 5px;
-	color: #fff;
-	font-size: 12px;
+.riot-noimage,
+.gallery a.riot-noimage {
+	background-image: url(images/checkerboard_dark.gif);
+	background-repeat: repeat;
+	background-position: 0 0;
 }
-.gallery .riot-noimage {
-	width: 100px;
-	height: 100px;
+
+.gallery .riot-insert-button {
+	float: left;
+	width: 106px;
+	height: 86px;
+	clear: none;
+	margin: 10px 0 0 0;
+	background-position: 48px 35px;
 }
 

@@ -5,30 +5,42 @@
 	<title>Riot Project Skeleton</title>
 
 	<link rel="stylesheet" type="text/css" href="${common.resource('/style/yui/reset/reset.css')}" /> 
-	<link rel="stylesheet" type="text/css" href="${common.resource('/style/yui/base/base.css')}" />
-	
 	<link rel="stylesheet" type="text/css" href="${common.resource('/style/layout/07.grid.css')}" />
 	<link rel="stylesheet" type="text/css" href="${common.resource('/style/main.css')}" />
 
 	<@inplace.callbacks>
-		addRiotEditCallback(function() {
-			myLightbox.updateImageList();
+		// Register a callback that is invoked when an element is updated,
+		// to update Shadowbox links contained in this element.
+		addRiotEditCallback(function(el) {
+			Shadowbox.clearCache();
+			Shadowbox.setup();
 		});
 	</@inplace.callbacks>
+
+	<#--
+	  - NOTE: Though the Riot toolbar uses prototype.js and scriptaculous 
+	  - internally you don't have to load these libraries manually, unless
+	  - you want to use either Txt2Img or Shadowbox. 
+	  -->
 
 	<#-- Txt2Img -->
     <@riot.script src="prototype/prototype.js" />
     <script src="${common.resource('/riot-utils/txt2img.js?locale=' + .locale)}" type="text/javascript"></script>
 
-	<#-- Lightbox -->
+	<#-- Shadowbox (see http://mjijackson.com/shadowbox) -->
+	<link href="${common.resource('/style/shadowbox/css/shadowbox.css')}" rel="stylesheet" type="text/css" media="screen" />
 	<@riot.script src="scriptaculous/effects.js" />
-	<link href="${common.resource('/style/lightbox/css/lightbox.css')}" rel="stylesheet" type="text/css" media="screen" />
-    <script type="text/javascript" src="${common.resource('/style/lightbox/js/lightbox.js')}"></script>
-    <script>
-    	fileLoadingImage = "${common.resource('/style/lightbox/images/loading.gif')}";
-		fileBottomNavCloseImage = "${common.resource('/style/lightbox/images/closelabel.gif')}";
+    <script type="text/javascript" src="${common.resource('/style/shadowbox/js/adapter/shadowbox-prototype.js')}"></script>
+    <script type="text/javascript" src="${common.resource('/style/shadowbox/js/shadowbox.js')}"></script>
+    <script type="text/javascript">
+		document.observe('dom:loaded', function() {
+			Shadowbox.init({
+				assetURL: '${request.contextPath}/style/shadowbox/',
+				fadeDuration: 0.15,
+				resizeDuration: 0.15
+			})
+		});
     </script>
-
 </head>
 <body>
 <div id="container" class="container">

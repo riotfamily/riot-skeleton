@@ -5,8 +5,6 @@
 	<title>Riot Project Skeleton</title>
 
 	<link rel="stylesheet" type="text/css" href="${common.resource('/style/yui/reset/reset.css')}" /> 
-	<link rel="stylesheet" type="text/css" href="${common.resource('/style/yui/base/base.css')}" />
-	
 	<link rel="stylesheet" type="text/css" href="${common.resource('/style/layout/07.grid.css')}" />
 	<link rel="stylesheet" type="text/css" href="${common.resource('/style/main.css')}" />
 

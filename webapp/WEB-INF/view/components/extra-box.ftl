@@ -1,5 +1,5 @@
-<div class="box-frame ${positionClass}">
-<div id="box${componentId}" class="box">
+<div class="box-frame ${inplace.zebraClass()}">
+<div class="box">
 	<@inplace.text key="title" tag="h3">Title</@inplace.text>
 	<div class="box-content">
 	<@inplace.richtext key="content">

@@ -168,8 +168,20 @@ strong {
 .gallery a.every-4th {
 	margin-right: 0;
 }
+
+table {
+	margin-bottom: 16px;
+}
 table, td, th {
 	border: 1px solid #fff;
+}
+th {
+	font-weight: bold;
+	text-align: center;
+}
+td, th {
+	padding: 2px 4px;
+	font-size: 12px;
 }
 thead tr {
 	background: #ccc;

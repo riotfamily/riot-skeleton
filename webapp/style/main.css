@@ -66,6 +66,7 @@ strong {
 
 .navigation {
 	margin-top: 37px;
+	margin-bottom: 20px;
 	background: ${color3};
 }
 .navigation, 

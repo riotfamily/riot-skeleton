@@ -1,6 +1,6 @@
 <ivysettings>
 	<!--
-	  - Ivy settings, see http://incubator.apache.org/ivy/doc/configuration.html
+	  - Ivy settings, see http://ant.apache.org/ivy/history/latest-milestone/configuration.html
 	  -->
 	<settings defaultResolver="default" />
 	<include url="${ivy.default.settings.dir}/ivysettings-local.xml"/>

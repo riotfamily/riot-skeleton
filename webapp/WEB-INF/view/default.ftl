@@ -4,7 +4,7 @@
 <head>
 	<title>Riot Project Skeleton - ${currentPage.title}</title>
 
-	<link rel="stylesheet" type="text/css" href="${request.contextPath}/riot-utils/joined.css?files=/style/yui.reset.css,grid.css,main.css" />
+	<link rel="stylesheet" type="text/css" href="${request.contextPath}/riot-utils/joined.css?files=/style/yui.reset.css,grid.css,main_${currentSite.theme!}.css" />
 
 	<@inplace.callbacks>
 		// Register a callback that is invoked when an element is updated,

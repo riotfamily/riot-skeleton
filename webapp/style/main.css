@@ -1,5 +1,4 @@
-<#assign color1 = "#86c500" />
-<#assign color2 = "#595959" />
+<#-- The values for color1 and color2 are defined in css.ini -->
 <#assign color3 = color.brightness(color1, 90) />
 
 body {

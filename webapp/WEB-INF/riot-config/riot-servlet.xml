@@ -24,4 +24,10 @@
 		<property name="height" value="90" />
 	</bean>
 
+	<!-- Themes used for the sites -->
+	<util:list id="themes">
+		<value>green</value>
+		<value>red</value>
+	</util:list>
+
 </beans>

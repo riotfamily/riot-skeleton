@@ -2,11 +2,9 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Riot Project Skeleton</title>
+	<title>Riot Project Skeleton - ${currentPage.title}</title>
 
-	<link rel="stylesheet" type="text/css" href="${common.resource('/style/yui/reset/reset.css')}" /> 
-	<link rel="stylesheet" type="text/css" href="${common.resource('/style/layout/07.grid.css')}" />
-	<link rel="stylesheet" type="text/css" href="${common.resource('/style/main.css')}" />
+	<link rel="stylesheet" type="text/css" href="${request.contextPath}/riot-utils/joined.css?files=/style/yui.reset.css,grid.css,main.css" />
 
 	<@inplace.callbacks>
 		// Register a callback that is invoked when an element is updated,
@@ -42,7 +40,7 @@
 		});
     </script>
 </head>
-<body>
+<body class="${bodyClass!"default"}">
 <div id="container" class="container">
 	<div id="header" class="header">
 		<div class="padding">
@@ -61,11 +59,13 @@
 			<@common.include navigation />
 		</div>
 	</div>
-	<div id="extra" class="extra">
-		<div class="padding">
-			<@common.include extra />
+	<#if extra??>
+		<div id="extra" class="extra">
+			<div class="padding">
+				<@common.include extra />
+			</div>
 		</div>
-	</div>
+	</#if>
 	<div id="footer" class="footer">
 		<div class="padding">
 			<span class="poweredby">Powered by</span><span class="riot">Riot</span>

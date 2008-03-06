@@ -16,9 +16,19 @@
 		<p:site locale="en" prefix="/en" name="English">
 			<p:site locale="de_DE" prefix="/de" name="German" />
 		</p:site>
- 		<p:page path-component="welcome" system="false" />
+ 		<p:page path-component="welcome" system="true" />
  		<p:page path-component="look-around" system="false" />
- 		<p:page path-component="start-playing" system="false" />
+ 		<p:page path-component="start-playing" system="false">
+ 			<p:page path-component="sub-1" handler-name="wide">
+ 				<p:prop key="title" value="Wide page" />
+ 			</p:page>
+ 			<p:page path-component="sub-2" handler-name="wide" />
+ 		</p:page>
+ 		<p:page handler-name="select-handler" folder="true" system="true">
+	 		<p:page handler-name="default" path-component="test" system="false" />
+ 		</p:page>
 	</p:setup>
+	
+	<p:handler-name parent="select-handler" child="default,wide" />
 
 </beans>

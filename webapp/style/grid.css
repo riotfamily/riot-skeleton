@@ -1,0 +1,42 @@
+/**
+ * Based on Layout Gala by Alessandro Fulciniti
+ * See http://blog.html.it/layoutgala/
+ *
+ * <#assign navigationWidth = 150 />
+ * <#assign contentWidth = 530 />
+ * <#assign extraWidth = 180 />
+ */
+#container {
+	width: ${navigationWidth + contentWidth + extraWidth}px;
+	margin: 0 auto
+}
+
+#wrapper {
+	float: left;
+	width: 100%
+}
+
+#content {
+	margin: 0 ${extraWidth}px 0 ${navigationWidth}px;
+}
+
+#navigation {
+	float: left;
+	width: ${navigationWidth}px;
+	margin-left: -${navigationWidth + contentWidth + extraWidth}px
+}
+
+#extra {
+	float: left;
+	width: ${extraWidth}px;
+	margin-left: -${extraWidth}px
+}
+
+#footer {
+	clear: left;
+	width: 100%
+}
+
+body.wide #content {
+	margin-right: 0;
+}

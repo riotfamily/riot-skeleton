@@ -34,6 +34,11 @@
 		</template:insert>
 	</template:definition>
 	
+	<template:definition id="wide" parent="default">
+		<template:insert slot="bodyClass" data="wide" />
+		<template:remove slot="extra" />
+	</template:definition>
+	
 	<bean name="/siteChooser.html" class="org.riotfamily.pages.controller.SiteListController">
 		<constructor-arg ref="pageDao" />
 		<constructor-arg ref="pathCompleter" />

@@ -53,7 +53,8 @@
 	<property name="hsqldb.location" location="${hsqldb.local.dir}/${ant.project.name}" />
 
 	<property name="ivy.download" value="http://riotfamily.org/ivy/ivy-2.0.0-beta2.jar" />
-	<property name="ivy.jar" value="${lib.dir}/ivy2.jar" />
+	<property name="ivy.jar.name" value="ivy2.jar" />
+	<property name="ivy.jar" value="${lib.dir}/${ivy.jar.name}" />
 
 	<taskdef resource="org/apache/ivy/ant/antlib.xml"
 			uri="antlib:org.apache.ivy.ant" classpath="${ivy.jar}"
@@ -93,8 +94,17 @@
 	 -->
 	<target name="clean" description="Cleans the project">
 		<delete dir="${build.dir}" />
-		<delete dir="${lib.dir}" />
+		<delete dir="${lib.dir}">
+			<exclude name="${ivy.jar.name}" />
+		</delete>
 		<delete dir="${web.lib.dir}" />
+	</target>
+
+	<!--
+	  - Cleans everything.
+	 -->
+	<target name="distclean" description="Cleans everything" depends="clean">
+		<delete dir="${lib.dir}" />
 	</target>
 
 	<!--
@@ -429,10 +439,11 @@
 		-->
 	</target>
 
-	<target name="-configure-ivy" depends="-install-ivy">
+	<target name="-configure-ivy" depends="-install-ivy" unless="ivy.configured">
 		<available file="ivysettings-local.xml" property="ivysettings" value="ivysettings-local.xml" />
 		<property name="ivysettings" value="ivysettings.xml" />
 		<ivy:settings id="ivy.instance" file="${ivysettings}" override="true" />
+		<property name="ivy.configured" value="true" />
 	</target>
 
 	<!--

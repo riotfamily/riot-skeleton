@@ -10,6 +10,7 @@
 		<conf name="src" />
 		<conf name="hsqldb" extends="runtime" />
 		<conf name="postgresql" extends="runtime" />
+		<conf name="mysql" extends="runtime" />
 	</configurations>    	
 	
 	<!--
@@ -22,6 +23,7 @@
 	    <dependency org="sun" name="servlet-api" rev="2.4" conf="standalone->default" />
 	    <dependency org="hsqldb" name="hsqldb" rev="latest.release" conf="hsqldb->default" />
 	    <dependency org="postgresql" name="jdbc3" rev="8.1-407" conf="postgresql->default" />
+	    <dependency org="mysql" name="mysql-connector-java" rev="5.0.5" conf="mysql->default" />
     </dependencies>
 
 </ivy-module>

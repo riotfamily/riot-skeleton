@@ -129,7 +129,7 @@
 		<ivy:retrieve pattern="${web.lib.dir}/[artifact].[ext]" conf="runtime" />
 		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" conf="standalone" />
 	</target>
-	
+
 	<!--
 	 -->
 	<target name="retrieve-sources" depends="init,-configure-ivy"
@@ -138,7 +138,6 @@
 		<ivy:resolve showprogress="false" />
 		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" conf="src" />
 	</target>
-
 
 	<!--
 	  - Compiles the java sources to ${build.classes.dir}. Additionally all

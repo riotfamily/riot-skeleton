@@ -25,7 +25,7 @@
 			<ul class="country-chooser">
 				<#list sites as site>
 					<li style="background-image:url(${common.urlForHandler('countryFlagController', site)})">
-						<a href="${common.url(site.getAbsoluteUrl(request))}/">${site.name!}</a>
+						<a href="${common.url(site.makeAbsolute(""))}/">${site.name!}</a>
 					</li>
 				</#list>
 			</ul>		

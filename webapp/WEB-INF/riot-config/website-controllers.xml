@@ -18,6 +18,10 @@
 		http://www.riotfamily.org/schema/website/txt2img
 		http://www.riotfamily.org/schema/website/txt2img-7.0.xsd">
 
+	<!-- 
+	  - The default template. Used by all pages that don't specify a 
+	  - handlerName explicitly. Also used as base for other templates. 
+	  -->
 	<template:definition id="default" view-name="default.ftl">
 		<template:insert slot="header">
 			<generic:view view-name="/inc/topnav.ftl" />
@@ -34,12 +38,17 @@
 		</template:insert>
 	</template:definition>
 	
+	<!-- 
+	  - Derived template without the extra column. It also sets a CSS class 
+	  - that is assigned to the body tag in default.ftl.
+	  -->
 	<template:definition id="wide" parent="default">
 		<template:insert slot="bodyClass" data="wide" />
 		<template:remove slot="extra" />
 	</template:definition>
 	
-	<bean name="/siteChooser.html" class="org.riotfamily.pages.controller.SiteListController">
+	<!-- Controller that displays a list of available Sites -->
+	<bean name="/choose-a-site.html" class="org.riotfamily.pages.controller.SiteListController">
 		<constructor-arg ref="pageDao" />
 		<constructor-arg ref="pathCompleter" />
 		<property name="viewName" value="siteChooser.ftl" />
@@ -49,6 +58,7 @@
 	<component:list name="/inc/gallery-components.html"
 			valid="gallery-image" initial="gallery-image" min="1" />
 
+	<!-- Text-to-image replacement rules -->
 	<txt2img:config>
 		<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />
 		<txt2img:rule selector="#topnav a" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" padding-top="3" />

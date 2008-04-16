@@ -6,19 +6,17 @@
 		http://www.riotfamily.org/schema/riot/editor-config
 		http://www.riotfamily.org/schema/riot/editor-config-7.0.xsd">
 
-	<list id="sitemap" list-ref="site-chooser" icon="sitemap">
-		<tree id="pages" list-ref="pages">
-			<form form-ref="page" label-property="pathComponent" />
-		</tree>
-	</list>
-	
-	<!-- Use this setup if you have only one Site/Locale -->
+	<!-- Alternative configuration for setups with only one Site -->
 	<!-- 
-	<tree id="sitemap" list-ref="pages" icon="sitemap">
+	<tree id="localContent" list-ref="pages" name="sitemap" icon="sitemap">
 		<form form-ref="page" label-property="pathComponent" />
 	</tree>
 	-->
 
-	<custom name="preview" url="/" target="_blank" icon="external" />
-
+	<!-- Group site- and user-management under "System Preferences" -->
+	<group name="systemPreferences" icon="tools">
+		<ref editor="manageSites" />
+		<ref editor="riotUsers" />
+	</group>
+	
 </editor-config>

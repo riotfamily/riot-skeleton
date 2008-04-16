@@ -12,27 +12,37 @@
 		http://www.riotfamily.org/schema/common/override
 		http://www.riotfamily.org/schema/common/override-7.0.xsd">
 
+	<!-- 
+	  - Configuration for the website DispatcherServlet
+	  -
+	  - This files configures Spring-MVC infrastructure beans. Application
+	  - specific controllers are defined in website-controllers.xml which
+	  - is imported below: 
+	  -->
+	  
 	<import resource="website-controllers.xml" />
 
-	<override:properties ref="pageHandlerMapping">
-		<property name="defaultPageHandler" ref="default" />
-	</override:properties>
-	
+	<!-- Use the locale defined by the Site being viewed -->
 	<bean id="localeResolver" class="org.riotfamily.pages.SiteLocaleResolver">
 		<constructor-arg ref="pageResolver" />
-		<!-- You can also set a fallback resolver if the main resolver can't resolve the locale...
+		<!-- You can also set a fallback resolver if the main resolver can't resolve the locale -->
+		<!--
 		<property name="fallbackResolver">
 			<bean class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver" />
 		</property>
 		-->
-	</bean>	
-
-	<override:properties ref="folderFilterPlugin" >		
-		<property name="siteChooserUrl" value="/siteChooser.html" />
-	</override:properties> 
-
-	<bean class="org.riotfamily.common.web.mapping.AdvancedBeanNameHandlerMapping">
+	</bean>
+	
+	<!-- First: Look for pages -->
+	<override:properties ref="pageHandlerMapping">
 		<property name="order" value="1" />
+		<property name="defaultPageHandler" ref="default" />
+	</override:properties>
+
+	<!-- Second: Look for bean-names starting with a slash -->
+	<bean class="org.riotfamily.pages.mapping.SiteBeanNameHandlerMapping">
+		<constructor-arg ref="pageResolver" />
+		<property name="order" value="2" />
 		<property name="stripServletMapping" value="false" />
 		<property name="interceptors">
 			<list>
@@ -40,14 +50,27 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- Third: Look for static resources shadowed by the servlet mapping -->
+	<bean class="org.riotfamily.common.web.mapping.ResourceHandlerMapping">
+		<property name="fileTypeMap" ref="fileTypeMap" />
+		<property name="order" value="3" />
+	</bean>
 
-	<bean id="viewNameTranslator" class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator">
+	<!-- Tell the FolderFilterPlugin where to find the site chooser -->
+	<override:properties ref="folderFilterPlugin" >		
+		<property name="siteChooserUrl" value="/choose-a-site.html" />
+	</override:properties> 
+
+	<!-- Setup request to view-name translation -->
+	<bean id="viewNameTranslator" class="org.riotfamily.pages.view.SiteRequestToViewNameTranslator">
 		<property name="suffix" value=".ftl" />
 	</bean>
 
+	<!-- 
 	<override:properties ref="freemarkerConfig">
 		<property name="useTemplateCache" value="false" />
-		<property name="templateUpdateDelay" value="1" />
 	</override:properties>
+	-->
 	
 </beans>

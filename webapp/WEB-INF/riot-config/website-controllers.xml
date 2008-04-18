@@ -47,6 +47,17 @@
 		<template:remove slot="extra" />
 	</template:definition>
 	
+	<!-- 
+	  - Derived template without the extra column. It also sets a CSS class 
+	  - that is assigned to the body tag in default.ftl.
+	  -->
+	<template:definition id="teaser-list" parent="default">
+		<template:insert slot="content">
+			<generic:view view-name="inc/teaser-list.ftl" />
+		</template:insert>
+		<template:remove slot="extra" />
+	</template:definition>
+	
 	<!-- Controller that displays a list of available Sites -->
 	<bean name="/choose-a-site.html" class="org.riotfamily.pages.controller.SiteListController">
 		<constructor-arg ref="pageDao" />

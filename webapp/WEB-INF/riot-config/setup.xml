@@ -25,7 +25,7 @@
 		
  		<p:page path-component="welcome" system="true" />
  		<p:page path-component="look-around" system="false" />
- 		<p:page path-component="start-playing" system="false">
+ 		<p:page path-component="start-playing" handler-name="teaser-list" system="false">
  			<p:page path-component="sub-1" handler-name="wide">
  				<p:prop key="title" value="Wide page" />
  			</p:page>

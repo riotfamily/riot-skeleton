@@ -14,8 +14,11 @@
 	
 	<p:setup>
 		<!-- Multi-site setup for two locales -->
-		<p:site locale="en" prefix="/en" name="English" theme="green">
-			<p:site locale="de_DE" prefix="/de" name="German" theme="red" />
+		<p:site locale="en" prefix="/en" name="English">
+			<p:prop key="theme" value="green" />
+			<p:site locale="de_DE" prefix="/de" name="German">
+				<p:prop key="theme" value="red" />
+			</p:site>
 		</p:site>
 		
 		<!-- Alternative Setup with just one Site  -->

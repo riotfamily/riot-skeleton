@@ -67,6 +67,10 @@
 	  - Riot backoffice.
 	  -->
 	<form id="all-sites">
+		<selectbox bind="theme">
+			<option value="red" />
+			<option value="green" />
+		</selectbox>
 		<textfield bind="googleAnalyticsCode" />
 	</form>
 	 

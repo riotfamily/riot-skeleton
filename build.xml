@@ -125,18 +125,9 @@
 	<target name="resolve" depends="init,-configure-ivy"
 			description="Resolves the project's dependencies">
 		<echo message="Retrieving module dependencies" />
-		<ivy:resolve showprogress="false" />
+		<ivy:resolve log="download" showprogress="false" />
+		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" log="quiet" conf="standalone,src" />
 		<ivy:retrieve pattern="${web.lib.dir}/[artifact].[ext]" conf="runtime" />
-		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" conf="standalone" />
-	</target>
-
-	<!--
-	 -->
-	<target name="retrieve-sources" depends="init,-configure-ivy"
-			description="Downloads the source code of the dependencies (if available)">
-		<echo message="Retrieving 3rd party sources" />
-		<ivy:resolve showprogress="false" />
-		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" conf="src" />
 	</target>
 
 	<!--

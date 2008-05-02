@@ -125,7 +125,7 @@
 	<target name="resolve" depends="init,-configure-ivy"
 			description="Resolves the project's dependencies">
 		<echo message="Retrieving module dependencies" />
-		<ivy:resolve log="download" showprogress="false" />
+		<ivy:resolve showprogress="false" />
 		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" log="quiet" conf="standalone,src" />
 		<ivy:retrieve pattern="${web.lib.dir}/[artifact].[ext]" conf="runtime" />
 	</target>

@@ -6,14 +6,18 @@
 	<configs>
 		<config>webapp/WEB-INF/riot-config/riot-servlet.xml</config>
 		<config>webapp/WEB-INF/application-context.xml</config>
+		<config>webapp/WEB-INF/riot-config/website-servlet.xml</config>
+		<config>webapp/WEB-INF/riot-config/website-controllers.xml</config>
 	</configs>
 	<configSets>
 		<configSet>
-			<name>website</name>
+			<name><![CDATA[website]]></name>
 			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
 			<incomplete>false</incomplete>
 			<configs>
 				<config>webapp/WEB-INF/application-context.xml</config>
+				<config>webapp/WEB-INF/riot-config/website-servlet.xml</config>
+				<config>webapp/WEB-INF/riot-config/website-controllers.xml</config>
 			</configs>
 		</configSet>
 	</configSets>

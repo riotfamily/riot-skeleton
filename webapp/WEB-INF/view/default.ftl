@@ -23,13 +23,13 @@
 
 	<#-- Txt2Img -->
     <@riot.script src="prototype/prototype.js" />
-    <script src="${common.resource('/riot-utils/txt2img.js?locale=' + .locale)}" type="text/javascript"></script>
+    <script src="${c.resource('/riot-utils/txt2img.js?locale=' + .locale)}" type="text/javascript"></script>
 
 	<#-- Shadowbox (see http://mjijackson.com/shadowbox) -->
-	<link href="${common.resource('/style/shadowbox/css/shadowbox.css')}" rel="stylesheet" type="text/css" media="screen" />
+	<link href="${c.resource('/style/shadowbox/css/shadowbox.css')}" rel="stylesheet" type="text/css" media="screen" />
 	<@riot.script src="scriptaculous/effects.js" />
-    <script type="text/javascript" src="${common.resource('/style/shadowbox/js/adapter/shadowbox-prototype.js')}"></script>
-    <script type="text/javascript" src="${common.resource('/style/shadowbox/js/shadowbox.js')}"></script>
+    <script type="text/javascript" src="${c.resource('/style/shadowbox/js/adapter/shadowbox-prototype.js')}"></script>
+    <script type="text/javascript" src="${c.resource('/style/shadowbox/js/shadowbox.js')}"></script>
     <script type="text/javascript">
 		document.observe('dom:loaded', function() {
 			Shadowbox.init({
@@ -44,25 +44,25 @@
 <div id="container" class="container">
 	<div id="header" class="header">
 		<div class="padding">
-			<@common.include header />
+			<@c.include header />
 		</div>
 	</div>
 	<div id="wrapper" class="wrapper">
 		<div id="content" class="content">
 			<div class="padding">
-				<@common.include content />
+				<@c.include content />
 			</div>
 		</div>
 	</div>
 	<div id="navigation" class="navigation">
 		<div class="padding">
-			<@common.include navigation />
+			<@c.include navigation />
 		</div>
 	</div>
 	<#if extra??>
 		<div id="extra" class="extra">
 			<div class="padding">
-				<@common.include extra />
+				<@c.include extra />
 			</div>
 		</div>
 	</#if>

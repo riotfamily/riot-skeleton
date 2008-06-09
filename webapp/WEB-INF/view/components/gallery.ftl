@@ -1,3 +1,3 @@
 <div class="gallery clearfix">
-	<@riot.include "/inc/gallery-components.html" />
+	<@inplace.nestedComponentList key="images" min=1 initial=["gallery-image"] />
 </div>

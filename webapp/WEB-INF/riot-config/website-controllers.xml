@@ -9,8 +9,6 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-		http://www.riotfamily.org/schema/components/controller
-		http://www.riotfamily.org/schema/components/controller-6.5.xsd
 		http://www.riotfamily.org/schema/website/template
 		http://www.riotfamily.org/schema/website/template-7.0.xsd
 		http://www.riotfamily.org/schema/website/generic
@@ -30,11 +28,10 @@
 			<generic:view view-name="/inc/navigation.ftl" />
 		</template:insert>
 		<template:insert slot="content">
-			<component:list valid="paragraph,headline,image,gallery,table"
-					initial="headline,paragraph" />
+			<generic:view view-name="/inc/content.ftl" />
 		</template:insert>
 		<template:insert slot="extra">
-			<component:list valid="extra-box,inherit" />
+			<generic:view view-name="/inc/extra.ftl" />
 		</template:insert>
 	</template:definition>
 	
@@ -65,9 +62,11 @@
 		<property name="viewName" value="siteChooser.ftl" />
 	</bean>
 	
+	<!-- 
 	<component:list name="/inc/gallery-components.html"
 			valid="gallery-image" initial="gallery-image" min="1" />
-
+ 	-->
+ 
 	<!-- Text-to-image replacement rules -->
 	<txt2img:config>
 		<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />

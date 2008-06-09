@@ -1,0 +1,1 @@
+<@pages.componentList key="extra" valid=["extra-box"] />

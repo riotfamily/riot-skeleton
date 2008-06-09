@@ -67,8 +67,10 @@
 		<property name="suffix" value=".ftl" />
 	</bean>
 
+	<!--
 	<override:properties ref="freemarkerConfig">
 		<property name="useTemplateCache" value="false" />
 	</override:properties>
+	-->
 	
 </beans>

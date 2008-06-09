@@ -7,12 +7,15 @@
 	<link rel="stylesheet" type="text/css" href="${request.contextPath}/riot-utils/joined.css?files=/style/yui.reset.css,grid.css,main_${currentSite.theme!}.css" />
 
 	<@inplace.callbacks>
-		// Register a callback that is invoked when an element is updated,
-		// to update Shadowbox links contained in this element.
-		addRiotEditCallback(function(el) {
-			Shadowbox.clearCache();
-			Shadowbox.setup();
-		});
+		function onRiotToolbarClick(button) {
+			if (button == 'browse') {
+				Shadowbox.setup();
+			}
+			else {
+				Shadowbox.clearCache();
+				$$('.gallery-image').each(function(el) {delete el.shadowboxCacheKey});
+			}
+		} 
 	</@inplace.callbacks>
 
 	<#--

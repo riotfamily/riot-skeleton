@@ -3,9 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Riot Project Skeleton - ${currentPage.title}</title>
-
-	<link rel="stylesheet" type="text/css" href="${request.contextPath}/riot-utils/joined.css?files=/style/yui.reset.css,grid.css,main_${currentSite.theme!}.css" />
-
+	<@c.stylesheets [
+		"/style/yui.reset.css",
+		"/style/grid.css",
+		"/style/main_" + currentSite.theme + ".css"
+	] />
 	<@inplace.callbacks>
 		function onRiotToolbarClick(button) {
 			if (button == 'browse') {
@@ -24,9 +26,7 @@
 	  - you want to use either Txt2Img or Shadowbox. 
 	  -->
 
-	<#-- Txt2Img -->
-    <@riot.script src="prototype/prototype.js" />
-    <script src="${c.resource('/riot-utils/txt2img.js?locale=' + .locale)}" type="text/javascript"></script>
+    <@c.txt2img loadPrototype=true />
 
 	<#-- Shadowbox (see http://mjijackson.com/shadowbox) -->
 	<link href="${c.resource('/style/shadowbox/css/shadowbox.css')}" rel="stylesheet" type="text/css" media="screen" />

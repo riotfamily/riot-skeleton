@@ -47,25 +47,33 @@
 <div id="container" class="container">
 	<div id="header" class="header">
 		<div class="padding">
-			<@c.include header />
+			<@c.block "header">
+				<@c.include "/inc/topnav.html" />
+			</@c.block>
 		</div>
 	</div>
 	<div id="wrapper" class="wrapper">
 		<div id="content" class="content">
 			<div class="padding">
-				<@c.include content />
+				<@c.block "content">
+					<@c.include "/inc/content.html" />
+				</@c.block>
 			</div>
 		</div>
 	</div>
 	<div id="navigation" class="navigation">
 		<div class="padding">
-			<@c.include navigation />
+			<@c.block "navigation">
+				<@c.include "/inc/navigation.html" />
+			</@c.block>
 		</div>
 	</div>
-	<#if extra??>
+	<#if bodyClass! != "wide">
 		<div id="extra" class="extra">
 			<div class="padding">
-				<@c.include extra />
+				<@c.block "extra">
+					<@c.include "/inc/extra.html" />
+				</@c.block>
 			</div>
 		</div>
 	</#if>

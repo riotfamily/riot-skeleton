@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:override="http://www.riotfamily.org/schema/common/override"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:generic="http://www.riotfamily.org/schema/website/generic"
+	xmlns:txt2img="http://www.riotfamily.org/schema/website/txt2img"
 	xsi:schemaLocation="
-		http://www.springframework.org/schema/util
-		http://www.springframework.org/schema/util/spring-util-2.5.xsd
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-2.5.xsd
 		http://www.riotfamily.org/schema/common/override
-		http://www.riotfamily.org/schema/common/override-7.0.xsd">
-
-	<!-- 
-	  - Configuration for the website DispatcherServlet
-	  -
-	  - This files configures Spring-MVC infrastructure beans. Application
-	  - specific controllers are defined in website-controllers.xml which
-	  - is imported below: 
-	  -->
-	  
-	<import resource="website-controllers.xml" />
+		http://www.riotfamily.org/schema/common/override-7.0.xsd
+		http://www.riotfamily.org/schema/website/generic
+		http://www.riotfamily.org/schema/website/generic-7.0.xsd
+		http://www.riotfamily.org/schema/website/txt2img
+		http://www.riotfamily.org/schema/website/txt2img-7.0.xsd">
 
 	<!-- Use the locale defined by the Site being viewed -->
 	<bean id="localeResolver" class="org.riotfamily.pages.SiteLocaleResolver">
@@ -33,16 +29,10 @@
 		-->
 	</bean>
 	
-	<!-- First: Look for pages -->
-	<override:properties ref="pageHandlerMapping">
-		<property name="order" value="1" />
-		<property name="defaultPageHandler" ref="default" />
-	</override:properties>
-
-	<!-- Second: Look for bean-names starting with a slash -->
+	<!-- First: Look for bean-names starting with a slash -->
 	<bean class="org.riotfamily.pages.mapping.SiteBeanNameHandlerMapping">
 		<constructor-arg ref="pageResolver" />
-		<property name="order" value="2" />
+		<property name="order" value="1" />
 		<property name="stripServletMapping" value="false" />
 		<property name="interceptors">
 			<list>
@@ -51,16 +41,11 @@
 		</property>
 	</bean>
 	
-	<!-- Third: Look for static resources shadowed by the servlet mapping -->
+	<!-- Second: Look for static resources shadowed by the servlet mapping -->
 	<bean class="org.riotfamily.common.web.mapping.ResourceHandlerMapping">
 		<property name="fileTypeMap" ref="fileTypeMap" />
-		<property name="order" value="3" />
+		<property name="order" value="2" />
 	</bean>
-
-	<!-- Tell the FolderFilterPlugin where to find the site chooser -->
-	<override:properties ref="folderFilterPlugin" >		
-		<property name="siteChooserUrl" value="/choose-a-site.html" />
-	</override:properties> 
 
 	<!-- Setup request to view-name translation -->
 	<bean id="viewNameTranslator" class="org.riotfamily.pages.view.SiteRequestToViewNameTranslator">
@@ -72,5 +57,27 @@
 		<property name="useTemplateCache" value="false" />
 	</override:properties>
 	-->
+	
+	<!-- Tell the FolderFilterPlugin where to find the site chooser -->
+	<override:properties ref="folderFilterPlugin" >		
+		<property name="siteChooserUrl" value="/choose-a-site.html" />
+	</override:properties> 
+	
+	<!-- Controller that displays a list of available Sites -->
+	<bean name="/choose-a-site.html" class="org.riotfamily.pages.controller.SiteListController">
+		<constructor-arg ref="pageDao" />
+		<constructor-arg ref="pathCompleter" />
+		<property name="viewName" value="siteChooser.ftl" />
+	</bean>
+	
+	<generic:view name="/inc/*.html" />
+	
+	<!-- Text-to-image replacement rules -->
+	<txt2img:config>
+		<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />
+		<txt2img:rule selector="#topnav a" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" padding-top="3" />
+		<txt2img:rule selector=".footer .poweredby, .footer .riot" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" padding-right="5" />
+		<txt2img:rule selector="h3" font="/WEB-INF/fonts/slkscr.ttf" size="8" anti-alias="false" />
+	</txt2img:config>
 	
 </beans>

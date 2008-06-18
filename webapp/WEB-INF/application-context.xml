@@ -15,13 +15,6 @@
 		http://www.riotfamily.org/schema/components/component-7.0.xsd">
 
 	<import resource="riot-config/setup.xml" />
-	
-	<!-- Uncomment the following bean to use an AnnotationSessionFactory. -->
-	<!--
-	<override:bean ref="sessionFactory" merge="true" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="configLocation"><value>/WEB-INF/hibernate.cfg.xml</value></property>
-	</override:bean>
-	-->
 
 	<bean id="fileStore" class="org.riotfamily.media.store.DefaultFileStore">
 		<property name="uriPrefix"><value>/media</value></property>

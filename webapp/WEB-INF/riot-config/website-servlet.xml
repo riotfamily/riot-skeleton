@@ -67,7 +67,7 @@
 	<bean name="/choose-a-site.html" class="org.riotfamily.pages.controller.SiteListController">
 		<constructor-arg ref="pageDao" />
 		<constructor-arg ref="pathCompleter" />
-		<property name="viewName" value="siteChooser.ftl" />
+		<property name="viewName" value="site-chooser.ftl" />
 	</bean>
 	
 	<generic:view name="/inc/*.html" />

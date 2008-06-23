@@ -8,9 +8,9 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 		http://www.riotfamily.org/schema/pages/page
-		http://www.riotfamily.org/schema/pages/page-7.0.xsd
+		http://www.riotfamily.org/schema/pages/page-8.0.xsd
 		http://www.riotfamily.org/schema/media/setup
-		http://www.riotfamily.org/schema/media/setup-7.0.xsd ">
+		http://www.riotfamily.org/schema/media/setup-8.0.xsd">
 	
 	<p:setup>
 		<!-- Multi-site setup for two locales -->
@@ -28,17 +28,17 @@
 		
  		<p:page path-component="welcome" system="true" />
  		<p:page path-component="look-around" system="false" />
- 		<p:page path-component="start-playing" handler-name="teaser-list" system="false">
- 			<p:page path-component="sub-1" handler-name="wide">
+ 		<p:page path-component="start-playing" type="teaser-list" system="false">
+ 			<p:page path-component="sub-1" type="wide">
  				<p:prop key="title" value="Wide page" />
  			</p:page>
- 			<p:page path-component="sub-2" handler-name="wide" />
+ 			<p:page path-component="sub-2" type="wide" />
  		</p:page>
- 		<p:page handler-name="select-handler" folder="true" system="true">
-	 		<p:page handler-name="default" path-component="test" system="false" />
+ 		<p:page type="select-type" folder="true" system="true">
+	 		<p:page type="default" path-component="test" system="false" />
  		</p:page>
 	</p:setup>
 	
-	<p:handler-name parent="select-handler" child="default,wide" />
+	<p:page-type parent="select-type" child="default,wide" />
 
 </beans>

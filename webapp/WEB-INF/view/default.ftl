@@ -2,11 +2,11 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Riot Project Skeleton - ${currentPage.title}</title>
+	<title>Riot Project Skeleton - ${(urrentPage.title)!}</title>
 	<@c.stylesheets [
 		"/style/yui.reset.css",
 		"/style/grid.css",
-		"/style/main_" + currentSite.theme + ".css"
+		"/style/main_" + ((currentSite.theme)!"default") + ".css"
 	] />
 	<@inplace.callbacks>
 		function onRiotToolbarClick(button) {
@@ -43,37 +43,51 @@
 		});
     </script>
 </head>
-<body class="${bodyClass!"default"}">
+<body class="${template.vars.bodyClass!"default"}">
 <div id="container" class="container">
 	<div id="header" class="header">
 		<div class="padding">
-			<@c.block "header">
-				<@c.include "/inc/topnav.html" />
-			</@c.block>
+			<@template.block name="header">
+				<div id="topnav">
+					<#assign activePage = currentPage.ancestors[0] />
+					<#list activePage.siblings as page>
+						<#if page == activePage>
+							<@pages.link page=page class="active" />
+						<#else>
+							<@pages.link page=page />
+						</#if>
+						<#if page_has_next>|</#if>
+					</#list>
+				</div>
+			</@template.block>
 		</div>
 	</div>
 	<div id="wrapper" class="wrapper">
 		<div id="content" class="content">
 			<div class="padding">
-				<@c.block "content">
-					<@c.include "/inc/content.html" />
-				</@c.block>
+				<@template.block name="content">
+					<@pages.componentList key="content" 
+						initial=["headline","paragraph"] 
+						valid=["paragraph","headline","image","gallery","table"] />
+				</@template.block>
 			</div>
 		</div>
 	</div>
-	<div id="navigation" class="navigation">
-		<div class="padding">
-			<@c.block "navigation">
-				<@c.include "/inc/navigation.html" />
-			</@c.block>
+	<#if currentPage??>
+		<div id="navigation" class="navigation">
+			<div class="padding">
+				<@template.block name="navigation">
+					<@c.include "/inc/navigation.html" />
+				</@template.block>
+			</div>
 		</div>
-	</div>
-	<#if bodyClass! != "wide">
+	</#if>
+	<#if template.blockExists("extra")>
 		<div id="extra" class="extra">
 			<div class="padding">
-				<@c.block "extra">
-					<@c.include "/inc/extra.html" />
-				</@c.block>
+				<@template.block name="extra">
+					<@pages.componentList key="extra" valid=["extra-box"] />
+				</@template.block>
 			</div>
 		</div>
 	</#if>
@@ -84,7 +98,7 @@
 	</div>
 </div>
 
-<#if currentSite.googleAnalyticsCode??>
+<#if (currentSite.googleAnalyticsCode)??>
 	<script type="text/javascript">
 		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

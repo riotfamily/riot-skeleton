@@ -1,4 +1,4 @@
-<@c.template extends="/WEB-INF/view/default.ftl">
-	<#assign bodyClass = "wide" />
-	<@c.block name="extra" />
-</@c.template>
+<@template.extend file="default.ftl">
+	<@template.set bodyClass = "wide" />
+	<@template.block name="extra" />
+</@template.extend>

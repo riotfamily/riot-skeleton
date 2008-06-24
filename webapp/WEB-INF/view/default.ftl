@@ -82,7 +82,7 @@
 			</div>
 		</div>
 	</#if>
-	<#if template.blockExists("extra")>
+	<#if template.vars.bodyClass! != "wide">
 		<div id="extra" class="extra">
 			<div class="padding">
 				<@template.block name="extra">

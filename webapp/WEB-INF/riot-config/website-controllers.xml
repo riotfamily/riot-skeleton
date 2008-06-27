@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.riotfamily.org/schema/components/controller
-		http://www.riotfamily.org/schema/components/controller-6.5.xsd
+		http://www.riotfamily.org/schema/components/controller-7.0.xsd
 		http://www.riotfamily.org/schema/website/template
 		http://www.riotfamily.org/schema/website/template-7.0.xsd
 		http://www.riotfamily.org/schema/website/generic

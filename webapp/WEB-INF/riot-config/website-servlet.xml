@@ -33,16 +33,10 @@
 		-->
 	</bean>
 	
-	<!-- First: Look for pages -->
-	<override:properties ref="pageHandlerMapping">
-		<property name="order" value="1" />
-		<property name="defaultPageHandler" ref="default" />
-	</override:properties>
-
-	<!-- Second: Look for bean-names starting with a slash -->
+	<!-- First: Look for bean-names starting with a slash -->
 	<bean class="org.riotfamily.pages.mapping.SiteBeanNameHandlerMapping">
 		<constructor-arg ref="pageResolver" />
-		<property name="order" value="2" />
+		<property name="order" value="1" />
 		<property name="stripServletMapping" value="false" />
 		<property name="interceptors">
 			<list>
@@ -51,6 +45,12 @@
 		</property>
 	</bean>
 	
+	<!-- Second: Look for pages -->
+	<override:properties ref="pageHandlerMapping">
+		<property name="order" value="2" />
+		<property name="defaultPageHandler" ref="default" />
+	</override:properties>
+
 	<!-- Third: Look for static resources shadowed by the servlet mapping -->
 	<bean class="org.riotfamily.common.web.mapping.ResourceHandlerMapping">
 		<property name="fileTypeMap" ref="fileTypeMap" />

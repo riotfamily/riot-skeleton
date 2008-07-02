@@ -12,11 +12,11 @@
 		http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util-2.5.xsd
 		http://www.riotfamily.org/schema/common/override
-		http://www.riotfamily.org/schema/common/override-7.0.xsd
+		http://www.riotfamily.org/schema/common/override-8.0.xsd
 		http://www.riotfamily.org/schema/website/generic
-		http://www.riotfamily.org/schema/website/generic-7.0.xsd
+		http://www.riotfamily.org/schema/website/generic-8.0.xsd
 		http://www.riotfamily.org/schema/website/txt2img
-		http://www.riotfamily.org/schema/website/txt2img-7.0.xsd">
+		http://www.riotfamily.org/schema/website/txt2img-8.0.xsd">
 
 	<!-- Use the locale defined by the Site being viewed -->
 	<bean id="localeResolver" class="org.riotfamily.pages.SiteLocaleResolver">
@@ -73,11 +73,9 @@
 	<generic:view name="/inc/*.html" />
 	
 	<!-- Text-to-image replacement rules -->
-	<txt2img:config>
-		<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />
-		<txt2img:rule selector="#topnav a" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" padding-top="3" />
-		<txt2img:rule selector=".footer .poweredby, .footer .riot" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" padding-right="5" />
-		<txt2img:rule selector="h3" font="/WEB-INF/fonts/slkscr.ttf" size="8" anti-alias="false" />
-	</txt2img:config>
+	<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />
+	<txt2img:rule selector="#topnav a" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" padding-top="3" />
+	<txt2img:rule selector=".footer .poweredby, .footer .riot" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" padding-right="5" />
+	<txt2img:rule selector="h3" font="/WEB-INF/fonts/slkscr.ttf" size="8" anti-alias="false" />
 	
 </beans>

@@ -15,23 +15,5 @@
 		http://www.riotfamily.org/schema/components/component-7.0.xsd">
 
 	<import resource="riot-config/setup.xml" />
-
-	<bean id="fileStore" class="org.riotfamily.media.store.DefaultFileStore">
-		<property name="uriPrefix"><value>/media</value></property>
-		<property name="storagePath"><value>${riot.media.storagePath}</value></property>
-	</bean>
-	
-	<!-- 
-	<c:components>
-		<c:view-component id="table" view-name="components/table.ftl">
-			<c:defaults>
-				<entry key="showHeadings"><value type="java.lang.Boolean">true</value></entry>
-				<entry key="rows"><value type="java.math.BigDecimal">3</value></entry>
-				<entry key="cols"><value type="java.math.BigDecimal">3</value></entry>
-			</c:defaults>
-		</c:view-component>
-		<c:view-component id="group" view-name="components/group.ftl" dynamic="true" />
-	</c:components>
- 	-->
  
 </beans>

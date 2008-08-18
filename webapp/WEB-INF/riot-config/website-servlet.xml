@@ -29,10 +29,15 @@
 		-->
 	</bean>
 	
-	<!-- First: Look for bean-names starting with a slash -->
+	<!-- First: Look for pages -->
+	<override:properties ref="pageHandlerMapping">
+		<property name="order" value="1" />
+	</override:properties>
+	
+	<!-- Second: Look for bean-names starting with a slash -->
 	<bean class="org.riotfamily.pages.mapping.SiteBeanNameHandlerMapping">
 		<constructor-arg ref="pageResolver" />
-		<property name="order" value="1" />
+		<property name="order" value="2" />
 		<property name="stripServletMapping" value="false" />
 		<property name="interceptors">
 			<list>
@@ -41,7 +46,7 @@
 		</property>
 	</bean>
 	
-	<!-- Second: Look for static resources shadowed by the servlet mapping -->
+	<!-- Third: Look for static resources shadowed by the servlet mapping -->
 	<bean class="org.riotfamily.common.web.mapping.ResourceHandlerMapping">
 		<property name="fileTypeMap" ref="fileTypeMap" />
 		<property name="order" value="2" />
@@ -52,14 +57,7 @@
 		<property name="suffix" value=".ftl" />
 	</bean>
 
-	<!--
-	<override:properties ref="freemarkerConfig">
-		<property name="useTemplateCache" value="false" />
-	</override:properties>
-	-->
-	
-	<!-- Tell the FolderFilterPlugin where to find the site chooser -->
-	<override:properties ref="folderFilterPlugin" >		
+	<override:properties ref="siteNotFoundHandler" >		
 		<property name="siteChooserUrl" value="/choose-a-site.html" />
 	</override:properties> 
 	

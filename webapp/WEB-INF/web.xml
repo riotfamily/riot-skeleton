@@ -29,17 +29,7 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-	
-	<filter>
-		<filter-name>hibernate-session</filter-name>
-		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
-	</filter>
-	
-	<filter>
-		<filter-name>stamp-filter</filter-name>
-		<filter-class>org.riotfamily.common.web.filter.CacheStampedResourcesFilter</filter-class>
-	</filter>
-	
+		
 	<filter>
 		<filter-name>website-filter</filter-name>
 		<filter-class>org.riotfamily.common.web.filter.PluginFilter</filter-class>
@@ -54,18 +44,6 @@
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-	
-	<filter-mapping>
-		<filter-name>hibernate-session</filter-name>
-		<servlet-name>website</servlet-name>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-		
-	<filter-mapping>
-		<filter-name>stamp-filter</filter-name>
-		<url-pattern>/style/*</url-pattern>
 	</filter-mapping>
 	
 	<filter-mapping>

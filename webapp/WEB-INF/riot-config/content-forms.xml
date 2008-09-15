@@ -2,21 +2,18 @@
 <form-config
 	xmlns="http://www.riotfamily.org/schema/forms/form-config"
 	xmlns:riot="http://www.riotfamily.org/schema/riot/form-elements"
-	xmlns:page="http://www.riotfamily.org/schema/pages/form-elements"
 	xmlns:content="http://www.riotfamily.org/schema/components/form-elements"
 	xmlns:media="http://www.riotfamily.org/schema/media/form-elements"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.riotfamily.org/schema/forms/form-config
-		http://www.riotfamily.org/schema/forms/form-config-7.0.xsd
-		http://www.riotfamily.org/schema/pages/form-elements
-		http://www.riotfamily.org/schema/pages/form-elements-7.0.xsd
-		http://www.riotfamily.org/schema/media/form-elements
-		http://www.riotfamily.org/schema/media/form-elements-7.0.xsd
-		http://www.riotfamily.org/schema/components/form-elements
-		http://www.riotfamily.org/schema/components/form-elements-7.0.xsd
+		http://www.riotfamily.org/schema/forms/form-config-8.0.xsd
 		http://www.riotfamily.org/schema/riot/form-elements
-		http://www.riotfamily.org/schema/riot/form-elements-7.0.xsd">
+		http://www.riotfamily.org/schema/riot/form-elements-8.0.xsd
+		http://www.riotfamily.org/schema/media/form-elements
+		http://www.riotfamily.org/schema/media/form-elements-8.0.xsd
+		http://www.riotfamily.org/schema/components/form-elements
+		http://www.riotfamily.org/schema/components/form-elements-8.0.xsd">
 
 
 	<!-- =============== -->
@@ -103,8 +100,8 @@
 
 	<form id="table">
 		<checkbox bind="showHeadings" default="checked" />
-		<numberfield bind="rows" min-value="1" required="true" />
-		<numberfield bind="cols" min-value="1" required="true" />
+		<numberfield bind="rows" min-value="1" default="3" required="true" />
+		<numberfield bind="cols" min-value="1" default="3" required="true" />
 	</form>
 
 	<form id="image">

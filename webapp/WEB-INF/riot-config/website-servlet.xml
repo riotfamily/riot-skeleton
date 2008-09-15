@@ -29,15 +29,10 @@
 		-->
 	</bean>
 	
-	<!-- First: Look for pages -->
-	<override:properties ref="pageHandlerMapping">
-		<property name="order" value="1" />
-	</override:properties>
-	
-	<!-- Second: Look for bean-names starting with a slash -->
+	<!-- First: Look for bean-names starting with a slash -->
 	<bean class="org.riotfamily.pages.mapping.SiteBeanNameHandlerMapping">
 		<constructor-arg ref="pageResolver" />
-		<property name="order" value="2" />
+		<property name="order" value="1" />
 		<property name="stripServletMapping" value="false" />
 		<property name="interceptors">
 			<list>
@@ -46,29 +41,37 @@
 		</property>
 	</bean>
 	
+	<!-- Second: Look for a matching page -->
+	<override:properties ref="pageHandlerMapping">
+		<property name="order" value="2" />
+	</override:properties>
+	
 	<!-- Third: Look for static resources shadowed by the servlet mapping -->
 	<bean class="org.riotfamily.common.web.mapping.ResourceHandlerMapping">
 		<property name="fileTypeMap" ref="fileTypeMap" />
-		<property name="order" value="2" />
+		<property name="order" value="3" />
 	</bean>
 
-	<!-- Setup request to view-name translation -->
-	<bean id="viewNameTranslator" class="org.riotfamily.pages.view.SiteRequestToViewNameTranslator">
-		<property name="suffix" value=".ftl" />
-	</bean>
-
-	<override:properties ref="siteNotFoundHandler" >		
-		<property name="siteChooserUrl" value="/choose-a-site.html" />
+	<override:properties ref="noSiteHandlerMapping" >		
+		<property name="siteNotFoundHandler">
+			<bean class="org.riotfamily.common.web.controller.RedirectController">
+				<constructor-arg value="/choose-a-site" />
+				<property name="addContextPath" value="true" />
+			</bean>
+		</property>
 	</override:properties> 
 	
 	<!-- Controller that displays a list of available Sites -->
-	<bean name="/choose-a-site.html" class="org.riotfamily.pages.controller.SiteListController">
+	<bean name="/choose-a-site" class="org.riotfamily.pages.controller.SiteListController">
 		<constructor-arg ref="pageDao" />
 		<constructor-arg ref="pathCompleter" />
 		<property name="viewName" value="site-chooser.ftl" />
 	</bean>
 	
-	<generic:view name="/inc/*.html" />
+	<!-- Setup request to view-name translation -->
+	<bean id="viewNameTranslator" class="org.riotfamily.pages.view.SiteRequestToViewNameTranslator">
+		<property name="suffix" value=".ftl" />
+	</bean>
 	
 	<!-- Text-to-image replacement rules -->
 	<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />

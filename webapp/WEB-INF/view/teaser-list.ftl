@@ -1,6 +1,6 @@
 <@template.extend file="default.ftl">
 	<@template.block name="content">
-		<ul>
+		<ul class="teasers">
 			<#list currentPage.childPages as child>
 				<li>
 					<@pages.use page=child form="page-teaser">

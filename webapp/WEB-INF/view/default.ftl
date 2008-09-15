@@ -3,7 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Riot Project Skeleton - ${(urrentPage.title)!}</title>
+	<title>Riot Project Skeleton - ${(currentPage.title)!}</title>
 	<@c.stylesheets [
 		"/style/yui.reset.css",
 		"/style/grid.css",
@@ -79,7 +79,7 @@
 			<div id="navigation" class="navigation">
 				<div class="padding">
 					<@template.block name="navigation">
-						<@c.include "/inc/navigation.html" />
+						<#include "inc/navigation.ftl" />
 					</@template.block>
 				</div>
 			</div>

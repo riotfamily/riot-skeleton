@@ -12,13 +12,17 @@ strong {
 	font-weight: bold;
 }
 
-.content ul li {
-	list-style-image: none;
+.content li {
 	list-style-type: disc;
 	list-style-position: outside;
 	margin-left: 15px;
 	margin-bottom: 4px;
-}	
+}
+
+.country-chooser li,
+.content .teasers li {
+	list-style:none;
+}
 
 .padding {
 	margin: 0 10px;

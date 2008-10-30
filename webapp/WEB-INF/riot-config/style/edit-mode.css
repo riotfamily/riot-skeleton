@@ -16,3 +16,6 @@
 	background-position: 48px 35px;
 }
 
+#riot-toolbar #riot-toolbar-button-editImages {
+	display: none;
+}

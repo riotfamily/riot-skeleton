@@ -108,6 +108,7 @@
 	</form>
 
 	<form id="image">
+		<media:image-upload max-width="500" bind="image" required="true"/>
 		<selectbox bind="class" required="true"
 			label-message-key="image.class." append-label="true">
 			<option value="block" />

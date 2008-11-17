@@ -432,7 +432,7 @@
 	<target name="-configure-ivy" depends="-install-ivy" unless="ivy.configured">
 		<available file="ivysettings-local.xml" property="ivysettings" value="ivysettings-local.xml" />
 		<property name="ivysettings" value="ivysettings.xml" />
-		<ivy:settings id="ivy.instance" file="${ivysettings}" override="true" />
+		<ivy:settings id="ivy.instance" file="${ivysettings}" />
 		<property name="ivy.configured" value="true" />
 	</target>
 

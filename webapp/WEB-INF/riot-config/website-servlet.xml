@@ -13,8 +13,6 @@
 		http://www.springframework.org/schema/util/spring-util-2.5.xsd
 		http://www.riotfamily.org/schema/common/override
 		http://www.riotfamily.org/schema/common/override-8.0.xsd
-		http://www.riotfamily.org/schema/website/generic
-		http://www.riotfamily.org/schema/website/generic-8.0.xsd
 		http://www.riotfamily.org/schema/website/txt2img
 		http://www.riotfamily.org/schema/website/txt2img-8.0.xsd">
 

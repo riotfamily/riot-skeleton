@@ -79,7 +79,7 @@
 			<div id="navigation" class="navigation">
 				<div class="padding">
 					<@template.block name="navigation">
-						<#include "inc/navigation.ftl" />
+						<#include "navigation.ftl" />
 					</@template.block>
 				</div>
 			</div>

@@ -67,12 +67,7 @@
 		<constructor-arg ref="pathCompleter" />
 		<property name="viewName" value="site-chooser.ftl" />
 	</bean>
-	
-	<!-- Setup request to view-name translation -->
-	<bean id="viewNameTranslator" class="org.riotfamily.pages.view.SiteRequestToViewNameTranslator">
-		<property name="suffix" value=".ftl" />
-	</bean>
-	
+		
 	<!-- Text-to-image replacement rules -->
 	<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />
 	<txt2img:rule selector="#topnav a" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" padding-top="3" />

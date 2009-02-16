@@ -1,4 +1,4 @@
-<@template.extend file="wide.ftl">
+<@template.extend file="pages/wide.ftl">
 	<@template.block name="header" />
 	<@template.block name="content">
 		<h1><@c.message "choose.site">Choose your Site</@c.message></h1>

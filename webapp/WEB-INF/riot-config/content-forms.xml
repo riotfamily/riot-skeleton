@@ -118,7 +118,7 @@
 
 	<form id="gallery-image">
 		<textfield bind="title" />
-		<media:image-upload bind="image" crop="false" required="true" processor="galleryThumb" />
+		<media:image-upload bind="image" crop="false" required="true" />
 	</form>
 
 	<form id="paragraph">

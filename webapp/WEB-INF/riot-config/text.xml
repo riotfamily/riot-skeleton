@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:override="http://www.riotfamily.org/schema/common/override"
+	xmlns:generic="http://www.riotfamily.org/schema/website/generic"
+	xmlns:txt2img="http://www.riotfamily.org/schema/website/txt2img"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-2.5.xsd
+		http://www.riotfamily.org/schema/common/override
+		http://www.riotfamily.org/schema/common/override-8.0.xsd
+		http://www.riotfamily.org/schema/website/generic
+		http://www.riotfamily.org/schema/website/generic-8.0.xsd
+		http://www.riotfamily.org/schema/website/txt2img
+		http://www.riotfamily.org/schema/website/txt2img-8.0.xsd">
+	
+		<bean class="">
+		</bean>
+	
+	</beans>

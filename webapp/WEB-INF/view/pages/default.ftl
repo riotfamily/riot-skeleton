@@ -8,39 +8,9 @@
 		"/style/yui.reset.css",
 		"/style/grid.css",
 		"/style/main_" + ((currentSite.theme)!"default") + ".css",
-		"/style/shadowbox/css/shadowbox.css",
 		txt2img.styleSheet()
 	] />
 	
-	<@c.scripts srcs=[
-		"/style/prototype/prototype.js",
-		"/style/scriptaculous/effects.js",
-		"/style/shadowbox/js/adapter/shadowbox-prototype.js",
-		"/style/shadowbox/js/shadowbox.js"		
-	] />
-	
-	<@inplace.callbacks>
-		function onRiotToolbarClick(button) {
-			if (button == 'browse') {
-				Shadowbox.setup();
-			}
-			else {
-				Shadowbox.clearCache();
-				$$('.gallery-image').each(function(el) {delete el.shadowboxCacheKey});
-			}
-		} 
-	</@inplace.callbacks>
-
-	<#-- Shadowbox (see http://mjijackson.com/shadowbox) -->
-    <script type="text/javascript">
-		document.observe('dom:loaded', function() {
-			Shadowbox.init({
-				assetURL: '${request.contextPath}/style/shadowbox/',
-				fadeDuration: 0.15,
-				resizeDuration: 0.15
-			})
-		});
-    </script>
 </head>
 <body class="${template.vars.bodyClass!"default"} noscript">
 	<@c.removeNoscriptClass />
@@ -67,9 +37,9 @@
 				<div class="padding">
 					<@template.block name="content">
 						<@pages.use>
-							<@inplace.componentList key="content" 
+							<@inplace.componentList key="content"
 								initial=["headline","paragraph"] 
-								valid=["paragraph","headline","image","gallery","table"] />
+								valid=["paragraph","headline","image"] />
 						</@pages.use>		
 					</@template.block>
 				</div>
@@ -114,6 +84,7 @@
 		</script>
 	</#if>
 	
+	<@c.scripts srcs=["/style/prototype/prototype.js"] />
 	<@txt2img.init />
 	<@inplace.toolbar />
 </body>

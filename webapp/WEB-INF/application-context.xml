@@ -16,4 +16,22 @@
 
 	<import resource="riot-config/setup.xml" />
  
+ 	<override:properties ref="sessionFactory">
+ 		<property name="validate" value="true" />
+ 	</override:properties>
+ 	
+ 	<!-- 
+ 	<override:add ref="sessionFactory" property="packagesToScan" append="true">
+		<value>com.example.myproject.</value>
+	</override:add>
+	 -->
+	 
+	<bean class="org.riotfamily.example.petstore.PetListener">
+		<constructor-arg>
+			<bean class="org.riotfamily.common.image.ImageMagickThumbnailer">
+				<constructor-arg ref="imageMagick" />
+			</bean>
+		</constructor-arg>
+	</bean>
+	 
 </beans>

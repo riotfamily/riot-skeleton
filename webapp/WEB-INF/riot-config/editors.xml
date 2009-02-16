@@ -13,6 +13,10 @@
 	</tree>
 	-->
 
+	<list list-ref="pets">
+		<form form-ref="pet" />
+	</list>
+
 	<!-- Group site- and user-management under "System Preferences" -->
 	<group name="systemPreferences" icon="tools">
 		<ref editor="manageSites" />

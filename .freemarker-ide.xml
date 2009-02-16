@@ -2,6 +2,8 @@
 	<context-values>
 		<resource path="">
 			<value key="request" object-class="javax.servlet.http.HttpServletRequest"/>
+			<value key="currentPage" object-class="org.riotfamily.pages.view.PageFacade"/>
+			<value key="currentSite" object-class="org.riotfamily.pages.view.SiteFacade"/>
 		</resource>
 	</context-values>
 	<macro-library>

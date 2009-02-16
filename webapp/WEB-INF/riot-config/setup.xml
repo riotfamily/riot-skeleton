@@ -28,7 +28,7 @@
 		
  		<p:page path-component="welcome" system="true" />
  		<p:page path-component="look-around" system="false" />
- 		<p:page path-component="start-playing" type="teaser-list" system="false">
+ 		<p:page path-component="pets" type="petList" system="true">
  			<p:page path-component="sub-1" type="wide">
  				<p:prop key="title" value="Wide page" />
  			</p:page>

@@ -13,7 +13,7 @@
 	</tree>
 	-->
 
-	<list list-ref="pets">
+	<list list-ref="pets" icon="bird">
 		<form form-ref="pet" />
 	</list>
 

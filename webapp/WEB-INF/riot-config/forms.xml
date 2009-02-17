@@ -12,11 +12,9 @@
 		http://www.riotfamily.org/schema/media/form-elements
 		http://www.riotfamily.org/schema/media/form-elements-8.0.xsd">
 		
-		<package name="org.riotfamily.example.petstore">
-			<form id="pet" bean-class="Pet">
-				<textfield bind="name" />
-				<media:image-upload bind="image" />
-			</form>
-		</package>
+		<form id="pet" bean-class="org.riotfamily.example.petstore.Pet">
+			<textfield bind="name" />
+			<media:image-upload bind="image" />
+		</form>
 
 </form-config>

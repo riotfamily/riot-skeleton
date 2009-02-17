@@ -10,7 +10,7 @@
 		"/style/main_" + ((currentSite.theme)!"default") + ".css",
 		txt2img.styleSheet()
 	] />
-	
+	<@inplace.callbacks />
 </head>
 <body class="${template.vars.bodyClass!"default"} noscript">
 	<@c.removeNoscriptClass />

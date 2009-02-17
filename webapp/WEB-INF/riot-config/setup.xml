@@ -21,19 +21,19 @@
 			</p:site>
 		</p:site>
 		
-		<!-- Alternative Setup with just one Site  -->
+		<!-- Alternative Setup with just one Site -->
 		<!-- 
 		<p:site locale="en" name="Default" theme="green" />  
 		-->
 		
  		<p:page path-component="welcome" system="true" />
- 		<p:page path-component="look-around" system="false" />
- 		<p:page path-component="pets" type="petList" system="true">
- 			<p:page path-component="sub-1" type="wide">
+ 		<p:page path-component="look-around" type="teaser-list" system="false">
+ 			<p:page path-component="sub-1" type="wide" system="false">
  				<p:prop key="title" value="Wide page" />
  			</p:page>
- 			<p:page path-component="sub-2" type="wide" />
+ 			<p:page path-component="sub-2" type="wide" system="false" />
  		</p:page>
+ 		<p:page path-component="pets" type="pet-list" system="true" />
  		<p:page type="select-type" folder="true" system="true">
 	 		<p:page type="default" path-component="test" system="false" />
  		</p:page>

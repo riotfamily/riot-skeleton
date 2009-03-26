@@ -31,7 +31,6 @@
 	<bean class="org.riotfamily.pages.mapping.SiteBeanNameHandlerMapping">
 		<constructor-arg ref="pageResolver" />
 		<property name="order" value="1" />
-		<property name="stripServletMapping" value="false" />
 		<property name="interceptors">
 			<list>
 				<ref bean="riotInterceptors" />
@@ -62,7 +61,7 @@
 	<!-- Controller that displays a list of available Sites -->
 	<bean name="/choose-a-site" class="org.riotfamily.pages.controller.SiteListController">
 		<constructor-arg ref="pageDao" />
-		<constructor-arg ref="pathCompleter" />
+		<constructor-arg ref="pathConverter" />
 		<property name="viewName" value="site-chooser.ftl" />
 	</bean>
 		

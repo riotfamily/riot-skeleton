@@ -7,8 +7,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.riotfamily.common.hibernate.ActiveRecordSupport;
 import org.riotfamily.media.model.RiotImage;
-import org.riotfamily.riot.hibernate.domain.ActiveRecordSupport;
 import org.riotfamily.website.cache.TagCacheItems;
 
 @Entity

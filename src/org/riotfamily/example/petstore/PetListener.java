@@ -3,9 +3,9 @@ package org.riotfamily.example.petstore;
 import java.io.File;
 import java.io.IOException;
 
+import org.riotfamily.common.hibernate.EntityListener;
 import org.riotfamily.common.image.Thumbnailer;
 import org.riotfamily.media.model.RiotImage;
-import org.riotfamily.riot.hibernate.interceptor.EntityListener;
 
 public class PetListener implements EntityListener<Pet> {
 	

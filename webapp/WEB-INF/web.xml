@@ -74,7 +74,7 @@
 	<!-- DispatcherServlet for the Riot backoffice  -->
 	<servlet>
 		<servlet-name>riot</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.riotfamily.common.web.servlet.ReloadableDispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>

@@ -15,6 +15,7 @@
 			<column property="image.variants[thumbnail]" renderer="riotImageRenderer" />
 			<command id="edit" />
 			<command id="delete" />
+			<command class="org.riotfamily.example.petstore.PetCommand" />
 		</columns>
 		<command id="add" />
 	</list>

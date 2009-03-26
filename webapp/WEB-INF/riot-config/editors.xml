@@ -16,11 +16,5 @@
 	<list list-ref="pets" icon="bird">
 		<form form-ref="pet" />
 	</list>
-
-	<!-- Group site- and user-management under "System Preferences" -->
-	<group name="systemPreferences" icon="tools">
-		<ref editor="manageSites" />
-		<ref editor="riotUsers" />
-	</group>
 	
 </editor-config>

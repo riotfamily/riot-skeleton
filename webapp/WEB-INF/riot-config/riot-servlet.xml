@@ -80,12 +80,8 @@
 				<list>
 					<bean class="org.riotfamily.core.screen.list.command.EditCommand" />
 					<bean class="org.riotfamily.core.screen.list.command.DeleteCommand" />
-					<bean class="org.riotfamily.core.screen.list.command.SwapCommand">
-						<property name="swapWith" value="-1" />
-					</bean>
-					<bean class="org.riotfamily.core.screen.list.command.SwapCommand">
-						<property name="swapWith" value="1" />
-					</bean>
+					<bean class="org.riotfamily.core.screen.list.command.MoveUpCommand" />
+					<bean class="org.riotfamily.core.screen.list.command.MoveDownCommand" />
 					<bean class="org.riotfamily.core.screen.list.command.AddCommand" />
 				</list>
 			</property>

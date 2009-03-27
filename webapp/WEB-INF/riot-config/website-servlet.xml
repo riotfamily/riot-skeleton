@@ -60,7 +60,6 @@
 	
 	<!-- Controller that displays a list of available Sites -->
 	<bean name="/choose-a-site" class="org.riotfamily.pages.controller.SiteListController">
-		<constructor-arg ref="pageDao" />
 		<constructor-arg ref="pathConverter" />
 		<property name="viewName" value="site-chooser.ftl" />
 	</bean>

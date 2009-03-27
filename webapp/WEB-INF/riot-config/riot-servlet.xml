@@ -54,7 +54,7 @@
 	
 	<override:add ref="rootScreens">
 		<ref bean="sitemap" />	
-		<bean id="pets" class="org.riotfamily.core.screen.list.ListScreen">
+		<bean id="pets" class="org.riotfamily.core.screen.list.TreeListScreen">
 			<property name="dao">
 				<bean class="org.riotfamily.riot.hibernate.dao.HqlDao" autowire="constructor">
 					<property name="entityClass" value="org.riotfamily.example.petstore.Pet" />
@@ -78,9 +78,15 @@
 			</property>
 			<property name="commands">
 				<list>
-					<bean class="org.riotfamily.core.command.impl.EditCommand" />
-					<bean class="org.riotfamily.core.command.impl.DeleteCommand" />
-					<bean class="org.riotfamily.core.command.impl.AddCommand" />
+					<bean class="org.riotfamily.core.screen.list.command.EditCommand" />
+					<bean class="org.riotfamily.core.screen.list.command.DeleteCommand" />
+					<bean class="org.riotfamily.core.screen.list.command.SwapCommand">
+						<property name="swapWith" value="-1" />
+					</bean>
+					<bean class="org.riotfamily.core.screen.list.command.SwapCommand">
+						<property name="swapWith" value="1" />
+					</bean>
+					<bean class="org.riotfamily.core.screen.list.command.AddCommand" />
 				</list>
 			</property>
 			<property name="itemScreen">

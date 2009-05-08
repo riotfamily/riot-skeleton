@@ -31,7 +31,7 @@
 	</util:list>
 
 	<!-- 
-	<s:group id="start">
+	<s:group id="home">
 		<s:list id="pets">
 			<s:dao>
 				<bean class="HqlDao">
@@ -53,7 +53,7 @@
 	-->
 	
 	<override:add ref="rootScreens">
-		<ref bean="sitemap" />	
+		<ref bean="sitemaps" />	
 		<bean id="pets" class="org.riotfamily.core.screen.list.TreeListScreen">
 			<property name="dao">
 				<bean class="org.riotfamily.riot.hibernate.dao.HqlDao" autowire="constructor">
@@ -78,11 +78,11 @@
 			</property>
 			<property name="commands">
 				<list>
-					<bean class="org.riotfamily.core.screen.list.command.EditCommand" />
-					<bean class="org.riotfamily.core.screen.list.command.DeleteCommand" />
-					<bean class="org.riotfamily.core.screen.list.command.MoveUpCommand" />
-					<bean class="org.riotfamily.core.screen.list.command.MoveDownCommand" />
-					<bean class="org.riotfamily.core.screen.list.command.AddCommand" />
+					<bean class="org.riotfamily.core.screen.list.command.impl.EditCommand" />
+					<bean class="org.riotfamily.core.screen.list.command.impl.DeleteCommand" />
+					<bean class="org.riotfamily.core.screen.list.command.impl.MoveUpCommand" />
+					<bean class="org.riotfamily.core.screen.list.command.impl.MoveDownCommand" />
+					<bean class="org.riotfamily.core.screen.list.command.impl.AddCommand" />
 				</list>
 			</property>
 			<property name="itemScreen">

@@ -1,44 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:p="http://www.riotfamily.org/schema/pages/page"
 	xmlns:media="http://www.riotfamily.org/schema/media/setup"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-		http://www.riotfamily.org/schema/pages/page
-		http://www.riotfamily.org/schema/pages/page-8.0.xsd
 		http://www.riotfamily.org/schema/media/setup
 		http://www.riotfamily.org/schema/media/setup-8.0.xsd">
 	
-	<p:setup>
-		<!-- Multi-site setup for two locales -->
-		<p:site locale="en" prefix="/en" name="English">
-			<p:prop key="theme" value="green" />
-			<p:site locale="de_DE" prefix="/de" name="German">
-				<p:prop key="theme" value="red" />
-			</p:site>
-		</p:site>
-		
-		<!-- Alternative Setup with just one Site -->
-		<!-- 
-		<p:site locale="en" name="Default" theme="green" />  
-		-->
-		
- 		<p:page path-component="welcome" system="true" />
- 		<p:page path-component="look-around" type="teaser-list" system="false">
- 			<p:page path-component="sub-1" type="wide" system="false">
- 				<p:prop key="title" value="Wide page" />
- 			</p:page>
- 			<p:page path-component="sub-2" type="wide" system="false" />
- 		</p:page>
- 		<p:page path-component="pets" type="pet-list" system="true" />
- 		<p:page type="select-type" folder="true" system="true">
-	 		<p:page type="default" path-component="test" system="false" />
- 		</p:page>
-	</p:setup>
+	<bean class="org.riotfamily.pages.schema.SitemapSchema">
+		<property name="sytemPages">
+			<list>
+				<bean class="org.riotfamily.pages.schema.SystemPage">
+					<property name="systemId" value="foo" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 	
-	<p:page-type parent="select-type" child="default,wide" />
-
 </beans>

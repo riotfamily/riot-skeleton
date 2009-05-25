@@ -2,21 +2,25 @@
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:media="http://www.riotfamily.org/schema/media/setup"
+	xmlns:p="http://www.riotfamily.org/schema/pages/page"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.riotfamily.org/schema/pages/page
+		http://www.riotfamily.org/schema/pages/page-9.0.xsd
 		http://www.riotfamily.org/schema/media/setup
 		http://www.riotfamily.org/schema/media/setup-8.0.xsd">
 	
-	<bean class="org.riotfamily.pages.schema.SitemapSchema">
-		<property name="sytemPages">
-			<list>
-				<bean class="org.riotfamily.pages.schema.SystemPage">
-					<property name="systemId" value="foo" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-	
+	<p:schema>
+		<p:type name="t1" />
+		<p:type name="t2">
+			<p:type name="t3" />
+		</p:type>
+		<p:page system-id="foo">
+			<p:type ref="t2" />
+			<p:prop key="Title" value="Hello World" />
+		</p:page>
+	</p:schema>
+
 </beans>

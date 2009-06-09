@@ -32,9 +32,6 @@
 	<!-- Location of the different confiuration profiles -->
 	<property name="conf.dir" value="conf" />
 
-	<!-- Directory where the merged configuration files are created -->
-	<property name="build.conf.dir" value="${build.dir}/conf" />
-
 	<!-- Name of the jar file created by the jar target -->
 	<property name="jar.name" value="${ant.project.name}.jar" />
 
@@ -43,14 +40,6 @@
 
 	<!-- Location of the war file created by the war target -->
 	<property name="war.location" location="${build.dir}/${war.name}" />
-
-	<!-- Name of the schema file created by the export-schema target -->
-	<property name="schema.name" value="${ant.project.name}-${profile}.sql" />
-
-	<!-- Location of the hsqldb files -->
-	<property name="hsqldb.shared.dir" value="hsqldb" />
-	<property name="hsqldb.local.dir" value="${build.dir}/hsqldb" />
-	<property name="hsqldb.location" location="${hsqldb.local.dir}/${ant.project.name}" />
 
 	<property name="ivy.download" value="http://riotfamily.org/ivy/ivy-2.0.0-beta2.jar" />
 	<property name="ivy.jar.name" value="ivy2.jar" />
@@ -85,8 +74,6 @@
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${lib.dir}" />
 		<mkdir dir="${web.lib.dir}" />
-		<available property="hsqldb.local.available" file="${hsqldb.local.dir}" />
-		<available property="hsqldb.shared.available" file="${hsqldb.shared.dir}" />
 	</target>
 	
 	<!--
@@ -105,15 +92,6 @@
 	 -->
 	<target name="distclean" description="Cleans everything" depends="clean">
 		<delete dir="${lib.dir}" />
-	</target>
-
-	<!--
-	  - Configures the project by merging the selected configuration files.
-	 -->
-	<target name="configure" depends="init,-init-local-db" description="Configures the project">
-		<echo>Merging configuration. Profile: ${profile}</echo>
-		<merge-properties name="application" />
-		<merge-properties name="log4j" />
 	</target>
 
 	<!--
@@ -150,11 +128,11 @@
 	<!--
 	  - Copys the compiled classes (and merged properties) to WEB-INF/classes.
 	 -->
-	<target name="webapp" depends="configure,compile"
+	<target name="webapp" depends="resolve,compile"
 			description="Copys the compiled classes to WEB-INF/classes">
 		<copy todir="${web.dir}/WEB-INF/classes">
 			<fileset dir="${build.classes.dir}" />
-			<fileset dir="${build.conf.dir}" />
+			<fileset dir="${conf.dir}" />
 		</copy>
 	</target>
 
@@ -171,7 +149,7 @@
 	<!--
 	  - Creates a war file.
 	 -->
-	<target name="war" depends="configure,jar" description="Creates a WAR archive">
+	<target name="war" depends="resolve,jar" description="Creates a WAR archive">
 		<delete file="${war.location}" />
 		<war destfile="${war.location}" webxml="${web.dir}/WEB-INF/web.xml">
 			<fileset dir="${web.dir}">
@@ -182,15 +160,15 @@
 				<exclude name="media/**" />
 			</fileset>
 			<lib file="${build.dir}/${jar.name}" />
-			<classes dir="${build.conf.dir}" />
-				</war>
+			<classes dir="${conf.dir}" />
+		</war>
 	</target>
 
 	<!--
 	  - Deploys a war file.
 	 -->
 	<target name="deploy"
-		depends="-backup-config,war,-restore-config,-upload-war,-exec-deploy-command"
+		depends="war,-upload-war,-exec-deploy-command"
 		description="Deploys a WAR file to a remote server via SCP">
 	</target>
 
@@ -237,167 +215,6 @@
 			keyfile="${deploy.keyfile}" passphrase="${deploy.passphrase}"
 			command="${eval.deploy.command}" />
 	</target>
-
-	<!--
-	  - Macro to merge property files. Invoked by the configure target.
-	 -->
-	<macrodef name="merge-properties">
-		 <attribute name="name" />
-		 <sequential>
-			 <property file="${conf.dir}/${profile}/@{name}.properties" prefix="@{name}." />
-			 <property file="${conf.dir}/default/@{name}.properties" prefix="@{name}." />
-
-			 <mkdir dir="${build.conf.dir}" />
-			 <echoproperties destfile="${build.conf.dir}/@{name}.properties">
-				 <propertyset>
-					 <propertyref prefix="@{name}." />
-					 <mapper type="glob" from="@{name}.*" to="*" />
-				 </propertyset>
-			 </echoproperties>
-		 </sequential>
-	</macrodef>
-
-	<!--
-	  - Creates a backup of the current configuration (build.conf.dir).
-	  - Invoked by the deploy and schema-export targets in order to
-	  - backup/restore the local configuration.
-	 -->
-	<target name="-backup-config">
-		<delete dir="${build.dir}/conf.bak" />
-		<copy todir="${build.dir}/conf.bak">
-			<fileset dir="${build.conf.dir}" />
-		</copy>
-	</target>
-
-	<!--
-	  - Restores a previously backed-up configuration.
-	 -->
-	<target name="-restore-config">
-		<move todir="${build.conf.dir}">
-			<fileset dir="${build.dir}/conf.bak" />
-		</move>
-		<touch><!-- This is for Eclipse's autodeploy... -->
-			<fileset dir="${build.conf.dir}" />
-		</touch>
-	</target>
-
-	<!--
-	  - Sets the property ${dbconf} to either hsqldb, postgresql or mysql
-	  - depending on the selected JDBC driver class.
-	 -->
-	<target name="-set-dbconf-by-driver" depends="configure">
-		<condition property="dbconf" value="hsqldb">
-			<equals arg1="${application.jdbc.driver_class}" arg2="org.hsqldb.jdbcDriver" />
-		</condition>
-		<condition property="dbconf" value="postgresql">
-			<equals arg1="${application.jdbc.driver_class}" arg2="org.postgresql.Driver" />
-		</condition>
-		<condition property="dbconf" value="mysql">
-			<equals arg1="${application.jdbc.driver_class}" arg2="com.mysql.jdbc.Driver" />
-		</condition>
-		<fail unless="dbconf">
-			Unknown JDBC driver: ${application.jdbc.driver_class}
-		</fail>
-	</target>
-
-	<!--
-	  - Resolves the JDBC driver.
-	 -->
-	<target name="resolve-jdbc-driver" depends="-configure-ivy,-set-dbconf-by-driver">
-		<ivy:resolve showprogress="false" />
-		<condition property="conf.known">
-			<contains string="${ivy.resolved.configurations}" substring="${dbconf}" />
-		</condition>
-		<fail unless="conf.known">
-			Your ivy.xml file does not contain a configuration named '${dbconf}'
-		</fail>
-		<ivy:retrieve pattern="${web.lib.dir}/[artifact].[ext]" conf="${dbconf}" />
-	</target>
-
-	<!--
-	  - Exports the database schema as SQL file.
-	 -->
-	<target name="schema-export" depends="-backup-config,configure,compile"
-			description="Exports the DB schema as SQL file">
-
-		<taskdef name="hibernatetool"
-			classname="org.hibernate.tool.ant.HibernateToolTask"
-			classpathref="classpath" />
-
-		<mkdir dir="${build.dir}" />
-		<property file="${build.conf.dir}/application.properties" />
-		<echoproperties destfile="${build.dir}/hibernate.properties">
-			<propertyset>
-				<propertyref name="hibernate.dialect" />
-				<propertyref prefix="jdbc." />
-				<mapper type="glob" from="jdbc.*" to="hibernate.connection.*" />
-			</propertyset>
-		</echoproperties>
-
-		<hibernatetool destdir="${build.dir}">
-			<classpath>
-				<pathelement location="${build.classes.dir}" />
-				<pathelement location="${build.conf.dir}" />
-				<path refid="classpath" />
-			</classpath>
-
-			<!-- Uncomment the following to use Hibernate annotations -->
-			<!--
-			<annotationconfiguration
-					configurationfile="${web.dir}/WEB-INF/hibernate.cfg.xml"
-					propertyfile="${build.dir}/hibernate.properties">
-					<fileset id="mappings" dir="${basedir}">
-						<include name="${web.dir}/WEB-INF/hibernate-mappings/*.hbm.xml" />
-						<include name="${web.dir}/WEB-INF/lib/riot-*.jar" />
-					</fileset>
-				</annotationconfiguration>
-			-->
-
-			<configuration
-				propertyfile="${build.dir}/hibernate.properties">
-				<fileset id="mappings" dir="${basedir}">
-					<include name="${web.dir}/WEB-INF/hibernate-mappings/*.hbm.xml" />
-					<include name="${web.dir}/WEB-INF/lib/riot-*.jar" />
-				</fileset>
-			</configuration>
-
-			<hbm2ddl drop="false" create="true" export="false" update="false"
-					 outputfilename="${schema.name}" delimiter=";" format="true" />
-
-		</hibernatetool>
-		<antcall target="-restore-config" />
-	</target>
-
-	<!--
-	  - Copies the shared HSQLDB to the local directory unless it already exists.
-	 -->
-	<target name="-init-local-db" if="hsqldb.shared.available" unless="hsqldb.local.available">
-		<copy todir="${hsqldb.local.dir}">
-			<fileset dir="${hsqldb.shared.dir}" />
-		</copy>
-	</target>
-
-	<!--
-	  - Copies the shared HSQLDB to the local directory.
-	 -->
-	<target name="update-local-db" depends="init"
-			description="Copies the shared HSQLDB to the local directory">
-		<fail unless="hsqldb.shared.available" message="Shared HSQLDB does not exist." />
-		<copy todir="${hsqldb.local.dir}">
-			<fileset dir="${hsqldb.shared.dir}" />
-		</copy>				
-	</target>
-
-	<!--
-	  - Copies the local HSQLDB to the shared directory.
-	 -->
-	<target name="update-shared-db" depends="init"
-			description="Copies the local HSQLDB to the shared directory">
-		<fail unless="hsqldb.local.available" message="Local HSQLDB does not exist." />
-		<copy todir="${hsqldb.shared.dir}">
-			<fileset dir="${hsqldb.local.dir}" />
-		</copy>				
-	</target>
 	
 	<!--
 	  - Creates a dependency report as HTML file.
@@ -439,7 +256,7 @@
 	<!--
 	  - Invoked by skeleton.xml to perform initial setup.
 	 -->
-	<target name="setup" depends="resolve,resolve-jdbc-driver,webapp" />
+	<target name="setup" depends="resolve,webapp" />
 
 	<!--
 	  - Installs Ivy (if needed).

@@ -8,9 +8,6 @@
 		<conf name="standalone" />
 		<conf name="runtime" />
 		<conf name="src" />
-		<conf name="hsqldb" extends="runtime" />
-		<conf name="postgresql" extends="runtime" />
-		<conf name="mysql" extends="runtime" />
 	</configurations>    	
 	
 	<!--
@@ -22,11 +19,12 @@
 	    <dependency org="riotfamily" name="riot-newcore" rev="8.1+" conf="runtime->runtime;src->src" />
         <dependency org="riotfamily" name="riot-statistics" rev="8.1+" conf="runtime->runtime;src->src" />
         <dependency org="riotfamily" name="riot-dbmsgsrc" rev="8.1+" conf="runtime->runtime;src->src" />
-	    <dependency org="hibernate" name="hibernate-tools" rev="3.2.0.beta9a" conf="standalone->default" /> 
 	    <dependency org="sun" name="servlet-api" rev="2.4" conf="standalone->default" />
-	    <dependency org="hsqldb" name="hsqldb" rev="latest.release" conf="hsqldb->default" />
+	    <dependency org="hsqldb" name="hsqldb" rev="latest.release" conf="runtime->default" />
+	    <!-- 
 	    <dependency org="postgresql" name="jdbc3" rev="8.1-407" conf="postgresql->default" />
 	    <dependency org="mysql" name="mysql-connector-java" rev="5.0.5" conf="mysql->default" />
+	     -->
     </dependencies>
 
 </ivy-module>

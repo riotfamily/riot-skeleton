@@ -3,6 +3,7 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:override="http://www.riotfamily.org/schema/common/override"
+	xmlns:s="http://www.riotfamily.org/schema/core/screen"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/util
@@ -10,7 +11,9 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.riotfamily.org/schema/common/override
-		http://www.riotfamily.org/schema/common/override-8.0.xsd">
+		http://www.riotfamily.org/schema/common/override-8.0.xsd
+		http://www.riotfamily.org/schema/core/screen
+		http://www.riotfamily.org/schema/core/screen-9.0.xsd">
 	 
    	<!-- Custom color scheme -->
    	<override:put ref="cssProperties">
@@ -30,65 +33,34 @@
 		<value>red</value>
 	</util:list>
 
-	<!-- 
-	<s:group id="home">
-		<s:list id="pets">
-			<s:dao>
-				<bean class="HqlDao">
-				</bean>
-			</s:dao>
-			<s:columns>
-				<s:column property="id" />
-				<s:column property="image">
-					<ref bean="imageRenderer" />
-				</s:column>
-			</s:columns>
-			<s:commands>
-				<ref bean="editCommand" />
-				<ref bean="addCommand" />
-			</s:commands>
-			<s:form id="pet" />
-		</s:list>
-	</s:group>
-	-->
-	
 	<override:add ref="rootScreens">
-		<ref bean="sitemaps" />	
-		<bean id="pets" class="org.riotfamily.core.screen.list.TreeListScreen">
-			<property name="dao">
-				<bean class="org.riotfamily.riot.hibernate.dao.HqlDao" autowire="constructor">
-					<property name="entityClass" value="org.riotfamily.example.petstore.Pet" />
-				</bean>
-			</property>
-			<property name="columns">
-				<list>
-					<bean class="org.riotfamily.core.screen.list.ColumnConfig">
-						<property name="property" value="id" />
+		<ref bean="sitemaps" />
+			<s:list id="pets">
+				<s:dao>
+					<bean class="org.riotfamily.riot.hibernate.dao.HqlDao" autowire="constructor">
+						<property name="entityClass" value="org.riotfamily.example.petstore.Pet" />
 					</bean>
-					<bean class="org.riotfamily.core.screen.list.ColumnConfig">
-						<property name="property" value="name" />
-					</bean>
-					<!-- 
-					<bean class="org.riotfamily.core.screen.list.ColumnConfig">
-						<property name="property" value="image" />
-						<property name="renderer" ref="imageRenderer" />
-					</bean>
-					 -->
-				</list>
-			</property>
-			<property name="commands">
-				<list>
+				</s:dao>
+				<s:columns>
+					<s:column property="id" />
+					<s:column property="name" />
+				</s:columns>
+				<s:commands>
 					<bean class="org.riotfamily.core.screen.list.command.impl.EditCommand" />
 					<bean class="org.riotfamily.core.screen.list.command.impl.DeleteCommand" />
-					<bean class="org.riotfamily.core.screen.list.command.impl.MoveUpCommand" />
-					<bean class="org.riotfamily.core.screen.list.command.impl.MoveDownCommand" />
 					<bean class="org.riotfamily.core.screen.list.command.impl.AddCommand" />
-				</list>
-			</property>
-			<property name="itemScreen">
-				<bean id="pet" class="org.riotfamily.core.screen.form.FormScreen" autowire="constructor" />
-			</property>
-		</bean>
+				</s:commands>
+				<s:form id="pet" />
+				<s:screenlets>
+					<bean class="org.riotfamily.riot.hibernate.status.HqlStatusMonitor">
+						<constructor-arg ref="sessionFactory" />
+						<property name="icon" value="brick" />
+						<property name="linkedScreen" value="pets" />
+						<property name="hql" value="select count(*) from Pet" />
+						<property name="defaultMessage" value="There are currently {0} pets in the clinic." />
+					</bean>
+				</s:screenlets>
+			</s:list>
 	</override:add>
 	 
 </beans>

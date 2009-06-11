@@ -13,12 +13,11 @@
 		http://www.riotfamily.org/schema/media/setup-8.0.xsd">
 	
 	<p:schema>
-		<p:type name="t1" />
-		<p:type name="t2">
-			<p:type name="t3" />
+		<p:type name="default">
+			<p:type ref="default" />
 		</p:type>
-		<p:page system-id="foo">
-			<p:type ref="t2" />
+		<p:page system-id="home">
+			<p:type ref="default" />
 			<p:prop key="Title" value="Hello World" />
 		</p:page>
 	</p:schema>

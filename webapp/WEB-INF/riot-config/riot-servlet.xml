@@ -35,32 +35,32 @@
 
 	<override:add ref="rootScreens">
 		<ref bean="sitemaps" />
-			<s:list id="pets">
-				<s:dao>
-					<bean class="org.riotfamily.riot.hibernate.dao.HqlDao" autowire="constructor">
-						<property name="entityClass" value="org.riotfamily.example.petstore.Pet" />
-					</bean>
-				</s:dao>
-				<s:columns>
-					<s:column property="id" />
-					<s:column property="name" />
-				</s:columns>
-				<s:commands>
-					<bean class="org.riotfamily.core.screen.list.command.impl.EditCommand" />
-					<bean class="org.riotfamily.core.screen.list.command.impl.DeleteCommand" />
-					<bean class="org.riotfamily.core.screen.list.command.impl.AddCommand" />
-				</s:commands>
-				<s:form id="pet" />
-				<s:screenlets>
-					<bean class="org.riotfamily.riot.hibernate.status.HqlStatusMonitor">
-						<constructor-arg ref="sessionFactory" />
-						<property name="icon" value="brick" />
-						<property name="linkedScreen" value="pets" />
-						<property name="hql" value="select count(*) from Pet" />
-						<property name="defaultMessage" value="There are currently {0} pets in the clinic." />
-					</bean>
-				</s:screenlets>
-			</s:list>
+		<s:list id="pets">
+			<s:dao>
+				<bean class="org.riotfamily.riot.hibernate.dao.HqlDao" autowire="constructor">
+					<property name="entityClass" value="org.riotfamily.example.petstore.Pet" />
+				</bean>
+			</s:dao>
+			<s:columns>
+				<s:column property="id" />
+				<s:column property="name" />
+			</s:columns>
+			<s:commands>
+				<bean class="org.riotfamily.core.screen.list.command.impl.EditCommand" />
+				<bean class="org.riotfamily.core.screen.list.command.impl.DeleteCommand" />
+				<bean class="org.riotfamily.core.screen.list.command.impl.AddCommand" />
+			</s:commands>
+			<s:form id="pet" />
+			<s:screenlets>
+				<bean class="org.riotfamily.riot.hibernate.status.HqlStatusMonitor">
+					<constructor-arg ref="sessionFactory" />
+					<property name="icon" value="brick" />
+					<property name="linkedScreen" value="pets" />
+					<property name="hql" value="select count(*) from Pet" />
+					<property name="defaultMessage" value="There are currently {0} pets in the clinic." />
+				</bean>
+			</s:screenlets>
+		</s:list>
 	</override:add>
 	 
 </beans>

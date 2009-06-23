@@ -28,6 +28,11 @@
 
 	<!-- The default configuration profile -->
 	<property name="profile" value="${user.name}" />
+	
+	<!-- If this property is set a confirmation is required for uploads -->
+	<condition property="upload.needs.confirmation">
+		<equals arg1="live" arg2="${profile}"/>
+	</condition>
 
 	<!-- Location of the different confiuration profiles -->
 	<property name="conf.dir" value="conf" />
@@ -79,6 +84,13 @@
 	</patternset>
 
 	<!--
+	  - Adding the official supported "_svn" hack directories.
+	  - http://ant.apache.org/manual/CoreTasks/defaultexcludes.html
+	 --> 
+	<defaultexcludes add="**/_svn"/>
+	<defaultexcludes add="**/_svn/**"/>
+
+	<!--
 	  - Creates output directories.
 	 -->
 	<target name="init">
@@ -93,18 +105,35 @@
 	  - Cleans the output directories.
 	 -->
 	<target name="clean" description="Cleans the project">
-		<delete dir="${build.dir}" />
-		<delete dir="${lib.dir}">
-			<exclude name="${ivy.jar.name}" />
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${build.dir}" />
 		</delete>
-		<delete dir="${web.lib.dir}" />
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${lib.dir}">
+				<exclude name="${ivy.jar.name}" />
+			</fileset>
+		</delete>
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${web.lib.dir}" /> 
+		</delete>
+	</target>
+
+	<!--
+	  - Cleans the build.classes.dir for complete rebuilds
+	 -->
+	<target name="cleanclasses" description="Cleans the build.classes.dir">
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${build.classes.dir}" />
+		</delete>
 	</target>
 
 	<!--
 	  - Cleans everything.
 	 -->
 	<target name="distclean" description="Cleans everything" depends="clean">
-		<delete dir="${lib.dir}" />
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${lib.dir}" />
+		</delete>
 	</target>
 
 	<!--
@@ -131,13 +160,23 @@
 	</target>
 
 	<!--
+	 -->
+	<target name="retrieve-sources" depends="init,-configure-ivy"
+			description="Downloads the source code of the dependencies (if available)">
+		<echo message="Retrieving 3rd party sources" />
+		<ivy:resolve showprogress="false" />
+		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" conf="src" />
+	</target>
+
+	<!--
 	  - Compiles the java sources to ${build.classes.dir}. Additionally all
 	  - files matched by the jar.resource.patterns patternset are copied.
 	 -->
 	<target name="compile" depends="init"
 			description="Compiles the project's Java sources">
 		<mkdir dir="${build.classes.dir}" />
-		<javac srcdir="${src.dir}" destdir="${build.classes.dir}" deprecation="on" debug="on">
+		<javac srcdir="${src.dir}" destdir="${build.classes.dir}"
+			source="1.5" target="1.5" deprecation="on" debug="on">
 			<classpath refid="classpath" />
 		</javac>
 		<copy todir="${build.classes.dir}">
@@ -183,21 +222,34 @@
 			</fileset>
 			<lib file="${build.dir}/${jar.name}" />
 			<classes dir="${build.conf.dir}" />
-				</war>
+		</war>
 	</target>
 
 	<!--
 	  - Deploys a war file.
 	 -->
 	<target name="deploy"
-		depends="-backup-config,war,-restore-config,-upload-war,-exec-deploy-command"
+		depends="-backup-config,cleanclasses,war,-restore-config,-upload-war,-exec-deploy-command"
 		description="Deploys a WAR file to a remote server via SCP">
 	</target>
 
 	<!--
-	  - Uploads a WAR file via scp.
+	  - Confirm the upload if necessary
 	 -->
-	<target name="-upload-war">
+	<target name="-confirm-upload" if="upload.needs.confirmation">
+		<input addproperty="live.deploy.confirmed" validargs="Y,n" defaultvalue="n"
+			message="Are you sure you want to deploy to '${profile}'?"></input>
+
+		<condition property="do.abort">
+			<equals arg1="n" arg2="${live.deploy.confirmed}"/>
+		</condition>
+		<fail if="do.abort" message="The deploy to '${profile}' has not been confirmed." />		
+	</target>
+
+	<!--
+	  - Initializes the upload via scp.
+	 -->
+	<target name="-init-upload" depends="-confirm-upload">
 		<!-- Check if JSch is available -->
 		<available classname="com.jcraft.jsch.JSchException" property="jsch.available" value="true" />
 		<fail unless="jsch.available" message="The deploy target uses the scp and sshexec tasks which both depend on jsch.jar. See http://ant.apache.org/manual/install.html#librarydependencies for details." />
@@ -218,6 +270,12 @@
 		<tstamp>
 			<format property="deploy.timestamp" pattern="yyyyMMddHHmmss" />
 		</tstamp>
+	</target>	
+	
+	<!--
+	  - Uploads a WAR file via scp.
+	 -->
+	<target name="-upload-war" depends="-init-upload">
 		<property name="deploy.upload.name" value="${ant.project.name}-${deploy.timestamp}.war" />
 		<property name="deploy.upload.location" value="${deploy.upload.dir}/${deploy.upload.name}" />
 
@@ -263,7 +321,9 @@
 	  - backup/restore the local configuration.
 	 -->
 	<target name="-backup-config">
-		<delete dir="${build.dir}/conf.bak" />
+		<delete failonerror="false">
+			<fileset dir="${build.dir}/conf.bak" />
+		</delete>
 		<copy todir="${build.dir}/conf.bak">
 			<fileset dir="${build.conf.dir}" />
 		</copy>
@@ -344,13 +404,13 @@
 			<!-- Uncomment the following to use Hibernate annotations -->
 			<!--
 			<annotationconfiguration
-					configurationfile="${web.dir}/WEB-INF/hibernate.cfg.xml"
-					propertyfile="${build.dir}/hibernate.properties">
-					<fileset id="mappings" dir="${basedir}">
-						<include name="${web.dir}/WEB-INF/hibernate-mappings/*.hbm.xml" />
-						<include name="${web.dir}/WEB-INF/lib/riot-*.jar" />
-					</fileset>
-				</annotationconfiguration>
+				configurationfile="${web.dir}/WEB-INF/hibernate.cfg.xml"
+				propertyfile="${build.dir}/hibernate.properties">
+				<fileset id="mappings" dir="${basedir}">
+					<include name="${web.dir}/WEB-INF/hibernate-mappings/*.hbm.xml" />
+					<include name="${web.dir}/WEB-INF/lib/riot-*.jar" />
+				</fileset>
+			</annotationconfiguration>
 			-->
 
 			<configuration
@@ -456,7 +516,9 @@
 	<target name="-download-ivy" depends="-check-ivy" unless="ivy.available">
 		<echo>This project uses Ivy (http://ant.apache.org/ivy/) to manage dependencies.</echo>
 		<echo>Ivy was not found in the classpath the JAR file will now be downloaded ...</echo>
-		<delete dir="${lib.dir}" />
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${lib.dir}" />
+		</delete>
 		<mkdir dir="${lib.dir}" />
 		<get src="${ivy.download}" dest="${ivy.jar}" verbose="true" />
 		<property name="ivy.downloaded" value="true" />

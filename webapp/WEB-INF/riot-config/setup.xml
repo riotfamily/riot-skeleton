@@ -12,14 +12,26 @@
 		http://www.riotfamily.org/schema/media/setup
 		http://www.riotfamily.org/schema/media/setup-8.0.xsd">
 	
-	<p:schema>
+	<bean id="defaultPageController" class="org.riotfamily.website.view.CacheableViewController">
+		<property name="viewName" value="pages/default.ftl" />
+	</bean>
+	
+	<p:schema default-suffix=".html">
+	
 		<p:type name="default">
-			<p:type ref="default" />
+			<ref bean="defaultPageController" />
+			<p:type-ref name="default" />
 		</p:type>
-		<p:page system-id="home">
-			<p:type ref="default" />
-			<p:prop key="Title" value="Hello World" />
-		</p:page>
+		
+		<p:system-page name="home">
+			<ref bean="defaultPageController" />
+			<p:prop key="title" value="Hello World" />
+		</p:system-page>
+		
+		<p:system-page name="news" suffix=".html,.rss">
+			<ref bean="defaultPageController" />
+		</p:system-page>
+		
 	</p:schema>
 
 </beans>

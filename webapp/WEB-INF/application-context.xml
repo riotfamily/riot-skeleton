@@ -26,6 +26,7 @@
 	</override:add>
 	 -->
 	 
+	<!-- 
 	<bean class="org.riotfamily.example.petstore.PetListener">
 		<constructor-arg>
 			<bean class="org.riotfamily.common.image.ImageMagickThumbnailer">
@@ -33,5 +34,6 @@
 			</bean>
 		</constructor-arg>
 	</bean>
-	 
+	-->
+	
 </beans>

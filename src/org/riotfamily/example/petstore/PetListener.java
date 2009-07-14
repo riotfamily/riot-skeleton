@@ -3,11 +3,12 @@ package org.riotfamily.example.petstore;
 import java.io.File;
 import java.io.IOException;
 
-import org.riotfamily.common.hibernate.EntityListener;
+import org.hibernate.Session;
+import org.riotfamily.common.hibernate.TypedEntityListener;
 import org.riotfamily.common.image.Thumbnailer;
 import org.riotfamily.media.model.RiotImage;
 
-public class PetListener implements EntityListener<Pet> {
+public class PetListener extends TypedEntityListener<Pet> {
 	
 	private Thumbnailer thumbnailer;
 	
@@ -15,17 +16,14 @@ public class PetListener implements EntityListener<Pet> {
 		this.thumbnailer = thumbnailer;
 	}
 
-	public void onSave(Pet pet) throws IOException {
+	protected void entitySaved(Pet pet, Session session) throws IOException {
 		updateThumbnail(pet);
 	}
 	
-	public void onUpdate(Pet pet) throws IOException {
+	protected void entityUpdated(Pet old, Pet pet, Session session) throws IOException {
 		updateThumbnail(pet);
 	}
 	
-	public void onDelete(Pet pet) {
-	}
-
 	private void updateThumbnail(Pet pet) throws IOException {
 		RiotImage img = pet.getImage();
 		if (img != null) {

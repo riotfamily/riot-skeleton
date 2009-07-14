@@ -1,3 +1,7 @@
+<#--
+@icon text_align_left
+@name Absatz
+-->
 <#if clear?exists && clear>
 	<br clear="both" />
 </#if>

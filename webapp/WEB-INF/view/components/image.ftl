@@ -1,3 +1,7 @@
+<#--
+@icon picture
+@name Bild
+-->
 <#if caption?has_content>
     <div class="labeled-image<#if class?exists> image-${class}</#if>" style="width:${imageWidth}px<#if clear?if_exists>;clear:both</#if>">
         <@renderImage />

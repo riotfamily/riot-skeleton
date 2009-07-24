@@ -17,21 +17,30 @@
 	</bean>
 	
 	<p:schema default-suffix=".html">
-	
-		<p:type name="default">
+		<p:root-page>
 			<ref bean="defaultPageController" />
-			<p:type-ref name="default" />
-		</p:type>
+			
+			<p:type name="default">
+				<ref bean="defaultPageController" />
+				<p:type-ref name="default" />
+			</p:type>
+			
+			<p:system-page name="home">
+				<ref bean="defaultPageController" />
+				<!-- 
+				<p:prop key="title" value="Hello World" />
+				 -->
+			</p:system-page>
+			
+			<p:system-page name="news" suffix=".html,.rss">
+				<ref bean="defaultPageController" />
+			</p:system-page>
+			
+			<p:system-page name="test">
+				<ref bean="defaultPageController" />
+			</p:system-page>
 		
-		<p:system-page name="home">
-			<ref bean="defaultPageController" />
-			<p:prop key="title" value="Hello World" />
-		</p:system-page>
-		
-		<p:system-page name="news" suffix=".html,.rss">
-			<ref bean="defaultPageController" />
-		</p:system-page>
-		
+		</p:root-page>
 	</p:schema>
 
 </beans>

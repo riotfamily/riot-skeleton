@@ -62,6 +62,9 @@
 	<bean name="/choose-a-site" class="org.riotfamily.pages.controller.SiteListController">
 		<property name="viewName" value="site-chooser.ftl" />
 	</bean>
+	
+	<!-- Simple Twitter Client -->
+	<bean name="twitter" class="org.riotfamily.example.twitter.Twitter" />
 		
 	<!-- Text-to-image replacement rules -->
 	<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />

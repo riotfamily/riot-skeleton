@@ -25,6 +25,7 @@
 	    <!--
 	    <dependency org="mysql" name="mysql-connector-java" rev="5.0.5" conf="runtime->default" />
 	     -->
+	    <dependency org="apache" name="commons-httpclient" rev="3.0.1" conf="runtime->default" />
     </dependencies>
 
 </ivy-module>

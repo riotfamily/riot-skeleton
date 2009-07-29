@@ -125,4 +125,8 @@
 		<checkbox bind="clear" />
 	</form>
 	
+	<form id="twitter">
+		<textfield bind="id" />
+	</form>
+	
 </form-config>

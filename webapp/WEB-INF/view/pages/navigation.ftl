@@ -28,7 +28,7 @@
 		<ul>
 			<#list items as page>
 				<li>
-					<@pages.link page=page />
+					<@pages.link page />
 					<#if page == expandedPage>
 						<#-- The page is expanded - render the next level -->
                         <@menu path=path level=level+1 />

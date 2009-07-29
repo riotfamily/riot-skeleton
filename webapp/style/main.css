@@ -1,6 +1,13 @@
-<#-- The values for color1 and color2 are defined in css.ini -->
-<#assign color3 = color.brightness(color1, 90) />
-
+/* 
+    Main Stylesheet - Theme: ${theme} <#-- 
+    
+    This file is a FreeMarker template. You can access all CSS constants defined
+    in the css.ini file (located in the same directory), for example color1 and
+    color2.
+    
+    You may also use the org.riotfamily.website.css.ColorTool: -->
+    <#assign color3 = colorTool.brightness(color1, 90) />
+*/
 body {
 	background: #fff url(images/bg.png) repeat-x;
 	color: #323232;

@@ -18,7 +18,8 @@
 	
 	<p:schema default-suffix=".html">
 		<p:root-page>
-			<ref bean="defaultPageController" />
+		
+			<bean class="org.riotfamily.pages.controller.FolderController" />
 			
 			<p:type name="default">
 				<ref bean="defaultPageController" />

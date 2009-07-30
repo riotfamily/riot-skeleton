@@ -44,14 +44,14 @@
 	</override:properties>
 	
 	<!-- Third: Look for static resources shadowed by the servlet mapping -->
-	<bean class="org.riotfamily.common.web.mapping.ResourceHandlerMapping">
+	<bean class="org.riotfamily.website.mapping.ResourceHandlerMapping">
 		<property name="fileTypeMap" ref="fileTypeMap" />
 		<property name="order" value="3" />
 	</bean>
 
 	<override:properties ref="noSiteHandlerMapping" >		
 		<property name="siteNotFoundHandler">
-			<bean class="org.riotfamily.common.web.controller.RedirectController">
+			<bean class="org.riotfamily.website.controller.RedirectController">
 				<constructor-arg value="/choose-a-site" />
 				<property name="addContextPath" value="true" />
 			</bean>

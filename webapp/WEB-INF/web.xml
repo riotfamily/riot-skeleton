@@ -29,7 +29,12 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-		
+
+	<filter>
+		<filter-name>riot-filter</filter-name>
+		<filter-class>org.riotfamily.common.filter.PluginFilter</filter-class>
+	</filter>
+	
 	<filter>
 		<filter-name>website-filter</filter-name>
 		<filter-class>org.riotfamily.common.filter.PluginFilter</filter-class>
@@ -45,14 +50,21 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-	
+		
 	<filter-mapping>
-		<filter-name>website-filter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<filter-name>riot-filter</filter-name>
+		<servlet-name>riot</servlet-name>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 
+	<filter-mapping>
+		<filter-name>website-filter</filter-name>
+		<servlet-name>website</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	
 	<listener>
 		<listener-class>org.riotfamily.common.log4j.Log4jProfileConfigListener</listener-class>
 	</listener>

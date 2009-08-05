@@ -33,6 +33,12 @@
 		<value>red</value>
 	</util:list>
 
+	<util:list id="defaultCommands">
+		<bean class="org.riotfamily.core.screen.list.command.impl.EditCommand" />
+		<bean class="org.riotfamily.core.screen.list.command.impl.DeleteCommand" />
+		<bean class="org.riotfamily.core.screen.list.command.impl.AddCommand" />
+	</util:list>
+	
 	<override:add ref="rootScreens">
 		<ref bean="sitemaps" />
 		<s:list id="pets">
@@ -46,9 +52,7 @@
 				<s:column property="name" />
 			</s:columns>
 			<s:commands>
-				<bean class="org.riotfamily.core.screen.list.command.impl.EditCommand" />
-				<bean class="org.riotfamily.core.screen.list.command.impl.DeleteCommand" />
-				<bean class="org.riotfamily.core.screen.list.command.impl.AddCommand" />
+				<ref bean="defaultCommands" />
 			</s:commands>
 			<s:form id="pet" />
 			<s:screenlets>

@@ -17,11 +17,9 @@
 	</@template.block>
 	
 	<@template.block name="content">
-		<@pages.use>
-			<@inplace.componentList key="content"
-				initial=["headline","paragraph"] 
-				valid=["paragraph","headline","image"] />
-		</@pages.use>		
+		<@inplace.componentList key="content"
+			initial=["headline","paragraph"] 
+			valid=["paragraph","headline","image"] />
 	</@template.block>
 	
 	<@template.block name="navigation">
@@ -33,9 +31,7 @@
 	</@template.block>
 	
 	<@template.block name="extra">
-		<@pages.use>
-			<@inplace.componentList key="extra" valid=["extra-box","twitter"] />
-		</@pages.use>	
+		<@inplace.componentList key="extra" valid=["extra-box","twitter"] />
 	</@template.block>
 
 </@template.extend>

@@ -28,8 +28,7 @@
 	</bean>
 	
 	<!-- First: Look for bean-names starting with a slash -->
-	<bean class="org.riotfamily.pages.mapping.SiteBeanNameHandlerMapping">
-		<constructor-arg ref="pageResolver" />
+	<bean class="org.riotfamily.common.mapping.AdvancedBeanNameHandlerMapping">
 		<property name="order" value="1" />
 		<property name="interceptors">
 			<list>

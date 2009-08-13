@@ -1,6 +1,6 @@
 <#--
 @icon text_heading_1
-@name Überschrift
+@name Heading
 @defaults { headline: 'Lorem Ipsum' }
 -->
 <#if anchor?has_content><a name="${anchor}"></a></#if>

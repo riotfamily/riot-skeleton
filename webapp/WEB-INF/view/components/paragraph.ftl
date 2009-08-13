@@ -1,6 +1,6 @@
 <#--
 @icon text_align_left
-@name Absatz
+@name Paragraph
 -->
 <#if clear?exists && clear>
 	<br clear="both" />

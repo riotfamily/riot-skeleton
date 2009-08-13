@@ -117,7 +117,7 @@
 	</#if>
 	
 	<#-- 
-	   (1) Load prototype.js which is bundled with Riot. We need the prototype 
+	   (1) Load prototype.js which is bundled with Riot. We need the prototype.js 
 	   library here, because it is used by txt2img. If you don't use txt2img,
 	   you can safely remove this line. The Riot toolbar also uses prototype.js,
 	   but will automatically load it (in edit mode) if it hasn't been loaded
@@ -129,7 +129,12 @@
 	   (3) Finally, the @inplace.toolbar macro emits a script block that 
 	   displays the Riot toolbar.   
 	-->
-	<@riot.script src="prototype/prototype.js" />
+	<@c.scripts srcs=[
+		riot.resource("prototype/prototype.js"),
+		"/riot-utils/error.js",
+		"/style/js/project.js"] 
+	/>
+
 	<@txt2img.init />
 	<@inplace.toolbar />
 </body>

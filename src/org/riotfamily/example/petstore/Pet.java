@@ -7,14 +7,14 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.riotfamily.common.hibernate.ActiveRecordSupport;
+import org.riotfamily.common.hibernate.ActiveRecordBeanSupport;
 import org.riotfamily.media.model.RiotImage;
 import org.riotfamily.pages.model.Page;
 import org.riotfamily.website.cache.TagCacheItems;
 
 @Entity
 @TagCacheItems
-public class Pet extends ActiveRecordSupport {
+public class Pet extends ActiveRecordBeanSupport {
 
 	private String name;
 	

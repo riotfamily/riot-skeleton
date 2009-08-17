@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.riotfamily.org/schema/common/override
-		http://www.riotfamily.org/schema/common/override-8.0.xsd
+		http://www.riotfamily.org/schema/common/override-9.0.xsd
 		http://www.riotfamily.org/schema/core/screen
 		http://www.riotfamily.org/schema/core/screen-9.0.xsd">
 	 

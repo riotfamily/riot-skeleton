@@ -32,7 +32,7 @@ public class Pet extends ActiveRecordSupport {
 	}
 
 	@ManyToOne
-	@Cascade(CascadeType.SAVE_UPDATE)
+	@Cascade(CascadeType.ALL)
 	public RiotImage getImage() {
 		return image;
 	}

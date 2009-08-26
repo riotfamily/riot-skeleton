@@ -31,14 +31,14 @@
  			<p:page path-component="sub-1" type="wide" system="false">
  				<p:prop key="title" value="Wide page" />
  			</p:page>
- 			<p:page path-component="sub-2" type="wide" system="false" />
+ 			<p:page path-component="sub-2" type="default" system="false" />
  		</p:page>
  		<p:page path-component="pets" type="pet-list" system="true" />
- 		<p:page type="select-type" folder="true" system="true">
-	 		<p:page type="default" path-component="test" system="false" />
- 		</p:page>
 	</p:setup>
 	
-	<p:page-type parent="select-type" child="default,wide" />
+	<!--<p:page-type child="default,wide,teaser-list" />-->
+	<p:page-type parent="default" child="default,wide" />
+	<p:page-type parent="wide" child="default,wide" />
+	<p:page-type parent="teaser-list" child="default,wide" />
 
 </beans>

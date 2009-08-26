@@ -12,7 +12,7 @@
 		</dao>
 		<columns>
 			<column property="name" />
-			<column property="image.variants[thumbnail]" renderer="riotImageRenderer" />
+			<column property="image.variants[thumbnail]" renderer="riotImageRenderer" sortable="false" />
 			<command id="edit" />
 			<command id="delete" />
 		</columns>

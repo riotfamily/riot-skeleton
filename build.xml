@@ -133,8 +133,9 @@
 			description="Resolves the project's dependencies">
 		<echo message="Retrieving module dependencies" />
 		<ivy:resolve showprogress="false" />
-		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" log="quiet" conf="standalone,src" />
-		<ivy:retrieve pattern="${web.lib.dir}/[artifact].[ext]" conf="runtime" />
+		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" log="quiet" conf="standalone" type="jar" />
+		<ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" log="quiet" conf="runtime" type="source" />
+		<ivy:retrieve pattern="${web.lib.dir}/[artifact].[ext]" conf="runtime" type="jar" />
 	</target>
 
 	<!--

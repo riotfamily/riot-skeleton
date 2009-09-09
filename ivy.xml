@@ -7,7 +7,6 @@
 	<configurations>
 		<conf name="standalone" />
 		<conf name="runtime" />
-		<conf name="src" />
 	</configurations>    	
 	
 	<!--
@@ -15,10 +14,10 @@
 	  - See http://incubator.apache.org/ivy/doc/ivyfile/dependencies.html
 	  -->
     <dependencies>
-	    <dependency org="riotfamily" name="riot-pages" rev="9.0+" conf="runtime->runtime;src->src" />
-	    <dependency org="riotfamily" name="riot-core" rev="9.0+" conf="runtime->runtime;src->src" />
-        <dependency org="riotfamily" name="riot-statistics" rev="9.0+" conf="runtime->runtime;src->src" />
-        <dependency org="riotfamily" name="riot-dbmsgsrc" rev="9.0+" conf="runtime->runtime;src->src" />
+	    <dependency org="riotfamily" name="riot-pages" rev="9.0+" conf="runtime->runtime" />
+	    <dependency org="riotfamily" name="riot-core" rev="9.0+" conf="runtime->runtime" />
+        <dependency org="riotfamily" name="riot-statistics" rev="9.0+" conf="runtime->runtime" />
+        <dependency org="riotfamily" name="riot-dbmsgsrc" rev="9.0+" conf="runtime->runtime" />
 	    <dependency org="sun" name="servlet-api" rev="2.4" conf="standalone->default" />
 	    <dependency org="hsqldb" name="hsqldb" rev="latest.release" conf="runtime->default" />
 	    <dependency org="postgresql" name="jdbc3" rev="8.1-407" conf="runtime->default" />

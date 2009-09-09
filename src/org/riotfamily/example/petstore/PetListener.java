@@ -38,7 +38,7 @@ public class PetListener extends TypedEntityListener<Pet> {
 		File source = img.getFile();
 		File dest = thumb.createEmptyFile(img.getFileName());
 		thumbnailer.renderThumbnail(source, dest, 80, 80, true, null);
-		thumb.update();
+		thumb.updateMetaData();
 		return thumb;
 	}
 }

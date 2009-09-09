@@ -3,14 +3,16 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:override="http://www.riotfamily.org/schema/common/override"
-	xmlns:generic="http://www.riotfamily.org/schema/website/generic"
 	xmlns:txt2img="http://www.riotfamily.org/schema/website/txt2img"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 		http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util-2.5.xsd
+		http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
 		http://www.riotfamily.org/schema/common/override
 		http://www.riotfamily.org/schema/common/override-9.0.xsd
 		http://www.riotfamily.org/schema/website/txt2img

@@ -10,9 +10,7 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 		http://www.riotfamily.org/schema/common/override
-		http://www.riotfamily.org/schema/common/override-7.0.xsd
-		http://www.riotfamily.org/schema/components/component
-		http://www.riotfamily.org/schema/components/component-7.0.xsd">
+		http://www.riotfamily.org/schema/common/override-9.0.xsd">
 
 	<import resource="riot-config/setup.xml" />
  

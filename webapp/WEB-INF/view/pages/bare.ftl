@@ -90,6 +90,7 @@
 		<div id="footer" class="footer">
 			<div class="padding">
 				<span class="poweredby">Powered by</span><span class="riot">Riot</span>
+				${statics["java.lang.System"].currentTimeMillis()}
 			</div>
 		</div>
 	</div>

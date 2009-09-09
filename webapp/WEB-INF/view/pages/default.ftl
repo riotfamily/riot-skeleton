@@ -31,7 +31,7 @@
 	</@template.block>
 	
 	<@template.block name="extra">
-		<@inplace.componentList key="extra" valid=["extra-box","twitter"] />
+		<@inplace.componentList key="extra" valid=["extra-box","twitter", "clock"] />
 	</@template.block>
 
 </@template.extend>

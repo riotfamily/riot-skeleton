@@ -57,12 +57,20 @@
 				<property name="addContextPath" value="true" />
 			</bean>
 		</property>
-	</override:properties> 
-	
+	</override:properties>
+
+	<!-- 	
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<context:component-scan base-package="org.riotfamily.example" />
+	-->
+	 
 	<!-- Controller that displays a list of available Sites -->
 	<bean name="/choose-a-site" class="org.riotfamily.pages.controller.SiteListController">
 		<property name="viewName" value="site-chooser.ftl" />
 	</bean>
+	
+	<bean name="/clock" class="org.riotfamily.example.cache.ClockController" />
 	
 	<!-- Simple Twitter Client -->
 	<bean name="twitter" class="org.riotfamily.example.twitter.Twitter" />

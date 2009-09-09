@@ -2,3 +2,4 @@ build/
 lib/
 webapp/WEB-INF/classes/
 webapp/WEB-INF/lib/
+.DS_Store

@@ -3,35 +3,43 @@ package org.riotfamily.example.petstore;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.riotfamily.common.hibernate.ActiveRecordBeanSupport;
+import org.riotfamily.common.hibernate.ActiveRecord;
+import org.riotfamily.components.model.ContentEntity;
 import org.riotfamily.media.model.RiotImage;
-import org.riotfamily.pages.model.Page;
 import org.riotfamily.website.cache.TagCacheItems;
 
 @Entity
 @TagCacheItems
-public class Pet extends ActiveRecordBeanSupport {
+public class Pet extends ContentEntity {
 
+	private Long id;
+	
 	private String name;
 	
 	private RiotImage image;
 	
-	private Page page;
-	
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public static List<Pet> loadAll() {
-		return find("from Pet");
 	}
 
 	@ManyToOne
@@ -44,15 +52,12 @@ public class Pet extends ActiveRecordBeanSupport {
 		this.image = image;
 	}
 
-	@ManyToOne
-	public Page getPage() {
-		return page;
-	}
-
-	public void setPage(Page page) {
-		this.page = page;
+	public static List<Pet> loadAll() {
+		return find("from Pet");
 	}
 	
-	
+	public static Pet load(Long id) {
+		return ActiveRecord.load(Pet.class, id);
+	}
 	
 }

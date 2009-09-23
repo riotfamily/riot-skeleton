@@ -50,9 +50,12 @@
 			<s:columns>
 				<s:column property="id" />
 				<s:column property="name" />
+				<s:column property="published" />
 			</s:columns>
 			<s:commands>
 				<ref bean="defaultCommands" />
+				<bean class="org.riotfamily.components.riot.command.PublishCommand" />
+				<bean class="org.riotfamily.components.riot.command.UnpublishCommand" />
 			</s:commands>
 			<s:form id="pet" />
 			<s:screenlets>

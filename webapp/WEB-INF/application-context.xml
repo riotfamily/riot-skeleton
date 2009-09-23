@@ -20,7 +20,7 @@
  	
  	<!-- 
  	<override:add ref="sessionFactory" property="packagesToScan" append="true">
-		<value>com.example.myproject.</value>
+		<value>com.example.myproject</value>
 	</override:add>
 	 -->
 	 

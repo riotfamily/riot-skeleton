@@ -18,27 +18,44 @@
 	
 	<p:schema default-suffix=".html">
 		<p:root-page>
-		
-			<bean class="org.riotfamily.pages.controller.FolderController" />
+			<p:handler>
+				<bean class="org.riotfamily.pages.controller.FolderController" />
+			</p:handler>
 			
 			<p:type name="default">
-				<ref bean="defaultPageController" />
+				<p:handler>
+					<ref bean="defaultPageController" />
+				</p:handler>
 				<p:type-ref name="default" />
 			</p:type>
 			
 			<p:system-page name="home">
-				<ref bean="defaultPageController" />
+				<p:handler>
+					<ref bean="defaultPageController" />
+				</p:handler>
 				<!-- 
 				<p:prop key="title" value="Hello World" />
 				 -->
 			</p:system-page>
 			
 			<p:system-page name="news" suffix=".html,.rss">
-				<ref bean="defaultPageController" />
+				<p:handler>
+					<ref bean="defaultPageController" />
+				</p:handler>
 			</p:system-page>
 			
-			<p:system-page name="test">
-				<ref bean="defaultPageController" />
+			<p:system-page name="pets">
+				<p:handler>
+					<ref bean="defaultPageController" />
+				</p:handler>
+				<p:virtual-page name="pet">
+					<p:resolver>
+						<bean class="org.riotfamily.example.petstore.PetPageResolver" />
+					</p:resolver>
+					<p:handler>
+						<ref bean="defaultPageController" />
+					</p:handler>
+				</p:virtual-page>
 			</p:system-page>
 		
 		</p:root-page>

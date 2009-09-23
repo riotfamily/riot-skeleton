@@ -22,7 +22,7 @@
 		  - render the children of the selected page:
 		  -->
 		<#local expandedPage = path[level-1] />
-		<#local items=expandedPage.childPages />
+		<#local items=expandedPage.children />
 	</#if>
 	<#if items?has_content>
 		<ul>

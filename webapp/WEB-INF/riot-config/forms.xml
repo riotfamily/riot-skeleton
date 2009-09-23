@@ -15,7 +15,6 @@
 		<form id="pet" bean-class="org.riotfamily.example.petstore.Pet">
 			<textfield bind="name" />
 			<media:image-upload bind="image" />
-			<riot:chooser bind="page" root-id="sitemap" target-id="sitemap" />
 		</form>
 
 </form-config>

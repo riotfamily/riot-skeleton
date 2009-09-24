@@ -5,7 +5,7 @@
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:override="http://www.riotfamily.org/schema/common/override"
-	xmlns:txt2img="http://www.riotfamily.org/schema/website/txt2img"
+	xmlns:txt2img="http://www.riotfamily.org/schema/common/txt2img"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
@@ -15,8 +15,8 @@
         http://www.springframework.org/schema/context/spring-context-2.5.xsd
 		http://www.riotfamily.org/schema/common/override
 		http://www.riotfamily.org/schema/common/override-9.0.xsd
-		http://www.riotfamily.org/schema/website/txt2img
-		http://www.riotfamily.org/schema/website/txt2img-9.0.xsd">
+		http://www.riotfamily.org/schema/common/txt2img
+		http://www.riotfamily.org/schema/common/txt2img-9.0.xsd">
 
 	<!-- Use the locale defined by the Site being viewed -->
 	<bean id="localeResolver" class="org.riotfamily.pages.SiteLocaleResolver">
@@ -45,7 +45,7 @@
 	</override:properties>
 	
 	<!-- Fourth: Look for static resources shadowed by the servlet mapping -->
-	<bean class="org.riotfamily.website.mapping.ResourceHandlerMapping">
+	<bean class="org.riotfamily.common.web.mvc.mapping.ResourceHandlerMapping">
 		<property name="fileTypeMap" ref="fileTypeMap" />
 		<property name="order" value="4" />
 	</bean>

@@ -43,7 +43,7 @@
 		<ref bean="sitemaps" />
 		<s:list id="pets">
 			<s:dao>
-				<bean class="org.riotfamily.riot.hibernate.dao.HqlDao" autowire="constructor">
+				<bean class="org.riotfamily.core.dao.hibernate.HqlDao" autowire="constructor">
 					<property name="entityClass" value="org.riotfamily.example.petstore.Pet" />
 				</bean>
 			</s:dao>
@@ -59,7 +59,7 @@
 			</s:commands>
 			<s:form id="pet" />
 			<s:screenlets>
-				<bean class="org.riotfamily.riot.hibernate.status.HqlStatusMonitor">
+				<bean class="org.riotfamily.core.status.HqlStatusMonitor">
 					<constructor-arg ref="sessionFactory" />
 					<property name="icon" value="brick" />
 					<property name="linkedScreen" value="pets" />

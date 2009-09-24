@@ -11,9 +11,9 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.riotfamily.common.hibernate.ActiveRecord;
+import org.riotfamily.common.web.cache.TagCacheItems;
 import org.riotfamily.components.model.ContentEntity;
 import org.riotfamily.media.model.RiotImage;
-import org.riotfamily.website.cache.TagCacheItems;
 
 @Entity
 @TagCacheItems

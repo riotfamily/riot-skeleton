@@ -17,7 +17,7 @@
 	  - See http://incubator.apache.org/ivy/doc/ivyfile/dependencies.html
 	  -->
     <dependencies>
-	    <dependency org="riotfamily" name="riot-pages" rev="9.0+" conf="runtime->runtime" />
+	    <dependency org="riotfamily" name="riot-content" rev="9.0+" conf="runtime->runtime" />
 	    <dependency org="riotfamily" name="riot-core" rev="9.0+" conf="runtime->runtime" />
         <dependency org="riotfamily" name="riot-statistics" rev="9.0+" conf="runtime->runtime" />
         <dependency org="riotfamily" name="riot-dbmsgsrc" rev="9.0+" conf="runtime->runtime" />
@@ -28,6 +28,8 @@
 	    <dependency org="mysql" name="mysql-connector-java" rev="5.0.5" conf="runtime->default" />
 	     -->
 	    <dependency org="apache" name="commons-httpclient" rev="3.0.1" conf="runtime->default" />
+	    <dependency org="slf4j" name="slf4j" rev="1.5.8" conf="runtime->log4j" />
+	    <exclude org="apache" module="commons-logging" />
     </dependencies>
 
 </ivy-module>

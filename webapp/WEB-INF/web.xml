@@ -15,7 +15,7 @@
 	<!-- Servlet filter to use UTF-8 for request and responses -->
 	<filter>
 		<filter-name>encoding-filter</filter-name>
-		<filter-class>org.riotfamily.common.filter.CharacterEncodingFilter</filter-class>
+		<filter-class>org.riotfamily.common.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>utf-8</param-value>
@@ -32,12 +32,12 @@
 
 	<filter>
 		<filter-name>riot-filter</filter-name>
-		<filter-class>org.riotfamily.common.filter.PluginFilter</filter-class>
+		<filter-class>org.riotfamily.common.web.filter.PluginFilter</filter-class>
 	</filter>
 	
 	<filter>
 		<filter-name>website-filter</filter-name>
-		<filter-class>org.riotfamily.common.filter.PluginFilter</filter-class>
+		<filter-class>org.riotfamily.common.web.filter.PluginFilter</filter-class>
 		<init-param>
 			<param-name>exclude</param-name>
 			<param-value>/riot/**</param-value>
@@ -76,7 +76,7 @@
 	<!-- DispatcherServlet for the website  -->
 	<servlet>
 		<servlet-name>website</servlet-name>
-		<servlet-class>org.riotfamily.common.servlet.ReloadableDispatcherServlet</servlet-class>
+		<servlet-class>org.riotfamily.common.web.mvc.servlet.ReloadableDispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
@@ -90,7 +90,7 @@
 	<!-- DispatcherServlet for the Riot backoffice  -->
 	<servlet>
 		<servlet-name>riot</servlet-name>
-		<servlet-class>org.riotfamily.common.servlet.ReloadableDispatcherServlet</servlet-class>
+		<servlet-class>org.riotfamily.common.web.mvc.servlet.ReloadableDispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>

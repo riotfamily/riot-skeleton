@@ -12,7 +12,7 @@
 		http://www.riotfamily.org/schema/media/setup
 		http://www.riotfamily.org/schema/media/setup-9.0.xsd">
 	
-	<bean id="defaultPageController" class="org.riotfamily.website.controller.CacheableViewController">
+	<bean id="defaultPageController" class="org.riotfamily.common.web.controller.CacheableViewController">
 		<property name="viewName" value="pages/default.ftl" />
 	</bean>
 	

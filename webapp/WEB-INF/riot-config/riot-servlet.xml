@@ -15,18 +15,6 @@
 		http://www.riotfamily.org/schema/core/screen
 		http://www.riotfamily.org/schema/core/screen-9.0.xsd">
 	 
-   	<!-- Custom color scheme -->
-   	<override:put ref="cssProperties">
-		<entry key="highlight" value="#cb0038" />
-	</override:put>
-
-	<bean id="galleryThumb" class="org.riotfamily.media.processing.ThumbnailCreator">
-		<constructor-arg ref="imageMagick" />
-		<property name="variant" value="thumb" />
-		<property name="width" value="110" />
-		<property name="height" value="90" />
-	</bean>
-
 	<!-- Themes used for the sites -->
 	<util:list id="themes">
 		<value>green</value>

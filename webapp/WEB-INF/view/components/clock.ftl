@@ -2,4 +2,4 @@
 @name Current Time
 @icon clock
 -->
-(@include /clock)
+${c.handle("clock")}

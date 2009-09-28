@@ -2,10 +2,12 @@ package org.riotfamily.example.cache;
 
 import java.io.Writer;
 
+import org.riotfamily.common.web.cache.annotation.Cache;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+@Controller("clock")
+@Cache(ttl="30s")
 public class ClockController {
 
 	@RequestMapping("/clock")

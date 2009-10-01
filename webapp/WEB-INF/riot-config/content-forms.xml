@@ -23,38 +23,19 @@
 	<!-- 
 	  - Form elements that are added to all page forms in the Riot backoffice.
 	  -->
-	<form id="all-pages">
+	<form id="page">
 		<textfield bind="title" /> 
 	</form>
-	
-	<!-- 
-	  - Form elements that are added to all page forms of master-pages, i.e.
-	  - pages in sites that don't have a master-site.
-	  -->
-	<!-- 
-	<form id="all-master-pages">
-	</form>
-	-->
 	
 	<!-- 
 	  - Form elements that are added to all page forms with the 
 	  - handler-name "teaser-list".
 	 -->
-	<form id="teaser-list-page">
+	<form id="pets-page">
 		<textfield bind="teaser-title" />
 		<richtext bind="teaser-text" />
 	</form>
 	
-	<!-- 
-	  - Form elements that are added to all master-page forms with the 
-	  - handler-name "foo".
-	 -->
-	<!--
-	<form id="master-foo-page">
-	</form>
-	-->
-
-
 	<!-- =============== -->
 	<!-- SITE PROPERTIES -->
 	<!-- =============== -->
@@ -63,32 +44,13 @@
 	  - Form elements that are added to all "Site Properties" forms in the
 	  - Riot backoffice.
 	  -->
-	<form id="all-sites">
+	<form id="site">
 		<selectbox bind="theme">
 			<option value="red" />
 			<option value="green" />
 		</selectbox>
 		<textfield bind="googleAnalyticsCode" />
 	</form>
-	 
-	<!-- 
-	  - Form elements that are added to the "Site Properties" forms of all
-	  - master-sites, i.e. sites that don't have a master-site themselves.
-	  -->
-	<!--
-	<form id="master-sites">
-	</form>
- 	-->
-
-
-	<!-- =========================== -->
-	<!-- FRONTOFFICE PAGE PROPERTIES -->
-	<!-- =========================== -->
-	
-	<form id="page-teaser">
-		<textfield bind="teaser-title" />
-	</form>
-	
  
 	<!-- ==================== -->
 	<!-- COMPONENT PROPERTIES -->

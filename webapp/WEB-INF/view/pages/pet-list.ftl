@@ -4,7 +4,9 @@
 		<#if pets?has_content>
 			<ul>
 				<#list pets as pet>
-					<li>${pet.name}</li>
+					<li>
+						<@pages.link pages.resolve("pet", pet) />
+					</li>
 				</#list>
 			</ul>
 		<#else>

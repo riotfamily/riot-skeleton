@@ -16,7 +16,7 @@
 		<property name="viewName" value="pages/default.ftl" />
 	</bean>
 	
-	<p:schema default-suffix=".html">
+	<p:schema name="default" default-suffix=".html">
 		<p:root-page>
 			<p:handler>
 				<bean class="org.riotfamily.pages.controller.FolderController" />
@@ -46,7 +46,9 @@
 			
 			<p:system-page name="pets">
 				<p:handler>
-					<ref bean="defaultPageController" />
+					<bean class="org.riotfamily.common.web.controller.CacheableViewController">
+						<property name="viewName" value="pages/pet-list.ftl" />
+					</bean>
 				</p:handler>
 				<p:virtual-page name="pet">
 					<p:resolver>

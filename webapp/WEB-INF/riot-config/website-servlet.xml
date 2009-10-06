@@ -61,9 +61,9 @@
 	<bean name="twitter" class="org.riotfamily.example.twitter.Twitter" />
 		
 	<!-- Text-to-image replacement rules -->
-	<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" resample="true" />
-	<txt2img:rule selector="#topnav a" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" />
-	<txt2img:rule selector=".footer .poweredby, .footer .riot" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" resample="true" padding-right="5" />
+	<txt2img:rule selector="h1.resample" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" />
+	<txt2img:rule selector="#topnav a" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" />
+	<txt2img:rule selector=".footer .poweredby, .footer .riot" size="16" font="/WEB-INF/fonts/AUdimat-Bold.ttf" padding-right="5" />
 	<txt2img:rule selector="h3" font="/WEB-INF/fonts/slkscr.ttf" size="8" anti-alias="false" />
 	
 </beans>

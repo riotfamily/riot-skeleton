@@ -5,6 +5,11 @@
 	background-image: url(images/checkerboard_dark.gif);
 	background-repeat: repeat;
 	background-position: 0 0;
+	color: #fff;
+}
+
+.riot-noimage a {
+	color: #fff;
 }
 
 .gallery .riot-insert-button {

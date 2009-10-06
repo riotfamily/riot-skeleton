@@ -19,7 +19,7 @@
 	<@template.block name="content">
 		<@inplace.componentList key="content"
 			initial=["headline","paragraph"] 
-			valid=["paragraph","headline","image"] />
+			valid=["paragraph","headline","image","gallery/gallery"] />
 	</@template.block>
 	
 	<@template.block name="navigation">

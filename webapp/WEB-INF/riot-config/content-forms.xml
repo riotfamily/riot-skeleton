@@ -78,7 +78,7 @@
 		<textarea bind="caption" />
 	</form>
 
-	<form id="gallery-image">
+	<form id="gallery/image">
 		<textfield bind="title" />
 		<media:image-upload bind="image" crop="false" required="true" />
 	</form>

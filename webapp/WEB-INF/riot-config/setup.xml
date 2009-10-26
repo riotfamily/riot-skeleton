@@ -2,13 +2,13 @@
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:media="http://www.riotfamily.org/schema/media/setup"
-	xmlns:p="http://www.riotfamily.org/schema/pages/page"
+	xmlns:p="http://www.riotfamily.org/schema/content/page"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-		http://www.riotfamily.org/schema/pages/page
-		http://www.riotfamily.org/schema/pages/page-9.0.xsd
+		http://www.riotfamily.org/schema/content/page
+		http://www.riotfamily.org/schema/content/page-9.0.xsd
 		http://www.riotfamily.org/schema/media/setup
 		http://www.riotfamily.org/schema/media/setup-9.0.xsd">
 	

@@ -20,7 +20,6 @@
 
 	<!-- Use the locale defined by the Site being viewed -->
 	<bean id="localeResolver" class="org.riotfamily.pages.SiteLocaleResolver">
-		<constructor-arg ref="pageResolver" />
 		<!-- You can also set a fallback resolver if the main resolver can't resolve the locale -->
 		<!--
 		<property name="fallbackResolver">
@@ -51,17 +50,12 @@
 	</bean>
 
 	<context:component-scan base-package="org.riotfamily.example" />
-	 
-	<!-- Controller that displays a list of available Sites -->
-	<bean name="/choose-a-site" class="org.riotfamily.pages.controller.SiteListController">
-		<property name="viewName" value="site-chooser.ftl" />
-	</bean>
-	 
+ 	 
 	<!-- Simple Twitter Client -->
 	<bean name="twitter" class="org.riotfamily.example.twitter.Twitter" />
 		
 	<!-- Text-to-image replacement rules -->
-	<txt2img:rule selector="h1.resample" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" />
+	<txt2img:rule selector="h1" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="30" />
 	<txt2img:rule selector="#topnav a" font="/WEB-INF/fonts/AUdimat-Bold.ttf" size="16" />
 	<txt2img:rule selector=".footer .poweredby, .footer .riot" size="16" font="/WEB-INF/fonts/AUdimat-Bold.ttf" padding-right="5" />
 	<txt2img:rule selector="h3" font="/WEB-INF/fonts/slkscr.ttf" size="8" anti-alias="false" />

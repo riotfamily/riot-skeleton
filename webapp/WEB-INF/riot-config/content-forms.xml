@@ -2,7 +2,7 @@
 <form-config
 	xmlns="http://www.riotfamily.org/schema/forms/form-config"
 	xmlns:riot="http://www.riotfamily.org/schema/riot/form-elements"
-	xmlns:content="http://www.riotfamily.org/schema/components/form-elements"
+	xmlns:content="http://www.riotfamily.org/schema/content/form-elements"
 	xmlns:media="http://www.riotfamily.org/schema/media/form-elements"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
@@ -12,8 +12,8 @@
 		http://www.riotfamily.org/schema/core/form-elements-9.0.xsd
 		http://www.riotfamily.org/schema/media/form-elements
 		http://www.riotfamily.org/schema/media/form-elements-9.0.xsd
-		http://www.riotfamily.org/schema/components/form-elements
-		http://www.riotfamily.org/schema/components/form-elements-9.0.xsd">
+		http://www.riotfamily.org/schema/content/form-elements
+		http://www.riotfamily.org/schema/content/form-elements-9.0.xsd">
 
 
 	<!-- =============== -->

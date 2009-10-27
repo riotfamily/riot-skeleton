@@ -46,8 +46,8 @@
 	<!-- Location of the war file created by the war target -->
 	<property name="war.location" location="${build.dir}/${war.name}" />
 
-	<property name="ivy.download" value="http://riotfamily.org/ivy/ivy-2.0.0-beta2.jar" />
-	<property name="ivy.jar.name" value="ivy2.jar" />
+	<property name="ivy.download" value="http://riotfamily.org/ivy/ivy-2.1.0.jar" />
+	<property name="ivy.jar.name" value="ivy.jar" />
 	<property name="ivy.jar" value="${lib.dir}/${ivy.jar.name}" />
 
 	<taskdef resource="org/apache/ivy/ant/antlib.xml"

@@ -17,9 +17,9 @@
     <#else>
     <div class="riot-noimage">
         <p>
-            <a href="javascript://" onclick="riot.components.editProperties(this)">
+            <span onclick="riot.components.editProperties(this)">
             No image set. Click here to upload an image.
-            </a>
+            </span>
         </p>
     </div>
     </#if>

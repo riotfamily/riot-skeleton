@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form-config
 	xmlns="http://www.riotfamily.org/schema/forms/form-config"
-	xmlns:riot="http://www.riotfamily.org/schema/riot/form-elements"
+	xmlns:riot="http://www.riotfamily.org/schema/core/form-elements"
 	xmlns:content="http://www.riotfamily.org/schema/content/form-elements"
 	xmlns:media="http://www.riotfamily.org/schema/media/form-elements"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -58,12 +58,6 @@
 	
 	<form id="headline">
 		<textfield bind="anchor" regex="[A-Za-z0-9_-]*" />
-	</form>
-
-	<form id="table">
-		<checkbox bind="showHeadings" default="checked" />
-		<numberfield bind="rows" min-value="1" default="3" required="true" />
-		<numberfield bind="cols" min-value="1" default="3" required="true" />
 	</form>
 
 	<form id="image">

@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.riotfamily.common.hibernate.ActiveRecord;
 import org.riotfamily.common.web.cache.TagCacheItems;
 import org.riotfamily.components.model.ContentEntity;
 import org.riotfamily.media.model.RiotImage;
@@ -53,11 +52,11 @@ public class Pet extends ContentEntity {
 	}
 
 	public static List<Pet> loadAll() {
-		return find("from Pet");
+		return query(Pet.class, "from {}").find();
 	}
 	
 	public static Pet load(Long id) {
-		return ActiveRecord.load(Pet.class, id);
+		return load(Pet.class, id);
 	}
 	
 }

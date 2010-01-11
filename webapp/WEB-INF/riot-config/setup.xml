@@ -16,7 +16,7 @@
 		<property name="viewName" value="pages/default.ftl" />
 	</bean>
 	
-	<p:schema name="default" default-suffix=".html">
+	<p:schema name="default">
 		<p:root-page>
 			<p:handler>
 				<bean class="org.riotfamily.pages.controller.FolderController" />
@@ -37,13 +37,7 @@
 				<p:prop key="title" value="Hello World" />
 				 -->
 			</p:system-page>
-			
-			<p:system-page name="news" suffix=".html,.rss">
-				<p:handler>
-					<ref bean="defaultPageController" />
-				</p:handler>
-			</p:system-page>
-			
+						
 			<p:system-page name="pets">
 				<p:handler>
 					<bean class="org.riotfamily.common.web.controller.CacheableViewController">

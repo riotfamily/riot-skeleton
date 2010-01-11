@@ -8,7 +8,7 @@ import org.riotfamily.pages.model.Page;
 public class PetPageResolver extends VirtualPageResolver<Pet> {
 
 	@Override
-	protected Pet load(String pathComponent) {
+	protected Pet load(Page parent, String pathComponent) {
 		return Pet.load(Long.valueOf(pathComponent));
 	}
 	

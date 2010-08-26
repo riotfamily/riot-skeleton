@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beansProjectDescription>
 	<version>1</version>
-	<pluginVersion><![CDATA[2.0.5.v200805211800]]></pluginVersion>
+	<pluginVersion><![CDATA[2.3.0.200912062113-CI-R3542-B563]]></pluginVersion>
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>webapp/WEB-INF/riot-config/riot-servlet.xml</config>
-		<config>webapp/WEB-INF/application-context.xml</config>
-		<config>webapp/WEB-INF/riot-config/website-servlet.xml</config>
 	</configs>
 	<configSets>
-		<configSet>
-			<name><![CDATA[website]]></name>
-			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
-			<incomplete>false</incomplete>
-			<configs>
-				<config>webapp/WEB-INF/application-context.xml</config>
-				<config>webapp/WEB-INF/riot-config/website-servlet.xml</config>
-			</configs>
-		</configSet>
 	</configSets>
 </beansProjectDescription>

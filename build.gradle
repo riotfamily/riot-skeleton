@@ -1,0 +1,42 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'jetty'
+
+repositories {
+	mavenCentral()
+	mavenRepo urls: "file://$System.env.HOME/.m2/repository"
+	mavenRepo urls: 'http://repository.riotfamily.org/cache'
+	mavenRepo urls: 'http://repository.riotfamily.org/external'
+}
+
+dependencies {
+	compile 'org.riotfamily:content:9.1.0-SNAPSHOT'
+	
+	runtime 'org.hsqldb:hsqldb:1.8.0.10',
+			'org.slf4j:jcl-over-slf4j:1.5.10',
+			'org.slf4j:slf4j-log4j12:1.5.10',
+			'log4j:log4j:1.2.14'
+}
+
+eclipseProject.natures << 'org.springframework.ide.eclipse.core.springnature'
+
+// Workaround for http://jira.codehaus.org/browse/GRADLE-1129
+eclipseWtp.orgEclipseWstCommonComponentOutputFile = new File(eclipseWtp.orgEclipseWstCommonComponentOutputFile.path.replace('.xml',''))
+
+// Workaround for http://jira.codehaus.org/browse/GRADLE-1130
+eclipseWtp.withXml { files ->
+	def xml = files.'org.eclipse.wst.commons.component'
+	xml['wb-module'][0].appendNode('property', [name: 'context-root', value: eclipseWtp.deployName])
+}
+
+// Workaround for http://jira.codehaus.org/browse/GRADLE-1133
+eclipseWtp.facets.find{ it.name == 'jst.java' }.version = 1.5 
+
+// Workaround for http://jira.codehaus.org/browse/GRADLE-1134
+eclipseClasspath.withXml { xml -> 
+	xml.classpathentry.findAll{ it.@kind == 'var' }.each {
+		it.appendNode('attributes').appendNode('attribute', [name: 'org.eclipse.jst.component.dependency', value: '/WEB-INF/lib'])
+	}
+}

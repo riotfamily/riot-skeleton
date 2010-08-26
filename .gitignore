@@ -1,3 +1,5 @@
-build
-lib
-webapp/WEB-INF/lib
+/.gradle
+/build
+/bin
+/lib
+/src/main/webapp/WEB-INF/lib

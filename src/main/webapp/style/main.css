@@ -1,0 +1,231 @@
+/* 
+    Main Stylesheet - Theme: ${theme} <#-- 
+    
+    This file is a FreeMarker template. You can access all CSS constants defined
+    in the css.ini file (located in the same directory), for example color1 and
+    color2.
+    
+    You may also use the org.riotfamily.website.css.ColorTool: -->
+    <#assign color3 = colorTool.brightness(color1, 90) />
+*/
+body {
+	background: #fff url(images/bg.png) repeat-x;
+	color: #323232;
+	font-family: verdana;
+	font-size: 14px;
+}
+
+strong {
+	font-weight: bold;
+}
+
+.content li {
+	list-style-type: disc;
+	list-style-position: outside;
+	margin-left: 15px;
+	margin-bottom: 4px;
+}
+
+.country-chooser li,
+.content .teasers li {
+	list-style:none;
+}
+
+.padding {
+	margin: 0 10px;
+	padding: 10px 0;
+}
+
+.content .padding {
+	margin: 0 35px 0 25px; 
+}
+.extra .padding {
+	margin: 0; 
+}
+
+.header {
+	margin-top: 42px;
+	height: 40px;
+	overflow: hidden;
+}
+
+#topnav {
+	margin-left: 164px;
+}
+#topnav,
+#topnav a {
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 13px;
+	color: ${color1};
+}
+#topnav a.active {
+	color: ${color2};
+}
+
+.header,
+.wrapper,
+.footer {
+	background: url(images/dots.gif) repeat-x;
+}
+
+.footer .padding {
+	margin-left: 174px;
+}
+
+.poweredby {
+	text-transform: uppercase;
+	color: ${color2};
+}
+.riot {
+	text-transform: uppercase;
+	color: ${color1};
+}
+
+.navigation {
+	margin-top: 37px;
+	margin-bottom: 20px;
+	background: ${color3};
+}
+.navigation, 
+.navigation a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 12px;
+}
+.navigation li {
+	list-style: none;
+}
+.navigation ul {
+	margin-left: 10px;
+}
+
+.content {
+	padding-top: 37px;
+	font-size: 12px;
+	line-height: 24px;
+}
+
+.extra {
+	font-size: 11px;
+	line-height: 20px;
+}
+
+.extra .box {
+	margin-top: 23px;
+}
+
+.content h1 {
+	color: ${color1};
+	font-family: Arial;
+	font-size: 26px;
+	line-height: 33px;
+	padding: 20px 0 10px 0;
+	clear: both;
+}
+.content h1.first {
+	padding-top: 0;
+}
+
+.content h2 {
+	color: ${color2};
+	clear: both;
+}
+
+.content p {
+	margin-bottom: 16px;
+}
+
+.extra h3 {
+	color: ${color1};
+	font-size: 11px;
+	margin: 5px 0 3px 0;
+}
+
+.image-block {
+	clear: both;
+	margin: 4px 0 1px 0;
+}
+
+.image-left {
+	float: left;
+	margin: 4px 10px 1px 0;
+}
+
+.image-right {
+	float: right;
+	margin: 4px 0 1px 10px;
+}
+
+.image-after-paragraph {
+	clear: both;
+}
+
+.labeled-image .caption {
+	margin-top: 3px;
+	font-size: 10px;
+	line-height: 13px;
+	color: #777;
+}
+
+.gallery {
+	clear: both;
+	background: #aaa;
+	overflow: hidden;
+	padding-bottom: 10px;
+	margin-bottom: 16px;
+}
+.gallery a {
+	display: block;
+	background-position: center center;
+	background-repeat: no-repeat;
+	margin: 10px 10px 0 0;
+	float: left;
+	width: 110px;
+	height: 90px;
+}
+.gallery a.every-4th {
+	margin-right: 0;
+}
+
+table {
+	margin-bottom: 16px;
+}
+table, td, th {
+	border: 1px solid #fff;
+}
+th {
+	font-weight: bold;
+	text-align: center;
+}
+td, th {
+	padding: 2px 4px;
+	font-size: 12px;
+}
+thead tr {
+	background: #ccc;
+}
+tbody tr.even {
+	background: #eee;
+}
+tbody tr.odd {
+	background: #ddd;
+}
+
+ul.country-chooser {
+	list-style-type: none;
+	margin-left: 0;
+	margin-bottom: 25px;
+	overflow: hidden;
+}
+ul.country-chooser li {
+	background-repeat: no-repeat;
+	background-position: 0 center;
+	padding-left:20px;
+}
+ul.country-chooser li a {
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 13px;
+	color: ${color2};
+}

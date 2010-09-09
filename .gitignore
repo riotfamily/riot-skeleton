@@ -3,3 +3,6 @@
 /bin
 /lib
 /src/main/webapp/WEB-INF/lib
+/.classpath
+/.project
+/.settings

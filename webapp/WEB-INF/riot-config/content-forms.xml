@@ -25,6 +25,8 @@
 	  -->
 	<form id="page">
 		<textfield bind="title" /> 
+		<textfield bind="keywords" />
+		<textfield bind="description" />
 	</form>
 	
 	<!-- 

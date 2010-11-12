@@ -12,11 +12,21 @@
 <head>
 
 	<#-- 
-	  Templates that extend bare.ftl can set a title:
+	  Templates that extend bare.ftl can set a title. Message properties are
+	  maintained in the database and can be changed at runtime.
 	-->
 	<#if template.vars.title??>
-		<title>${template.vars.title}</title>
+		<title>${template.vars.title} - <@c.message code="common.title">Riot Skeleton</@c.message></title>
+	<#else>
+		<title><@c.message code="common.title">Riot Skeleton</@c.message></title>
 	</#if>
+	
+	<@c.if (currentPage.description)! ; content>
+		<meta name="description" content="${content?html}" />
+	</@c.if>
+	<@c.if (currentPage.keywords)! ; content>
+		<meta name="keywords" content="${content?html}" />
+	</@c.if>
 	
 	<#-- 
 	  The @c.stylesheets macro joins all files into one and compresses it

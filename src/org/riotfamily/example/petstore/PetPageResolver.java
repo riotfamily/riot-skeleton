@@ -24,7 +24,10 @@ public class PetPageResolver extends VirtualPageResolver<Pet> {
 	
 	@Override
 	protected Collection<Pet> getChildren(Page parent) {
-		return Pet.loadAll();
+		if ("pets".equals(parent.getPageType().getName())) {
+			return Pet.loadAll();
+		}
+		return null;
 	}
 
 }

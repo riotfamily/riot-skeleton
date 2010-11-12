@@ -55,6 +55,16 @@
 	</bean>
 
 	<context:component-scan base-package="org.riotfamily.example" />
+
+ 	<bean id="viewNameTranslator" class="org.riotfamily.pages.view.PageRequestToViewNameTranslator">
+		<property name="prefix" value="pages/" />
+		<property name="suffix" value=".ftl" />
+		<property name="noPageTranslator">
+			<bean class="org.riotfamily.pages.view.SiteRequestToViewNameTranslator">
+				<property name="suffix" value=".ftl" />
+			</bean>
+		</property>
+	</bean>
  	 
 	<!-- Simple Twitter Client -->
 	<bean name="twitter" class="org.riotfamily.example.twitter.Twitter" />

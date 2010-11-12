@@ -12,9 +12,7 @@
 		http://www.riotfamily.org/schema/media/setup
 		http://www.riotfamily.org/schema/media/setup-9.0.xsd">
 	
-	<bean id="defaultPageController" class="org.riotfamily.common.web.controller.CacheableViewController">
-		<property name="viewName" value="pages/default.ftl" />
-	</bean>
+	<bean id="defaultPageController" class="org.riotfamily.common.web.controller.CacheableViewController" />
 	
 	<p:schema name="default">
 		<p:root-page>
@@ -22,16 +20,25 @@
 				<bean class="org.riotfamily.pages.controller.FolderController" />
 			</p:handler>
 			
-			<p:type name="default">
-				<p:handler>
-					<ref bean="defaultPageController" />
-				</p:handler>
+			<p:type name="default" handler="defaultPageController">
 				<p:type-ref name="default" />
+				<p:type name="wide" handler="defaultPageController">
+					<p:type-ref name="default" />
+				</p:type>
 			</p:type>
+			
+			<!-- Wide pages are available below / too -->
+			<p:type-ref name="wide" />
 			
 			<p:system-page name="home">
 				<p:handler>
+					<!-- Comment out the below and add a home.ftl in pages...
 					<ref bean="defaultPageController" />
+					... or just set the view name to a custom template below.
+					-->
+					<bean parent="defaultPageController">
+						<property name="viewName" value="pages/default.ftl" />
+					</bean>				
 				</p:handler>
 				<!-- 
 				<p:prop key="title" value="Hello World" />

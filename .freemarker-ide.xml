@@ -10,5 +10,6 @@
 		<entry namespace="c" path="org/riotfamily/common/web/macro/common.ftl" type="jarEntry"/>
 		<entry namespace="inplace" path="org/riotfamily/components/view/inplace.ftl" type="jarEntry"/>
 		<entry namespace="pages" path="org/riotfamily/pages/view/pages.ftl" type="jarEntry"/>
+		<entry namespace="template" path="org/riotfamily/common/web/template/template.ftl" type="jarEntry"/>
 	</macro-library>
 </config>

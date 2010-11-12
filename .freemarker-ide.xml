@@ -7,9 +7,8 @@
 		</resource>
 	</context-values>
 	<macro-library>
+		<entry namespace="c" path="org/riotfamily/common/web/macro/common.ftl" type="jarEntry"/>
 		<entry namespace="inplace" path="org/riotfamily/components/view/inplace.ftl" type="jarEntry"/>
 		<entry namespace="pages" path="org/riotfamily/pages/view/pages.ftl" type="jarEntry"/>
-		<entry namespace="c" path="org/riotfamily/common/web/view/freemarker/common.ftl" type="jarEntry"/>
-		<entry namespace="riot" path="org/riotfamily/riot/runtime/macro/riot.ftl" type="jarEntry"/>
 	</macro-library>
 </config>

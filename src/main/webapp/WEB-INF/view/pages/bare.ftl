@@ -96,16 +96,28 @@
 	-->
 	
 	<#if (currentSite.googleAnalyticsCode)??>
-		<script type="text/javascript">
-			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-		</script>
-		<script type="text/javascript">
-			var pageTracker = _gat._getTracker("${currentSite.theme.googleAnalyticsCode}");
-			pageTracker._initData();
-			pageTracker._trackPageview();
-		</script>
-	</#if>
+	<#--
+	Asynchronous Google Analytics snippet. 
+	@see for documentation as well as optimization 
+		 http://mathiasbynens.be/notes/async-analytics-snippet
+	-->
+	<script>
+	var _gaq = [];
+	_gaq.push(['_setAccount', '${currentSite.theme.googleAnalyticsCode}']);
+	<#-- Anonymizing ip data -->
+	_gaq.push(['_gat._anonymizeIp']);
+	_gaq.push(['_trackPageview']);
+	<#-- Track page load
+	_gaq.push(['_trackPageLoadTime']);
+	-->
+	
+	(function() {
+	  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+	</#if>	
 	
 	<@inplace.toolbar />
 </body>

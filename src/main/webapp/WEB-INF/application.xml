@@ -11,9 +11,9 @@
 		http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util-3.0.xsd
 		http://www.riotfamily.org/schema/common/override
-		http://www.riotfamily.org/schema/common/override-9.0.xsd
+		http://www.riotfamily.org/schema/common/override-9.1.xsd
 		http://www.riotfamily.org/schema/content/page
-		http://www.riotfamily.org/schema/content/page-9.0.xsd">
+		http://www.riotfamily.org/schema/content/page-9.1.xsd">
 		
 	<bean id="defaultPageController" class="org.riotfamily.common.web.controller.CacheableViewController">
 		<property name="viewName" value="pages/default.ftl" />

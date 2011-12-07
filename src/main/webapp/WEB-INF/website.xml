@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.riotfamily.org/schema/common/override
-		http://www.riotfamily.org/schema/common/override-9.0.xsd">
+		http://www.riotfamily.org/schema/common/override-9.1.xsd">
 
 	<!-- Use the locale defined by the Site being viewed -->
 	<bean id="localeResolver" class="org.riotfamily.pages.SiteLocaleResolver">

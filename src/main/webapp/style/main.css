@@ -19,6 +19,10 @@ strong {
 	font-weight: bold;
 }
 
+em {
+	font-style: italic;
+}
+
 .content li {
 	list-style-type: disc;
 	list-style-position: outside;

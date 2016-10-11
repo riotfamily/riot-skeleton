@@ -4,6 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.riotfamily.org/schema/content/page"
 	xmlns:override="http://www.riotfamily.org/schema/common/override"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
@@ -13,7 +14,9 @@
 		http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.riotfamily.org/schema/common/override
-		http://www.riotfamily.org/schema/common/override-9.3.xsd">
+		http://www.riotfamily.org/schema/common/override-9.3.xsd
+		http://www.riotfamily.org/schema/content/page
+		http://www.riotfamily.org/schema/content/page-9.3.xsd">
 
 	<!-- Use the locale defined by the Site being viewed -->
 	<bean id="localeResolver" class="org.riotfamily.pages.SiteLocaleResolver">
@@ -45,6 +48,25 @@
 		<property name="fileTypeMap" ref="fileTypeMap" />
 		<property name="order" value="4" />
 	</bean>
+	
+	<bean id="defaultPageController" class="org.riotfamily.common.web.controller.CacheableViewController">
+		<property name="viewName" value="pages/default.ftl" />
+	</bean>
+	
+	<p:schema name="default">
+		<p:root-page>
+			<p:handler>
+				<bean class="org.riotfamily.pages.controller.FolderController" />
+			</p:handler>
+			
+			<p:system-page name="home" handler="defaultPageController" />
+			<p:type name="default" handler="defaultPageController">
+				<p:type-ref name="default" />
+			</p:type>
+
+		</p:root-page>
+	</p:schema>
+	
 
 	<context:component-scan base-package="org.riotfamily.example" />
   	

@@ -3,7 +3,6 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:override="http://www.riotfamily.org/schema/common/override"
-	xmlns:p="http://www.riotfamily.org/schema/content/page"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
@@ -11,25 +10,10 @@
 		http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util-4.3.xsd
 		http://www.riotfamily.org/schema/common/override
-		http://www.riotfamily.org/schema/common/override-9.3.xsd
-		http://www.riotfamily.org/schema/content/page
-		http://www.riotfamily.org/schema/content/page-9.3.xsd">
-	<bean id="defaultPageController" class="org.riotfamily.common.web.controller.CacheableViewController">
-		<property name="viewName" value="pages/default.ftl" />
-	</bean>
+		http://www.riotfamily.org/schema/common/override-9.3.xsd">
 	
-	<p:schema name="default">
-		<p:root-page>
-			<p:handler>
-				<bean class="org.riotfamily.pages.controller.FolderController" />
-			</p:handler>
-			
-			<p:system-page name="home" handler="defaultPageController" />
-			<p:type name="default" handler="defaultPageController">
-				<p:type-ref name="default" />
-			</p:type>
-
-		</p:root-page>
-	</p:schema>
-	
+	<override:add ref="sessionFactory" property="packagesToScan" append="true">
+    	<value>org.riotfamily.example</value>
+    </override:add>
+    
 </beans>

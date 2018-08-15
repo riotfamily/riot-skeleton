@@ -1,45 +1,82 @@
+// --------------------------------------------------------------------------------------------
+//                                  -[ build.gradle ]-
+//
+// Purpose: Project builder config
+//
+// Author:  Thorben Ruthke
+// --------------------------------------------------------------------------------------------
+
+// --------------------------------------------------------------------------------------------
+//                                    Global settings
+// --------------------------------------------------------------------------------------------
+// Changes here might effect all parts of this file!
+
+// Repository URLs
+def riotFamExternalRepository       = "http://repository.riotfamily.org/external"
+def riotFamCacheRepository          = "http://repository.riotfamily.org/cache"
+
+def uploadRepositoryURL             = "file://$System.env.HOME/.m2/repository/snapshots"
+//def uploadRepositoryURL             = "http://repository.riotfamily.org/"
+def uploadRepositoryReleaseSuffix   = "release"
+def uploadRepositorySnapshotSuffix  = "snapshots"
+
+def compatibleJavaVersion           = JavaVersion.VERSION_1_8
+// --------------------------------------------------------------------------------------------
+
+// --------------------------------------------------------------------------------------------
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'maven'
 
-sourceCompatibility = JavaVersion.VERSION_1_6
-targetCompatibility = JavaVersion.VERSION_1_6
-
-repositories {
-	mavenLocal()
-	maven {
-    	url "http://repository.riotfamily.org/snapshots"
-    }
-	maven {
-    	url "http://repository.riotfamily.org/external"
-    }
-	maven {
-  	  url "http://repository.riotfamily.org/cache"
-    }
-
-}
-
-dependencies {
-	compile 'org.riotfamily:content:9.3.0-SNAPSHOT'
-  	
-  	runtime 'org.hsqldb:hsqldb:2.3.4',
-			'org.riotfamily:statistics:9.3.0-SNAPSHOT'
-}
-
-sourceCompatibility = JavaVersion.VERSION_1_6
-targetCompatibility = JavaVersion.VERSION_1_6
-
-configurations.all {
-	resolutionStrategy.cacheChangingModulesFor 1, 'minutes'
-}
-
 eclipse.project.natures << 'org.springframework.ide.eclipse.core.springnature'
 
-/**
- * Creates the gradlew wrapper scripts
- */
- task wrapper(type: Wrapper) {
- 	jarFile = '.gradlew/gradle-wrapper.jar'
- 	gradleVersion = '2.13'
- }
+sourceCompatibility = compatibleJavaVersion
+targetCompatibility = compatibleJavaVersion
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 1, 'minutes'
+}
+// --------------------------------------------------------------------------------------------
+//                                   Repositories
+// --------------------------------------------------------------------------------------------
+repositories {
+
+    mavenCentral()
+
+    maven {
+        //url uploadRepositoryURL + uploadRepositorySnapshotSuffix
+        url uploadRepositoryURL
+    }
+
+    maven {
+        url riotFamExternalRepository
+    }
+
+    maven {
+        url riotFamCacheRepository
+    }
+
+}
+// --------------------------------------------------------------------------------------------
+//                                   Dependencies
+// --------------------------------------------------------------------------------------------
+dependencies {
+
+    compile 'org.riotfamily:content:10.0.0-SNAPSHOT',
+            'org.springframework:spring-web:3.0.4.RELEASE'
+
+    runtime 'org.hsqldb:hsqldb:2.3.4',
+            'org.riotfamily:statistics:10.0.0-SNAPSHOT',
+            'org.riotfamily:common:10.0.0-SNAPSHOT'
+
+}
+// --------------------------------------------------------------------------------------------
+//                                          Tasks
+// --------------------------------------------------------------------------------------------
+
+// Creates the gradlew wrapper scripts
+task wrapper(type: Wrapper) {
+    jarFile = '.gradlew/gradle-wrapper.jar'
+    gradleVersion = '4.4'
+}
